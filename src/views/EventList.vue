@@ -4,8 +4,18 @@
       <img class="hud-darken" src="../assets/hud-darken.png" />
       <img class="hud-ring" src="../assets/hud-ring.png" />
       <img class="hud-ring" src="../assets/hud-ring-inner.png" />
+      <svg viewBox="0 0 650 650" class="hud-svg">
+        <defs>
+          <clipPath id="clipMask">
+             <path d="M 607 293.5 l 14.7 -9.2 c -18.1 -132.8 -123.2 -237.9 -256 -256 L 356.5 43 h -63 l -9.3 -14.7 c -132.8 18.1 -237.9 123.2 -256 256 l 14.7 9.2 v 63 l -14.7 9.2 c 18.1 132.8 123.2 237.9 256 256 l 9.3 -14.7 h 63 l 9.3 14.7 c 132.8 -18.1 237.9 -123.2 256 -256 l -14.7 -9.2 V 293.5 Z" />
+          </clipPath>
+        </defs>
+        <g clip-path="url(#clipMask)">
+          <circle cx="325" cy="350" r="175" transform="matrix(-1, 0, 0, -1, 650, 650)" style="stroke-dasharray:102.0 1000.0; stroke-dashoffset: -20.0"/>
+        </g>
+      </svg>
     </div>
-    <div style="width:100vw;height:100vh;" id="canvas" ref="canvas"></div> 
+    <div style="float:right;" id="canvas" ref="canvas"></div> 
   </body>
 </template>
 
@@ -88,20 +98,7 @@ export default {
   padding: 0;
 }
 
-html, body {
-  overflow: hidden;
-}
-
-.webgl {
-  position: fixed;
-  top: 0;
-  left: 0;
-  outline: none;
-}
-
 #canvas {
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -139,5 +136,22 @@ html, body {
 
 .site {
   text-align: left;
+}
+
+circle {
+  transform-origin: 0 0;
+}
+
+.hud-svg {
+  fill: none;
+  stroke: #7700aa;
+  stroke-width: 10;
+  transition-property: stroke;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
