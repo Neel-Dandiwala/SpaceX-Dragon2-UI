@@ -81,7 +81,6 @@ export default {
     // gltfLoader.load(
     //   './ISS_stationary.glb',
     //   gltf => {
-    //     console.log(gltf.scene)
     //     const iss = gltf.scene
     //     iss.scale.set(0.025, 0.025, 0.025)
     //     this.scene.add(iss)
@@ -91,6 +90,22 @@ export default {
     //   },
     //   error => {
     //     console.log('ISS crashed' + error)
+    //   }
+    // )
+    // gltfLoader.load(
+    //   './Earth.glb',
+    //   gltf => {
+    //     console.log(gltf)
+    //     const earth = gltf.scene
+    //     earth.scale.set(0.0025, 0.0025, 0.0025)
+    //     this.earth = earth
+    //     this.scene.add(earth)
+    //   },
+    //   progress => {
+    //     console.log('Earth in progress' + progress)
+    //   },
+    //   error => {
+    //     console.log('Earth crashed' + error)
     //   }
     // )
 
@@ -143,6 +158,7 @@ export default {
       this.navRenderer.render(this.navScene, this.navCamera)
       this.navBall.rotation.x += 0.01
       this.navBall.rotation.z += 0.01
+      // this.earth.rotation.y += 0.01
       this.cube.rotation.y += 0.1
       this.controls.update()
     },
@@ -172,7 +188,7 @@ export default {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  z-index: 0;
+  /* z-index: 0; */
 }
 
 #navball {
