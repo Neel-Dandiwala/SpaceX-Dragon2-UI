@@ -88,7 +88,8 @@ export default {
     const gltfLoader = new GLTFLoader()
     this.navballTexture = textureLoader.load(require('../assets/navball.png'))
 
-    this.navSize = 200
+    this.navSize = (window.innerWidth <= 1200 && window.innerWidth > 850) ||
+        (window.innerHeight <= 650 && window.innerHeight > 450) ? 150 : ((window.innerWidth < 850 || window.innerHeight < 450) ? 100 : 200)
     this.sizes = {
       width: window.innerWidth,
       height: window.innerHeight
@@ -249,10 +250,9 @@ export default {
 #navball {
   /* height: 200px;
   width: 200px; */
-  right: 5px;
   position: absolute;
-  bottom: 5px;
-  left: 50px;
+  bottom: 15px;
+  left: 15px;
   z-index: 2;
 }
 
@@ -320,14 +320,14 @@ circle {
 
 #lower-left {
   position: absolute;
-  bottom: 5px;
-  left: 50px;
+  bottom: 15px;
+  left: 15px;
   z-index: 1;
 }
 
 #lower-right {
   position: absolute;
-  bottom: 5px;
+  bottom: 40px;
   right: 50px;
   z-index: 1;
 }
@@ -359,13 +359,27 @@ circle {
   #lower-left {
     height: 150px;
     width: 150px;
-    left: 25px;
+    /* left: 25px; */
+  }
+  #lower-right {
+    height: 150px;
+    width: 150px;
+    /* right: 25px; */
+  }
+  #upper-left {
+    height: 150px;
+    width: 150px;
+    /* left: 25px; */
+  }
+  #upper-right {
+    height: 150px;
+    width: 150px;
+    /* right: 25px; */
   }
   #navball {
     height: 150;
     width: 150;
-    left: 25px;
-    bottom: 5px;
+    /* left: 25px; */
   }
 }
 
@@ -382,13 +396,32 @@ circle {
   #lower-left {
     height: 100px;
     width: 100px;
-    left: 10px;
+    left: 20px;
+  }
+  #lower-right {
+    height: 100px;
+    width: 100px;
+    right: 20px;
+  }
+  #upper-left {
+    height: 100px;
+    width: 100px;
+    left: 20px;
+  }
+  #upper-right {
+    height: 100px;
+    width: 100px;
+    right: 20px;
   }
   #navball {
-    bottom: 5px;
-    left: 10px;
+    left: 20px;
     height: 100;
     width: 100;
   }
+}
+
+body {
+  display: block;
+  margin: 0;
 }
 </style>

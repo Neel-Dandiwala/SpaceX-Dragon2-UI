@@ -27,6 +27,10 @@ export default {
   margin: 0;
 }
 
+body{
+  margin: 0;
+}
+
 #nav {
   padding: 30px;
 }
