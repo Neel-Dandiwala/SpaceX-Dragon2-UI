@@ -24,18 +24,50 @@
       </g>
     </svg>
 
-    <div style="float:right;" id="canvas" ref="canvas1"></div>
+    <div style="float:right;" id="space" ref="canvas1"></div>
     <div id="navball" ref="canvas2"></div>
-    <svg id="circle-svg" viewBox="0 0 100 100">
-      <circle
-        cx="50"
-        cy="50"
-        r="8"
-        stroke="white"
-        stroke-width="0.5"
-        fill="black"
-      />
-    </svg>
+    <div id="corner-circles-base">
+      <svg id="lower-left" width="200" height="200" viewBox="0 0 100 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="49"
+          stroke="white"
+          stroke-width="0.5"
+          fill="black"
+        />
+      </svg>
+      <svg id="lower-right" width="200" height="200" viewBox="0 0 100 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="49"
+          stroke="white"
+          stroke-width="0.5"
+          fill="black"
+        />
+      </svg>
+      <svg id="upper-left" width="200" height="200" viewBox="0 0 100 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="49"
+          stroke="white"
+          stroke-width="0.5"
+          fill="black"
+        />
+      </svg>
+      <svg id="upper-right" width="200" height="200" viewBox="0 0 100 100">
+        <circle
+          cx="50"
+          cy="50"
+          r="49"
+          stroke="white"
+          stroke-width="0.5"
+          fill="black"
+        />
+      </svg>
+    </div>
   </body>
 </template>
 
@@ -56,6 +88,7 @@ export default {
     const gltfLoader = new GLTFLoader()
     this.navballTexture = textureLoader.load(require('../assets/navball.png'))
 
+    this.navSize = 200
     this.sizes = {
       width: window.innerWidth,
       height: window.innerHeight
@@ -121,7 +154,7 @@ export default {
 
     this.navCamera = new THREE.PerspectiveCamera(
       25,
-      200 / 2 / (200 / 2),
+      this.navSize / this.navSize,
       0.1,
       100
     )
@@ -138,8 +171,11 @@ export default {
     this.navScene.add(this.navCamera)
     this.navScene.add(this.navLight)
     this.navScene.add(this.navBall)
-    this.navRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
-    this.navRenderer.setSize(200, 200)
+    this.navRenderer = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true
+    })
+    this.navRenderer.setSize(this.navSize, this.navSize)
     this.navRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   },
 
@@ -171,6 +207,25 @@ export default {
 
       this.renderer.setSize(this.sizes.width, this.sizes.height)
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+      console.log(this.navSize)
+      this.navSize = 200
+      if (
+        (e.target.innerWidth <= 1200 && e.target.innerWidth > 850) ||
+        (e.target.innerHeight <= 650 && e.target.innerHeight > 450)
+      ) {
+        this.navSize = 150
+        console.log(this.navSize+ 'FIRST')
+      }
+      if (e.target.innerWidth < 850 || e.target.innerHeight < 450) {
+        this.navSize = 100
+        console.log(this.navSize+'SECOND')
+      }
+      console.log(this.navSize+'FINAL')
+      this.navCamera.aspect = this.navSize / this.navSize
+      this.navCamera.updateProjectionMatrix()
+
+      this.navRenderer.setSize(this.navSize, this.navSize)
+      this.navRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     }
   },
   beforeRouteUpdate() {},
@@ -184,7 +239,7 @@ export default {
   padding: 0;
 }
 
-#canvas {
+#space {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -192,12 +247,12 @@ export default {
 }
 
 #navball {
+  /* height: 200px;
+  width: 200px; */
   right: 5px;
-  height: 200px;
-  width: 100%;
   position: absolute;
-  top: 70%;
-  left: 3%;
+  bottom: 5px;
+  left: 50px;
   z-index: 2;
 }
 
@@ -213,20 +268,6 @@ export default {
   overflow: hidden;
 }
 
-@media screen and (max-width: 1200px), (max-height: 650px) {
-  #hud-darken {
-    height: 900px;
-    width: 900px;
-  }
-}
-
-@media screen and (max-width: 850px), (max-height: 450px) {
-  #hud-darken {
-    height: 650px;
-    width: 650px;
-  }
-}
-
 #hud-ring {
   /* position: absolute;
   display: block; */
@@ -236,20 +277,7 @@ export default {
   height: 675px;
   position: absolute;
   transform: translate(-50%, -50%);
-}
-
-@media screen and (max-width: 1200px), (max-height: 650px) {
-  #hud-ring {
-    width: 450px;
-    height: 450px;
-  }
-}
-
-@media screen and (max-width: 850px), (max-height: 450px) {
-  #hud-ring {
-    width: 335px;
-    height: 335px;
-  }
+  overflow: hidden;
 }
 
 #hud-white-inner,
@@ -287,10 +315,80 @@ circle {
   left: 0;
 }
 
-#circle-svg {
+#corner-circles-base {
+}
+
+#lower-left {
   position: absolute;
-  top: -7%;
-  left: -39%;
+  bottom: 5px;
+  left: 50px;
   z-index: 1;
+}
+
+#lower-right {
+  position: absolute;
+  bottom: 5px;
+  right: 50px;
+  z-index: 1;
+}
+
+#upper-left {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  z-index: 1;
+}
+
+#upper-right {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 1200px), (max-height: 650px) {
+  #hud-darken {
+    height: 900px;
+    width: 900px;
+    overflow: hidden;
+  }
+  #hud-ring {
+    width: 450px;
+    height: 450px;
+  }
+  #lower-left {
+    height: 150px;
+    width: 150px;
+    left: 25px;
+  }
+  #navball {
+    height: 150;
+    width: 150;
+    left: 25px;
+    bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 850px), (max-height: 450px) {
+  #hud-darken {
+    height: 650px;
+    width: 650px;
+    overflow: hidden;
+  }
+  #hud-ring {
+    width: 335px;
+    height: 335px;
+  }
+  #lower-left {
+    height: 100px;
+    width: 100px;
+    left: 10px;
+  }
+  #navball {
+    bottom: 5px;
+    left: 10px;
+    height: 100;
+    width: 100;
+  }
 }
 </style>
