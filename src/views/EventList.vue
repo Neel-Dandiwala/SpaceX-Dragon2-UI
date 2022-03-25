@@ -1,10 +1,10 @@
 <template>
   <body>
-    <!-- <img id="hud-darken" src="../assets/hud-darken.png" />
+    <img class="hud-darken-ring" src="../assets/hud-darken.png" />
     <div id="hud-ring">
       <img id="hud-white-outer" src="../assets/hud-ring.png" />
       <img id="hud-white-inner" src="../assets/hud-ring-inner.png" />
-    </div> -->
+    </div>
     <!-- <svg viewBox="0 0 650 650" class="hud-svg">
       <defs>
         <clipPath id="clipMask">
@@ -24,9 +24,9 @@
       </g>
     </svg> -->
 
-    <div style="float:right;" id="space" ref="canvas1"></div>
+    <div id="space" ref="canvas1"></div>
     <div id="navball" ref="canvas2"></div>
-    <div id="corner-circles-base">
+    <div class="corner-circles-base">
       <svg id="lower-left" width="200" height="200" viewBox="0 0 100 100">
         <circle
           cx="50"
@@ -106,8 +106,8 @@ export default {
         : 200
 
     this.sizes = {
-      width: window.innerWidth,
-      height: window.innerHeight
+      width: window.innerWidth * 0.71428571,
+      height: window.innerHeight 
     }
     this.camera = new THREE.PerspectiveCamera(
       75,
@@ -354,13 +354,14 @@ export default {
 
       this.sunLight.intensity = 4.0
       this.controls.update()
-      const fixed = new THREE.Vector3(40, 5, 20)
-      this.ring.position.sub(this.camera.position, fixed)
-      this.ring.rotation.y += 0.1
-      console.log(this.ring.position)
+      // const fixed = new THREE.Vector3(40, 5, 20)
+      // this.ring.position.sub(this.camera.position, fixed)
+      // this.ring.rotation.y += 0.1
+      // console.log(this.ring.position)
     },
     resizeScreen(e) {
-      this.sizes.width = e.target.innerWidth
+      
+      this.sizes.width = e.target.innerWidth * 0.71426571
       this.sizes.height = e.target.innerHeight
 
       this.camera.aspect = this.sizes.width / this.sizes.height
@@ -401,10 +402,15 @@ export default {
 }
 
 #space {
-  height: 100%;
-  width: 100%;
+  /* height: 100%; */
+  /* width: 100%; */
+  border-radius: 30px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
   overflow: hidden;
-  /* z-index: 0; */
+  z-index: 0;
 }
 
 #navball {
@@ -412,20 +418,29 @@ export default {
   width: 200px; */
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  left: 14.285714%;
   z-index: 2;
 }
 
 #hud-darken {
-  /* position: absolute;
-    display: block; */
-  height: 1350px;
-  width: 1350px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200px;
+  width: 100px;
+}
+
+.hud-darken-ring {
+  height: min(100vh, calc(100vw * 0.714));
+  width: min(100vh, calc(100vw * 0.714));
+  object-fit: cover;
   top: 50%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  border: 5px solid red;
+  z-index: 1;
 }
 
 #hud-ring {
@@ -433,11 +448,13 @@ export default {
   display: block; */
   top: 50%;
   left: 50%;
-  width: 675px;
-  height: 675px;
+  width: calc((min(100vh, calc(100vw * 0.714))) / 2);
+  height: calc((min(100vh, calc(100vw * 0.714))) / 2);
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: hidden;
+  border: 5px solid blue;
+  z-index: 1;
 }
 
 #hud-white-inner,
@@ -475,47 +492,49 @@ circle {
   left: 0;
 }
 
-#corner-circles-base {
+.corner-circles-base {
+ 
 }
 
 #lower-left {
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  /* left: 15px; */
   z-index: 1;
+  left: 14.285714%;
 }
 
 #lower-right {
   position: absolute;
   bottom: 15px;
-  right: 15px;
+  right: 14.285714%;
   z-index: 1;
 }
 
 #upper-left {
   position: absolute;
   top: 15px;
-  left: 15px;
+  left: 14.285714%;
   z-index: 1;
 }
 
 #upper-right {
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 14.285714%;
   z-index: 1;
 }
 
 @media screen and (max-width: 1200px), (max-height: 650px) {
-  #hud-darken {
-    height: 900px;
-    width: 900px;
+  /* #hud-darken-ring {
+    height: 750px;
+    width: 750px;
     overflow: hidden;
   }
   #hud-ring {
-    width: 450px;
-    height: 450px;
-  }
+    width: 375px;
+    height: 375px;
+  } */
   #lower-left {
     height: 150px;
     width: 150px;
@@ -544,7 +563,7 @@ circle {
 }
 
 @media screen and (max-width: 850px), (max-height: 450px) {
-  #hud-darken {
+  /* #hud-darken-ring {
     height: 650px;
     width: 650px;
     overflow: hidden;
@@ -552,7 +571,7 @@ circle {
   #hud-ring {
     width: 335px;
     height: 335px;
-  }
+  } */
   #lower-left {
     height: 100px;
     width: 100px;
