@@ -68,6 +68,7 @@
         />
       </svg>
     </div>
+    <div id="back-box"></div>
   </body>
 </template>
 
@@ -107,7 +108,7 @@ export default {
 
     this.sizes = {
       width: window.innerWidth * 0.71428571,
-      height: window.innerHeight 
+      height: window.innerHeight * 0.90
     }
     this.camera = new THREE.PerspectiveCamera(
       75,
@@ -362,7 +363,7 @@ export default {
     resizeScreen(e) {
       
       this.sizes.width = e.target.innerWidth * 0.71426571
-      this.sizes.height = e.target.innerHeight
+      this.sizes.height = e.target.innerHeight * 0.9
 
       this.camera.aspect = this.sizes.width / this.sizes.height
       this.camera.updateProjectionMatrix()
@@ -405,7 +406,7 @@ export default {
   /* height: 100%; */
   /* width: 100%; */
   border-radius: 30px;
-  top: 50%;
+  top: 47.5%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -599,8 +600,17 @@ circle {
   }
 }
 
+#back-box {
+  background-color: #020738;
+  height: 95vh;
+  width: 100%;
+  bottom: 30px;
+  border-radius: 0 0 30px 30px;
+}
+
 body {
   display: block;
   margin: 0;
+  background-color: aqua;
 }
 </style>

@@ -29,8 +29,7 @@ export default {
 
 body{
   margin: 0;
-  min-width: 300;
-  min-height: 300;
+  background-color: aqua;
 }
 
 #nav {
