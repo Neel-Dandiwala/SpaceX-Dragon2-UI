@@ -4,16 +4,26 @@
       {{ GStore.flashMessage }}
     </div>
     <router-view />
-    <div id="nav">
-      <router-link :to="{ name: 'EventList' }">Events</router-link> |
-      <router-link :to="{ name: 'About' }">About</router-link>
-    </div>
+    <nav>
+      <router-link :to="{ name: 'EventList' }" @click="indicator">Events</router-link> |
+      <router-link :to="{ name: 'About' }" @click="indicator">About</router-link> |
+      <router-link :to="{ name: 'NetworkError' }" @click="indicator">NetowrkError</router-link>
+      <div class="marker" />
+    </nav>
   </div>
 </template>
 
 <script>
+// import { isObjectMember } from '@babel/types'
+
 export default {
-  inject: ['GStore']
+  inject: ['GStore'],
+  methods: {
+    indicator(e){
+      let marker = this.$el.querySelector('.marker')
+      marker.style.left = e.target.offsetLeft + 'px'
+    }
+  }
 }
 </script>
 
@@ -22,27 +32,51 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  /* text-align: center; */
+  color: white;
   margin: 0;
 }
 
-body{
+body {
   margin: 0;
-  background-color: aqua;
+  background-color: #111b52;
 }
 
-#nav {
-  padding: 30px;
+nav {
+  padding: 0.5%;
+  position: absolute;
+  display: block;
+  bottom: 0;
 }
 
-#nav a {
+nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: grey;
+}
+nav a.router-link-exact-active {
+  color: white;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+/* #nav a:nth-child(1) ~ #marker{
+  left: 10;
+  opacity: 1;
+  background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,255,255,1)); 
+} */
+
+.marker {
+  position: absolute;
+  /* padding-left: 7%; */
+  height: 20px;
+  width: 40px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 0, 0, 0),
+    rgba(255, 255, 255, 1)
+  );
+  bottom: 0;
+  transition: 0.7s;
+  opacity: 1;
+  /* z-index: -3; */
 }
 
 h4 {

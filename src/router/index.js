@@ -31,8 +31,7 @@ const routes = [
   {
     path: '/',
     name: 'EventList',
-    component: EventList,
-    props: route => ({ page: parseInt(route.query.page) || 1 })
+    component: EventList
   },
   {
     path: '/events/:id',

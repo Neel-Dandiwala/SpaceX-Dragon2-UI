@@ -209,6 +209,7 @@ export default {
     environmentMap.encoding = THREE.sRGBEncoding
     const sceneMap = new THREE.Scene()
     sceneMap.background = environmentMap
+    this.scene.background = environmentMap
 
     this.ring = new THREE.Mesh(
       new THREE.CylinderGeometry(50, 50, 10, 100, 1, true),
@@ -252,8 +253,6 @@ export default {
     this.renderer.setSize(this.sizes.width, this.sizes.height)
     // this.renderer.setClearColor(0x000000)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    this.renderer.shadowMap.enabled = true
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
     this.renderer.outputEncoding = THREE.sRGBEncoding
     this.renderer.autoClear = false
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
@@ -316,7 +315,7 @@ export default {
       antialias: true
     })
     this.navRenderer.setSize(this.navSize, this.navSize)
-    this.navRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    this.navRenderer.setPixelRatio(1)
   },
 
   mounted() {
@@ -334,7 +333,7 @@ export default {
       this.navRenderer.render(this.navScene, this.navCamera)
       this.navBall.rotation.x += 0.01
       this.navBall.rotation.z += 0.01
-      this.dynamicHDREffectComposer.render(0.017)
+      // this.dynamicHDREffectComposer.render(0.017)
       // this.earth.rotation.y += 0.01
       // this.cube.rotation.y += 0.1
       if (this.bloomPass) {
@@ -412,14 +411,16 @@ export default {
   transform: translate(-50%, -50%);
   overflow: hidden;
   z-index: 0;
+  box-sizing: border-box;
+  border: 1px solid white;
 }
 
 #navball {
   /* height: 200px;
   width: 200px; */
   position: absolute;
-  bottom: 15px;
-  left: 14.285714%;
+  bottom: 8%;
+  left: 14.59%;
   z-index: 2;
 }
 
@@ -432,15 +433,15 @@ export default {
 }
 
 .hud-darken-ring {
-  height: min(100vh, calc(100vw * 0.714));
-  width: min(100vh, calc(100vw * 0.714));
+  height: min(85vh, calc(100vw * 0.714));
+  width: min(85vh, calc(100vw * 0.714));
   object-fit: cover;
   top: 50%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: hidden;
-  border: 5px solid red;
+  /* border: 5px solid red; */
   z-index: 1;
 }
 
@@ -449,12 +450,12 @@ export default {
   display: block; */
   top: 50%;
   left: 50%;
-  width: calc((min(100vh, calc(100vw * 0.714))) / 2);
-  height: calc((min(100vh, calc(100vw * 0.714))) / 2);
+  width: calc((min(85vh, calc(100vw * 0.714))) / 2);
+  height: calc((min(85vh, calc(100vw * 0.714))) / 2);
   position: absolute;
   transform: translate(-50%, -50%);
   overflow: hidden;
-  border: 5px solid blue;
+  /* border: 5px solid blue; */
   z-index: 1;
 }
 
@@ -499,30 +500,31 @@ circle {
 
 #lower-left {
   position: absolute;
-  bottom: 15px;
+  bottom: 8%;
   /* left: 15px; */
   z-index: 1;
-  left: 14.285714%;
+  left: 14.59%;
 }
 
 #lower-right {
   position: absolute;
-  bottom: 15px;
-  right: 14.285714%;
+  bottom: 8%;
+  right: 14.59%;
   z-index: 1;
 }
 
 #upper-left {
   position: absolute;
-  top: 15px;
-  left: 14.285714%;
+  top: 3%;
+  left: 14.59%;
   z-index: 1;
 }
 
 #upper-right {
   position: absolute;
-  top: 15px;
-  right: 14.285714%;
+  top: 3%;
+  /* right: 14.285714%; */
+  right: 14.59%;
   z-index: 1;
 }
 
@@ -606,11 +608,15 @@ circle {
   width: 100%;
   bottom: 30px;
   border-radius: 0 0 30px 30px;
+  box-sizing: border-box;
+  border-bottom: 0.5px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 
 body {
   display: block;
   margin: 0;
-  background-color: aqua;
+  background-color: #111b52;
 }
 </style>
