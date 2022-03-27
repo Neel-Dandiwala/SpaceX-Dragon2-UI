@@ -192,11 +192,49 @@ var View01 = {
 }
 
 var View02 = {
-  template: `<div id="scroll-earth-wrapper"> 
-              <div id="scroll-earth" style="background-image: url(http://localhost:8080/earth_atmos_2048.jpg); height: 100%; width: 100%; top: 0; left: 0; transition: all 0.5s; transform: (1,1); background-repeat: repeat-x; background-size: cover; "></div>
-            </div>`,
+  template: `<div id="scroll-earth-wrapper"> <div id="scroll-earth" ref="scrollEarth" style="background-image: url(http://localhost:8080/earth_atmos_2048.jpg); height: 100%; width: 100%; top: 0; left: 0; transition: all 0.5s; background-repeat: repeat-x; background-size: cover; " :style="{transform: transformValue}"></div>
+  <button style="position: absolute; top: 0;" type="submit" @click="zoomIn">Zoom In</button>
+  <button style="position: absolute; top: 0; left: 10%;" type="submit" @click="zoomOut">Zoom Out</button>
+  <button style="position: absolute; top: 0; left: 20%;" type="submit" @click="goRight">Go Right</button>
+    <button style="position: absolute; top: 0; left: 30%;" type="submit" @click="goLeft">Go Left</button>
+  </div>`,
   data() {
     return {
+      zoomArray: [1.0, 1.2, 1.5, 1.7, 2.0],
+      selectedZoom: 0,
+      zoomValue: `scale(1.0)`,
+      translateValue: 0,
+      transformValue: `scale(1.0) translateX(0px)`
+    }
+  },
+  mounted(){
+    // this.transformer = this.$refs.scrollEarth.style.transform
+    // console.log(this.transformer)
+  },
+  methods: {
+    zoomIn() {
+      this.selectedZoom = Math.min((this.selectedZoom + 1), this.zoomArray.length - 1)
+      console.log(this.selectedZoom)
+      this.transformValue = `scale(`+this.zoomArray[this.selectedZoom]+`) translateX(`+this.translateValue+'px)'
+      console.log(this.transformValue)
+    },
+    zoomOut() {
+      this.selectedZoom = Math.max((this.selectedZoom - 1), 0)
+      console.log(this.selectedZoom)
+      this.transformValue = `scale(`+this.zoomArray[this.selectedZoom]+`) translateX(`+this.translateValue+'px)'
+      console.log(this.transformValue)
+    },
+    goRight() {
+      this.translateValue = this.translateValue + 10
+      console.log(this.translateValue)
+      this.transformValue = `scale(`+this.zoomArray[this.selectedZoom]+`) translateX(`+this.translateValue+'px)'
+      console.log(this.transformValue)
+    },
+    goLeft() {
+      this.translateValue = this.translateValue - 10
+      console.log(this.translateValue)
+      this.transformValue = `scale(`+this.zoomArray[this.selectedZoom]+`) translateX(`+this.translateValue+'px)'
+      console.log(this.transformValue)
     }
   }
 }
@@ -299,6 +337,10 @@ export default {
   width: 60%;
   border: 1px solid tomato;
   /* z-index: -1; */
+}
+
+#scroll-earth:hover {
+  border: 5px solid green;
 }
 
 #swap-view {
