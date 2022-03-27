@@ -2,7 +2,7 @@
   <div id="back-box">
     <div id="top-menu">
       <div id="top-left-square">
-        <svg width="25" height="25" viewBox="0 0 10 8">
+        <svg class="svg" width="25" height="25" viewBox="0 0 10 8">
           <rect rx="1" ry="1" width="10" height="8" class="topLeftSquare" />
         </svg>
       </div>
@@ -10,7 +10,7 @@
     <div id="side-menu"></div>
     <div id="side-panel">
       <div id="left-arrow">
-        <svg width="30" height="30">
+        <svg class="svg" width="30" height="30">
           <defs>
             <marker
               id="arrow"
@@ -36,7 +36,7 @@
         </svg>
       </div>
       <div id="right-arrow">
-        <svg width="30" height="30">
+        <svg class="svg" width="30" height="30">
           <defs>
             <marker
               id="arrow"
@@ -62,7 +62,15 @@
         </svg>
       </div>
     </div>
-    <div id="earth" ref="canvas1"></div>
+    <keep-alive>
+       <component :is="currentComponent"></component>
+    </keep-alive>
+    <button @click="swapComponent()" type="submit" id="swap-view">
+      <svg id="view-dash" width="15" height="5" viewBox="0 0 10 3">
+        <rect width="10" height="10" class="white-svg" />
+      </svg> 
+      NEXT VIEW
+    </button>
   </div>
 </template>
 
@@ -71,13 +79,8 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-export default {
-  name: 'About',
-  props: [],
-  components: {},
-  data() {
-    return {}
-  },
+var View01 = {
+  template: `<div id="earth" ref="canvas1"></div>`,
   created() {
     const textureLoader = new THREE.TextureLoader()
     // eslint-disable-next-line no-unused-vars
@@ -153,14 +156,13 @@ export default {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableDamping = true
   },
-
   mounted() {
     console.log(this.scene)
     this.$refs.canvas1.appendChild(this.renderer.domElement)
     this.animate()
+    console.log(this.$refs.canvas1)
     window.addEventListener('resize', this.resizeScreen)
   },
-
   methods: {
     animate() {
       requestAnimationFrame(this.animate)
@@ -186,14 +188,58 @@ export default {
       this.renderer.setSize(this.size, this.size)
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     }
+  }
+}
+
+var View02 = {
+  template: `<div id="scroll-earth-wrapper"> 
+              <div id="scroll-earth" style="background-image: url(http://localhost:8080/earth_atmos_2048.jpg); height: 100%; width: 100%; top: 0; left: 0; transition: all 0.5s; transform: (1,1); background-repeat: repeat-x; background-size: cover; "></div>
+            </div>`,
+  data() {
+    return {
+    }
+  }
+}
+
+var View03 = {
+  template: `<h1 id="earth">IM THIRD THIRD</h1>`
+}
+export default {
+  name: 'About',
+  props: [],
+  data() {
+    return {
+      currentComponent: 'view-01',
+      count: 1
+    }
+  },
+  components: {
+    'view-00': View01,
+    'view-01': View02,
+    'view-02': View03
+  },
+  created() {
+  },
+
+  mounted() {
+
+  },
+
+  methods: {
+    swapComponent(){
+      this.count = (this.count + 1) % 3
+      console.log(this.count)
+      this.currentComponent = 'view-0'+(this.count)
+    }
   },
   beforeRouteUpdate() {},
-  computed: {}
+  computed: {
+  }
 }
 </script>
 
 <style scoped>
-svg {
+.svg {
   /* border: 1px solid tomato; */
   top: 50%;
   left: 50%;
@@ -201,10 +247,19 @@ svg {
   position: absolute;
   padding-bottom: 0;
 }
-.arrows, .topLeftSquare {
+.arrows, .topLeftSquare, .white-svg {
   fill: white;
   stroke: white;
-  
+}
+
+#view-dash{
+  /* border: 1px solid tomato; */
+  position: relative;
+  /* top: 50%; */
+  /* left: 5%; */
+  /* transform: translate(-50%, -50%); */
+  /* position: absolute; */
+  padding-right: 5%;
 }
 
 #back-box {
@@ -224,12 +279,51 @@ svg {
   /* display: flex; */
 }
 
+/* VIEW 1 */
 #earth {
   top: 51.5%;
   left: 50%;
   position: absolute;
   transform: translate(10%, -50%);
   overflow: hidden;
+}
+
+/* VIEW 2 */
+#scroll-earth-wrapper {
+  overflow: hidden;
+  top: 10%;
+  left: 40.5%;
+  position: absolute;
+  /* transform: translate(10%, -50%); */
+  height: 90%;
+  width: 60%;
+  border: 1px solid tomato;
+  /* z-index: -1; */
+}
+
+#swap-view {
+  width: 10%;
+  height: auto;
+  top: 90%;
+  right: 5%;
+  position: absolute;
+  background-color: #020738;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+  padding: 1em 1em 1em 1em;
+  border-radius: 100px;
+  /* transform: translate(10%, -50%); */
+  overflow: hidden;
+}
+
+#swap-view:hover {
+  background-color: rgba(255, 255, 255, 0.3) ;
+}
+
+#swap-view:active {
+  background-color: white;
+  color: #020738;
 }
 
 #side-panel {
