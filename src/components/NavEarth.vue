@@ -5,44 +5,78 @@
       ref="scrollEarth"
       :style="{ transform: transformValue }"
     ></div>
-    <button style="position: absolute; top: 0;" type="submit" @click="zoomIn">
-      Zoom In
+    <button v-bind:class="[toggle?'zoomInTrue':'zoomInFalse']" style="" type="submit" @click="zoomIn">
+      <svg viewBox="0 0 4 4" width="30" height="15">   
+          <path class="zooms" d="M0,2 L4,2 M2,0 L2,4"></path>
+        </svg>
     </button>
     <button
-      style="position: absolute; top: 0; left: 10%;"
+    v-bind:class="[toggle?'zoomOutTrue':'zoomOutFalse']"
+      style=""
       type="submit"
       @click="zoomOut"
     >
-      Zoom Out
+       <svg viewBox="0 0 4 4" width="30" height="15">   
+          <path class="zooms" d="M0,2 L4,2"></path>
+        </svg>
     </button>
     <button
-      style="position: absolute; top: 0; left: 20%;"
+      style="right: 7em; top: 7em;"
+      type="submit"
+      @click="toggle=!toggle"
+    >
+       <svg viewBox="0 0 4 4" width="15" height="15">   
+          <path class="center-svg" v-bind:d="[toggle? 'M0,0 L4,0 4,4 0,4 Z' : 'M0,0 L1,0 1,1 0,1 Z M3,0 L4,0 4,1 3,1 Z M0,3 L1,3 1,4 0,4 Z M3,3 L4,3 4,4 3,4 Z']"></path>
+        </svg>
+    </button>
+    <Transition name="hide-right">
+      <button
+      v-if="toggle"
+      style="transition-delay: 0.6s; right: 2em; top: 7em; "
       type="submit"
       @click="goRight"
     >
-      Go Right
+      <svg viewBox="0 0 2 4" width="15" height="15">   
+          <path class="arrows" d="M0,0 L2,2 0,4"></path>
+        </svg>
     </button>
-    <button
-      style="position: absolute; top: 0; left: 30%;"
+    </Transition>
+    <Transition name="hide-left">
+      <button
+      v-if="toggle"
+      style="transition-delay: 0.2s; right: 12em; top: 7em;"
       type="submit"
       @click="goLeft"
     >
-      Go Left
+         <svg viewBox="0 0 2 4" width="15" height="15">   
+          <path class="arrows" d="M2,0 L0,2 2,4"></path>
+        </svg>
     </button>
-    <button
-      style="position: absolute; top: 0; left: 40%;"
+    </Transition>
+    <Transition name="hide-up">
+      <button
+      v-if="toggle"
+      style="transition-delay: 0.4s; right: 7em; top: 2em; "
       type="submit"
       @click="goUp"
     >
-      Go Up
+         <svg viewBox="0 0 4 2" width="15" height="15">   
+          <path class="arrows" d="M0,2 L2,0 4,2"></path>
+        </svg>
     </button>
-    <button
-      style="position: absolute; top: 0; left: 50%;"
+    </Transition>
+    <Transition name="hide-down">
+      <button
+      v-if="toggle"
+      style="transition-delay: 0s; right: 7em; top: 12em; "
       type="submit"
       @click="goDown"
     >
-      Go Down
-    </button>
+       <svg viewBox="0 0 4 2" width="15" height="15">   
+          <path class="arrows" d="M0,0 L2,2 4,0"></path>
+        </svg>
+      </button>
+    </Transition>
   </div>
 </template>
 
@@ -52,6 +86,9 @@ export default {
   props: [],
   data() {
     return {
+     
+
+      toggle: true,
       zoomArray: [1.0, 1.25, 1.5, 1.75, 2.0],
       zoomSub: [0, 0, 1, 2, 3],
       selectedZoom: 0,
@@ -77,14 +114,16 @@ export default {
     this.zoomValue = this.zoomArray[this.selectedZoom]
     this.XGoal = [
       0,
-      (this.sizerX * 1.25 - this.sizerX * 1) / 2 + ((this.sizerX * 2 - this.sizerX * 1.75) / 6) * (-0.25),
+      // eslint-disable-next-line prettier/prettier
+      (this.sizerX * 1.25 - this.sizerX * 1) / 2 + ((this.sizerX * 2 - this.sizerX * 1.75) / 6) * (-0),
       (this.sizerX * 1.5 - this.sizerX * 1.25) / 2 + ((this.sizerX * 2 - this.sizerX * 1.75) / 6) * 1,
       (this.sizerX * 1.75 - this.sizerX * 1.5) / 2 + ((this.sizerX * 2 - this.sizerX * 1.75) / 6) * 2,
       (this.sizerX * 2 - this.sizerX * 1.75) / 2 + ((this.sizerX * 2 - this.sizerX * 1.75) / 6) * 3
     ]
     this.YGoal = [
       0,
-      (this.sizerY * 1.25 - this.sizerY * 1) / 2 + ((this.sizerY * 2 - this.sizerY * 1.75) / 6) * (-0.25),
+      // eslint-disable-next-line prettier/prettier
+      (this.sizerY * 1.25 - this.sizerY * 1) / 2 + ((this.sizerY * 2 - this.sizerY * 1.75) / 6) * (-0),
       (this.sizerY * 1.5 - this.sizerY * 1.25) / 2 + ((this.sizerY * 2 - this.sizerY * 1.75) / 6) * 1,
       (this.sizerY * 1.75 - this.sizerY * 1.5) / 2 + ((this.sizerY * 2 - this.sizerY * 1.75) / 6) * 2,
       (this.sizerY * 2 - this.sizerY * 1.75) / 2 + ((this.sizerY * 2 - this.sizerY * 1.75) / 6) * 3
@@ -92,9 +131,12 @@ export default {
     // console.log(this.transformer)
   },
   methods: {
-    updateZoom(){
-
+    enter(el){
+      el.style.right = `8em`
+      el.style.top = '8em'
     },
+
+
     zoomIn() {
       this.selectedZoom = Math.min(
         this.selectedZoom + 1,
@@ -125,10 +167,7 @@ export default {
       console.log(this.selectedZoom)
       this.zoomValue = this.zoomArray[this.selectedZoom]
       this.zoomMinus = this.zoomSub[this.selectedZoom]
-      // eslint-disable-next-line no-unused-vars
-      var navIndicator = this.navLeft < this.navRight ? -1 : 1
-      // eslint-disable-next-line no-unused-vars
-      var stepsIndicator = this.leftSteps < this.rightSteps ? this.rightSteps : this.leftSteps
+      // eslint-disable-next-line prettier/prettier
       if(((this.XGoal[this.selectedZoom] / 2 ) < Math.min(this.navLeft , this.navRight)) && this.XGoal[this.selectedZoom] !== 0){
           console.log('X Okay for now')
       } else {
@@ -139,6 +178,7 @@ export default {
         this.navLeft = 0
         this.navRight = 0
       }
+      // eslint-disable-next-line prettier/prettier
       if(((this.YGoal[this.selectedZoom] / 2 ) < Math.min(this.navUp , this.navDown)) && this.YGoal[this.selectedZoom] !== 0) {
         console.log('Y Okay for now')
       } else {
@@ -157,7 +197,7 @@ export default {
         this.translateYValue +
         `px)`
       console.log(this.transformValue)
-      this.navLeft = (this.XGoal[this.selectedZoom]) - this.leftSteps * 10
+      this.navLeft = this.XGoal[this.selectedZoom] - this.leftSteps * 10
       this.navRight = (this.XGoal[this.selectedZoom]) - this.rightSteps * 10
       this.navUp = (this.YGoal[this.selectedZoom]) - this.upSteps * 10
       this.navDown = (this.YGoal[this.selectedZoom]) - this.downSteps * 10
@@ -281,31 +321,112 @@ export default {
 }
 
 #scroll-earth {
-  background-image: url(http://localhost:8080/earth_atmos_2048.jpg);
+  background-image: url(http://localhost:8080/earth_modified.jpg);
   position: absolute;
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
   background-size: cover;
+  background-position: center;
   top: 0;
   right: 0;
   transition: all 1s;
-  background-repeat: repeat-x;
+  background-repeat: repeat;
+  /* overflow: hidden; */
+}
+
+button {
+  position: absolute;
+  border: 1px solid white;
+  text-align: center;
+  width: 6%;
+  height: 0;
+  text-align: center;
+  padding-bottom: 6%;
+  top: 1.5em;
+  right: 0em;
   overflow: hidden;
+  border-radius: 10%;
+  background-color: rgba(2, 7, 56, 0.75);
+  color: white;
 }
 
-@keyframes move {
-  from {
-    transform: translate(0%);
-  }
-  to {
-    transform: translateX(100%);
-  }
+svg {
+  /* border: 1px solid tomato; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  padding-bottom: 0;
+}
+.arrows, .zooms{
+  fill: none;
+  stroke: white;
+  stroke-width: 1;
+}
+.white-svg {
+  fill: white;
+  stroke: white;
 }
 
-.event-link {
-  color: #2c3e50;
-  text-decoration: none;
+.hide-down-enter-active, .hide-up-enter-active, .hide-left-enter-active, .hide-right-enter-active {
+  transition: all 0.5s ease-out;
 }
+
+.hide-down-leave-active, .hide-up-leave-active, .hide-left-leave-active, .hide-right-leave-active {
+  transition: all 0.5s ease-in;
+}
+
+.hide-down-enter-from, .hide-down-leave-to {
+  transform: translateY(-3em);
+  opacity: 0;
+}
+
+.hide-up-enter-from, .hide-up-leave-to {
+  transform: translateY(3em);
+  opacity: 0;
+}
+
+.hide-left-enter-from, .hide-left-leave-to {
+  transform: translateX(3em);
+  opacity: 0;
+}
+
+.hide-right-enter-from, .hide-right-leave-to {
+  transform: translateX(-3em);
+  opacity: 0;
+}
+
+.zoomInTrue {
+  right: 9em; 
+  top: 17em;
+  transition: all 0.5s linear 0s;
+}
+
+.zoomOutTrue {
+  right: 4.5em; 
+  top: 17em;
+  transition: all 0.5s linear 0s;
+}
+
+.zoomInFalse {
+  right: 12em; 
+  top: 7em;
+  transition: all 0.5s linear 0.7s;
+}
+
+.zoomOutFalse {
+  right: 2em; 
+  top: 7em; 
+  transition: all 0.5s linear 0.7s;
+}
+
+.center-svg {
+  fill: white;
+  stroke: white;
+  transition: all 0.8s linear;
+}
+
+
 </style>

@@ -7,6 +7,7 @@
     <nav>
       <router-link :to="{ name: 'EventList' }" @click="indicator">Events</router-link> |
       <router-link :to="{ name: 'About' }" @click="indicator">About</router-link> |
+      <router-link :to="{ name: 'Seat' }" @click="indicator">Seat</router-link> |
       <router-link :to="{ name: 'NetworkError' }" @click="indicator">NetowrkError</router-link>
       <div class="marker" />
     </nav>
