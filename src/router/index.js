@@ -5,7 +5,7 @@ import EventRegister from '../views/event/Register.vue'
 import EventEdit from '../views/event/Edit.vue'
 import EventLayout from '../views/event/Layout.vue'
 import About from '../views/About.vue'
-import Seat from '../views/Seat.vue'
+import Fifth from '../views/Fifth.vue'
 import NotFound from '../views/NotFound.vue'
 import NetworkError from '../views/NetworkError.vue'
 import NProgress from 'nprogress'
@@ -90,9 +90,9 @@ const routes = [
     redirect: { name: 'About' }
   },
   {
-    path: '/seat',
-    name: 'Seat',
-    component: Seat
+    path: '/fifth',
+    name: 'Fifth',
+    component: Fifth
   }
 ]
 

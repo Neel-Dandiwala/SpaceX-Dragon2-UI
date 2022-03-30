@@ -13,15 +13,43 @@
       />
     </svg> -->
     <div id="white-border"></div>
-    <div id="inner-screen"></div>
+    <keep-alive>
+       <component :is="currentComponent"></component>
+      </keep-alive>
+    <div id="buttons">
+      <button @click="changeComponent(`audio`)" style="left: 44.5%" type="submit"><img id="options-img" src="audio.png" />Audio</button>
+      <button @click="changeComponent(`cabin`)" style="left: 48.25%" type="submit"><img id="options-img" src="egg.png" />Cabin</button>
+      <button @click="changeComponent(`audio`)" style="left: 52%" type="submit"><img id="options-img" src="video.png" />Video</button>
+    </div>
   </div>
 </template>
 
 <script>
+import Audio from '../components/Audio.vue'
+import Cabin from '../components/Cabin.vue'
+import Video from '../components/Video.vue'
+// let View02 = {}
+// let View03 = {}
 export default {
-  name: 'Seat',
-
-  setup() {}
+  name: 'Fifth',
+  data() {
+    return {
+      currentComponent: 'video'
+    }
+  },
+  methods: {
+    changeComponent(name){
+      this.currentComponent = name
+    }
+  },
+  components: {
+    'audio': Audio,
+    'cabin': Cabin,
+    'video': Video
+  },
+  mounted() {
+    // console.log(View03 + View02)
+  }
 }
 </script>
 
@@ -64,24 +92,25 @@ svg {
   left: 50%;
   /* bottom: 7em; */
   transform: translate(-50%, -50%);
-  border-radius: 30px 30px 30px 30px;
+  border-radius: 25px 25px 25px 25px;
   box-sizing: border-box;
   clip-path: polygon(0 0, 0 100%, 42.5% 100%, 45% 95%, 55% 95%, 57.5% 100%, 100% 100%, 100% 0)
 }
 
-#inner-screen {
+button {
   position: absolute;
-  background: linear-gradient(to bottom, #020738, transparent),
-            radial-gradient(55% 30% at 50% 75%, #57689a , #020738);
-  height: 91.75vh;
-  width: 98.325vw;
-  bottom: 30px;
-  top: 50%;
-  left: 50%;
-  /* bottom: 7em; */
-  transform: translate(-50%, -50%);
-  border-radius: 30px 30px 30px 30px;
-  box-sizing: border-box;
-  clip-path: polygon(0 0, 0 100%, 42.5% 100%, 45% 95%, 55% 95%, 57.5% 100%, 100% 100%, 100% 0)
+  top: 94%;
+  height: 3%;
+  width: 3.5%;
+  font-size: 60%;
+  color: white;
+  background: none;
+  border: none;
 }
+
+#options-img {
+  filter: invert(99%) sepia(0%) saturate(2%) hue-rotate(312deg) brightness(108%) contrast(101%);
+  height: 95%;
+}
+
 </style>
