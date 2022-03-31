@@ -9,7 +9,7 @@
       <router-link :to="{ name: 'About' }" @click="indicator">About</router-link> |
       <router-link :to="{ name: 'Fifth' }" @click="indicator">Fifth</router-link> |
       <router-link :to="{ name: 'NetworkError' }" @click="indicator">NetowrkError</router-link>
-      <div class="marker" />
+      <div class="marker" ref="marker" />
     </nav>
   </div>
 </template>
@@ -20,8 +20,8 @@ export default {
   inject: ['GStore'],
   methods: {
     indicator(e){
-      let marker = this.$el.querySelector('.marker')
-      marker.style.left = e.target.offsetLeft + 'px'
+      // let marker = this.$el.querySelector('.marker')
+      this.$refs.marker.style.left = e.target.offsetLeft + 'px'
     }
   }
 }

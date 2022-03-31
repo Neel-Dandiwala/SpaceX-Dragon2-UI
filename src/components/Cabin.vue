@@ -84,6 +84,7 @@ export default {
   background-position: center, center;
   height: 91.75vh;
   width: 98.325vw;
+  overflow: hidden;
   bottom: 30px;
   top: 50%;
   left: 50%;

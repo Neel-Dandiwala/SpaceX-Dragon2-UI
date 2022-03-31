@@ -19,7 +19,7 @@
     <div id="buttons">
       <button @click="changeComponent(`audio`)" style="left: 44.5%" type="submit"><img id="options-img" src="audio.png" />Audio</button>
       <button @click="changeComponent(`cabin`)" style="left: 48.25%" type="submit"><img id="options-img" src="egg.png" />Cabin</button>
-      <button @click="changeComponent(`audio`)" style="left: 52%" type="submit"><img id="options-img" src="video.png" />Video</button>
+      <button @click="changeComponent(`video`)" style="left: 52%" type="submit"><img id="options-img" src="video.png" />Video</button>
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
   name: 'Fifth',
   data() {
     return {
-      currentComponent: 'video'
+      currentComponent: 'audio'
     }
   },
   methods: {
