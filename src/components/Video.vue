@@ -195,7 +195,7 @@ export default {
   background: #111b52;
   height: 91.75vh;
   width: 98.325vw;
-  bottom: 30px;
+  /* bottom: 30px; */
   top: 50%;
   left: 50%;
   /* bottom: 7em; */

@@ -70,34 +70,38 @@
   </div>
   <div
     id="selection_option"
-    style="left: 10.5%; leftIndicator: 10%;"
+    style="left: 10.5%; leftIndicator: 10%; index: 0; name: SEAT 1;"
     @click="indicator"
   />
   <div
     id="selection_option"
-    style="left: 30.25%; leftIndicator: 30%;"
+    style="left: 30.25%; leftIndicator: 30%; index: 1; name: SEAT 2;"
     @click="indicator"
   />
   <div
     id="selection_option"
-    style="left: 50%; leftIndicator: 50%;"
+    style="left: 50%; leftIndicator: 50%; index: 2; name: CABIN;"
     @click="indicator"
   />
   <div
     id="selection_option"
-    style="left: 69.75%; leftIndicator: 70%;"
+    style="left: 69.75%; leftIndicator: 70%; index: 3; name: SEAT 3;"
     @click="indicator"
   />
   <div
     id="selection_option"
-    style="left: 89.25%; leftIndicator: 90%;"
+    style="left: 89.25%; leftIndicator: 90%; index: 4; name: SEAT 4;"
     @click="indicator"
   />
 
-  <div id="inner-box-white"></div>
+  <div id="inner-box-white">
+       <p id="box-title">{{ selectedSlot }} AUDIO</p>
+  </div>
   <div id="inner-box">
     <div class="inner-slot" id="IS1">
-      <button style="left: 3%;" type="submit" @click="zoomOut">
+      <p id="inner-slot-heading">GROUND</p>
+      <p id="sound">{{ground[indexValue]}}<span style="font-size: 4vw;">dB</span></p>
+      <button style="left: 3%;" type="submit" @click="ground[indexValue] = 12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -112,19 +116,21 @@
           />
         </svg>
       </button>
-      <button style="left: 35%;" type="submit" @click="zoomOut">
+      <button style="left: 35%;" type="submit" @click="ground[indexValue]--">
         <svg viewBox="0 0 4 4" width="30" height="15">
           <path class="zooms" d="M0,2 L4,2"></path>
         </svg>
       </button>
-      <button style="left: 67%;" type="submit" @click="zoomIn">
+      <button style="left: 67%;" type="submit" @click="ground[indexValue]++">
         <svg viewBox="0 0 4 4" width="30" height="15">
           <path class="zooms" d="M0,2 L4,2 M2,0 L2,4"></path>
         </svg>
       </button>
     </div>
     <div class="inner-slot" id="IS2">
-      <button style="left: 3%;" type="submit" @click="zoomOut">
+      <p id="inner-slot-heading">AUX</p>
+      <p id="sound">{{aux[indexValue]}}<span style="font-size: 4vw;">dB</span></p>
+      <button style="left: 3%;" type="submit" @click="aux[indexValue] = 0">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -139,20 +145,51 @@
           />
         </svg>
       </button>
-      <button style="left: 35%;" type="submit" @click="zoomOut">
+      <button style="left: 35%;" type="submit" @click="aux[indexValue]--">
         <svg viewBox="0 0 4 4" width="30" height="15">
           <path class="zooms" d="M0,2 L4,2"></path>
         </svg>
       </button>
-      <button style="left: 67%;" type="submit" @click="zoomIn">
+      <button style="left: 67%;" type="submit" @click="aux[indexValue]++">
         <svg viewBox="0 0 4 4" width="30" height="15">
           <path class="zooms" d="M0,2 L4,2 M2,0 L2,4"></path>
         </svg>
       </button>
     </div>
-    <div class="inner-slot" id="IS3"></div>
-    <div class="inner-slot" id="IS4"></div>
-    <div class="inner-slot" id="IS5"></div>
+    <div class="inner-slot" id="IS3">
+      <p id="inner-slot-heading">MAIN</p>
+      <p id="sound">100</p>
+      <p style="position: relative; color: white; font-size: 0.7em; top: -42%;">Vox</p>
+      <p style="position: relative; color: white;font-weight: 750; font-size: 1em; top: -47%;">{{ground[indexValue] + aux[indexValue] + intercom[indexValue] + alerts[indexValue]}}</p>
+    </div>
+    <div class="inner-slot" id="IS4">
+      <p id="inner-slot-heading">INTERCOM</p>
+      <p id="sound">{{intercom[indexValue] > 0 ? `+`+intercom[indexValue] : intercom[indexValue]}}<span style="font-size: 4vw;">dB</span></p>
+      <button style="left: 19%;" type="submit" @click="intercom[indexValue]--">
+        <svg viewBox="0 0 4 4" width="30" height="15">
+          <path class="zooms" d="M0,2 L4,2"></path>
+        </svg>
+      </button>
+      <button style="left: 51%;" type="submit" @click="intercom[indexValue]++">
+        <svg viewBox="0 0 4 4" width="30" height="15">
+          <path class="zooms" d="M0,2 L4,2 M2,0 L2,4"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="inner-slot" id="IS5">
+      <p id="inner-slot-heading">ALERTS</p>
+      <p id="sound">{{alerts[indexValue]}}</p>
+      <button style="left: 19%;" type="submit" @click="alerts[indexValue]--">
+        <svg viewBox="0 0 4 4" width="30" height="15">
+          <path class="zooms" d="M0,2 L4,2"></path>
+        </svg>
+      </button>
+      <button style="left: 51%;" type="submit" @click="alerts[indexValue]++">
+        <svg viewBox="0 0 4 4" width="30" height="15">
+          <path class="zooms" d="M0,2 L4,2 M2,0 L2,4"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -161,15 +198,30 @@ export default {
   name: 'Audio',
   props: [],
   data() {
-    return {}
+    return {
+      selectedSlot: `CABIN`,
+      ground: [0, 0, 1, 0, 0],
+      aux: [0, 0, 1, 0, 0],
+      intercom: [0, 0, 1, 0, 0],
+      alerts: [0, 0, 1, 0, 0],
+      indexValue: 2
+    }
   },
-  mounted() {},
+  mounted() {
+      // this.selectedGround = this.ground[2]
+      // this.selectedAux = this.aux[2]
+      // this.selectedIntercom = this.intercom[2]
+      // this.selectedAlerts = this.alerts[2]
+  },
   methods: {
     indicator(e) {
       // let marker = this.$el.querySelector('.marker')
       this.$refs.selected.style.left = e.target.style.leftIndicator
       console.log(this.$refs.selected.style.left)
       console.log(e.target.style.leftIndicator)
+      console.log(e.target.style.index)
+      this.indexValue = e.target.style.index
+      console.log(e.target.style.name)
       console.log(e.target)
     }
   }
@@ -184,7 +236,7 @@ export default {
     radial-gradient(55% 30% at 50% 75%, #a7b9eb, #020738);
   height: 91.75vh;
   width: 98.325vw;
-  bottom: 30px;
+  /* bottom: 30px; */
   top: 50%;
   left: 50%;
   /* bottom: 7em; */
@@ -218,8 +270,8 @@ export default {
   border-radius: 5px 5px 5px 5px;
   box-sizing: border-box;
   clip-path: polygon(
-    45% 0,
-    42.5% 10%,
+    40% 0,
+    37.5% 10%,
     0.5% 10%,
     0.25% 10.5%,
     0 12%,
@@ -228,8 +280,8 @@ export default {
     100% 12%,
     99.75% 10.5%,
     99.5% 10%,
-    57.5% 10%,
-    55% 0
+    62.5% 10%,
+    60% 0
   );
 }
 
@@ -411,7 +463,18 @@ img {
   position: absolute;
   height: 100%;
   width: 20%;
-  border: 1px solid black;
+  border-width: 1px;
+  border-style: solid;
+  border-image: 
+    linear-gradient(
+      to bottom, 
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0),
+      white,
+      rgba(0, 0, 0, 0), 
+      rgba(0, 0, 0, 0)
+    ) 1 100%; 
+  border-right: 1px solid white;
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -426,15 +489,15 @@ img {
 }
 
 #IS3 {
-  left: 50%;
+  left: 50.25%;
 }
 
 #IS4 {
-  left: 70%;
+  left: 70.25%;
 }
 
 #IS5 {
-  left: 90%;
+  left: 90.30%;
 }
 
 button {
@@ -470,5 +533,33 @@ svg {
 .white-svg {
   fill: white;
   stroke: white;
+}
+
+#box-title {
+  position: absolute;
+  color: white;
+  font-size: 0.9em;
+  font-weight: 750;
+  top: 0%;
+  left: 50%;
+  /* bottom: 7em; */
+  transform: translate(-50%, -50%);
+}
+
+#inner-slot-heading {
+  position: relative;
+  color: white;
+  font-size: 0.7em;
+  top: 10%;
+}
+
+#sound {
+  position: relative;
+  color: white;
+  font-size: 5.25vw;
+  /* font-weight: 700; */
+  top: -7.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

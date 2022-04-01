@@ -85,7 +85,7 @@ export default {
   height: 91.75vh;
   width: 98.325vw;
   overflow: hidden;
-  bottom: 30px;
+  /* bottom: 30px; */
   top: 50%;
   left: 50%;
   /* bottom: 7em; */
@@ -136,6 +136,7 @@ export default {
   top: 5%;
   /* border: 0.15px solid red; */
   text-align: center;
+  
 }
 
 .column p {
@@ -145,7 +146,14 @@ export default {
 
 button {
   width: 85%;
-  height: 18%;
+  height: 18.125%;
+   /* border-image: 
+    linear-gradient(
+      to left, 
+      rgba(0, 0, 0, 0),
+      white, 
+      rgba(0, 0, 0, 0)
+    ) 1 1 100%;  */
   /* border-top: 1px dashed green; */
 }
 
@@ -159,10 +167,7 @@ button {
   color:#020738;
 }
 
-#C1 *, #C2 *, #C3 *, #C4 * {
-  /* border: 0.15px solid red; */
-  
-}
+
 #C1 button{
   position: relative;
   right: 2%;
