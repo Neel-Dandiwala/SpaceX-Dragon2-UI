@@ -7,7 +7,23 @@
         </svg>
       </div>
     </div>
-    <div id="side-menu"></div>
+    <div id="side-menu">
+      <button @click="sideButton(0)" v-bind:style="[sideActive[0] ? `border: 1px solid white` : `border: none`]" style="top: 6.5%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"  viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Deport & burn<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="sideActive[0]" /></button>
+      <button @click="sideButton(1)" v-bind:style="[sideActive[1] ? `border: 1px solid white` : `border: none`]" style="top: 18%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Coat to Trunk...<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="sideActive[1]" /></button>
+      <button @click="sideButton(2)" v-bind:style="[sideActive[2] ? `border: 1px solid white` : `border: none`]" style="top: 30%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Claw Separati...<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="sideActive[2]" /></button>
+      <button @click="sideButton(3)" v-bind:style="[sideActive[3] ? `border: 1px solid white` : `border: none`]" style="top: 42%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Procedure<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="sideActive[3]" /></button>
+      <button @click="sideButton(4)" v-bind:style="[sideActive[4] ? `border: 1px solid white` : `border: none`]" style="top: 54%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Manual Chute...<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="sideActive[4]" /></button>
+    </div>
     <div id="side-panel">
       <div id="left-arrow">
         <svg class="svg" width="30" height="30">
@@ -79,6 +95,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import NavEarth from '../components/NavEarth.vue'
+import Capsule from '../components/Capsule.vue'
 
 var View01 = {
   template: `<div id="earth" ref="canvas1"></div>`,
@@ -105,7 +122,7 @@ var View01 = {
       65,
       this.size / this.size,
       0.1,
-      100
+      200
     )
     this.camera.position.set(70, 40, 80)
     this.scene = new THREE.Scene()
@@ -113,6 +130,12 @@ var View01 = {
     this.ambientLight = new THREE.AmbientLight(0x050505)
     this.sunLight = new THREE.DirectionalLight(0xffffff, 4.0)
     this.sunLight.position.set(2, 0, 10).normalize()
+
+    const torus = new THREE.Mesh(new THREE.TorusGeometry(12, 0.1, 6, 90), new THREE.MeshStandardMaterial({ color: 0x020738 }))
+    torus.rotation.set(5, 2.125 ,0 )
+    torus.scale.set(5, 5, 5)
+    this.scene.add(torus)
+
     this.scene.add(this.ambientLight)
     this.scene.add(this.sunLight)
 
@@ -144,8 +167,9 @@ var View01 = {
       }
     )
 
-    const earthGeometry = new THREE.SphereBufferGeometry(60, 30, 24)
+    const earthGeometry = new THREE.SphereBufferGeometry(55, 30, 24)
 
+    // eslint-disable-next-line no-unused-vars
     const earth = new THREE.Mesh(earthGeometry, earthMaterial)
     this.scene.add(earth)
 
@@ -194,14 +218,12 @@ var View01 = {
 
 // eslint-disable-next-line no-unused-vars
 
-var View03 = {
-  template: `<h1 id="earth">IM THIRD THIRD</h1>`
-}
 export default {
   name: 'About',
   props: [],
   data() {
     return {
+      sideActive: [true, false, false, false, false],
       currentComponent: 'view-01',
       count: 1
     }
@@ -209,7 +231,7 @@ export default {
   components: {
     'view-00': View01,
     'view-01': NavEarth,
-    'view-02': View03
+    'view-02': Capsule
   },
   created() {
   },
@@ -223,6 +245,18 @@ export default {
       this.count = (this.count + 1) % 3
       console.log(this.count)
       this.currentComponent = 'view-0'+(this.count)
+    },
+    sideButton(number){
+      let booleanValue = this.sideActive[number]
+      if(!booleanValue){
+        for(var i=0; i<this.sideActive.length; i++){
+          this.sideActive[i] = false
+        }
+        this.sideActive[number] = true
+      } else {
+        this.sideActive[number] = false
+      }
+      console.log(this.sideActive[number])
     }
   },
   beforeRouteUpdate() {},
@@ -244,6 +278,7 @@ export default {
   fill: white;
   stroke: white;
 }
+
 
 #view-dash{
   /* border: 1px solid tomato; */
@@ -387,13 +422,32 @@ export default {
 }
 
 #side-menu {
-  position: relative;
+  position: absolute;
   flex: 1;
+  left: 0;
   /* top: calc(100vh * 0.1); */
   height: calc(100% - min(100px, calc(100% * 0.1)));
   border-radius: 0 0 0 30px;
   width: min(100px, calc(100vw * 0.055));
   border: 1px solid white;
   box-sizing: border-box;
+  overflow: hidden;
 }
+
+#side-button {
+  position: absolute;
+  height: 10%;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 70%;
+  border-radius: 10%;
+  background: transparent;
+  color: white;
+  overflow: hidden;
+  /* transition: all 0.5s ease-in; */
+}
+
+
 </style>
