@@ -108,7 +108,7 @@ export default {
 
     this.sizes = {
       width: window.innerWidth * 0.71428571,
-      height: window.innerHeight * 0.90
+      height: window.innerHeight * 0.9
     }
     this.camera = new THREE.PerspectiveCamera(
       75,
@@ -119,10 +119,10 @@ export default {
     this.camera.position.set(700, 400, 800)
     this.scene = new THREE.Scene()
     this.scene.add(this.camera)
-    this.ambientLight = new THREE.AmbientLight(0x050505)
+    const ambientLight = new THREE.AmbientLight(0x050505)
     this.sunLight = new THREE.DirectionalLight(0xffffff, 4.0)
     this.sunLight.position.set(2, 0, 10).normalize()
-    this.scene.add(this.ambientLight)
+    this.scene.add(ambientLight)
     this.scene.add(this.sunLight)
 
     const earthAtmosphereMaterial = new THREE.ShaderMaterial(atmosphereShader)
@@ -187,7 +187,7 @@ export default {
     this.scene.add(sphereLightsMesh)
     const sphereCloudsMesh = new THREE.Mesh(earthGeometry, earthCloudsMaterial)
     this.scene.add(sphereCloudsMesh)
-    
+
     const sphereAtmosphereMesh = new THREE.Mesh(
       earthGeometry,
       earthAtmosphereMaterial
@@ -211,13 +211,6 @@ export default {
     sceneMap.background = environmentMap
     this.scene.background = environmentMap
 
-    this.ring = new THREE.Mesh(
-      new THREE.CylinderGeometry(50, 50, 10, 100, 1, true),
-      new THREE.MeshStandardMaterial({ color: 0xff0000 })
-    )
-    this.scene.add(this.ring)
-    console.log(this.ring.position)
-    
     // gltfLoader.load(
     //   './ISS_stationary.glb',
     //   gltf => {
@@ -297,8 +290,8 @@ export default {
       100
     )
     this.navCamera.position.set(0, 0, 5)
-    this.navLight = new THREE.DirectionalLight('#ffffff', 0.55)
-    this.navLight.position.set(0, 1, 4)
+    const navLight = new THREE.DirectionalLight('#ffffff', 0.55)
+    navLight.position.set(0, 1, 4)
     const navballTexture = textureLoader.load(require('../assets/navball.png'))
     this.navBall = new THREE.Mesh(
       new THREE.SphereBufferGeometry(1, 16, 16),
@@ -308,7 +301,7 @@ export default {
     )
     this.navScene = new THREE.Scene()
     this.navScene.add(this.navCamera)
-    this.navScene.add(this.navLight)
+    this.navScene.add(navLight)
     this.navScene.add(this.navBall)
     this.navRenderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -326,6 +319,23 @@ export default {
     window.addEventListener('resize', this.resizeScreen)
   },
 
+  beforeUnmount() {
+    this.disposeHierarchy(this.scene, this.disposeNode)
+    this.navRenderer.dispose()
+    console.log(this.scene)
+    // this.renderer.dispose()
+    // this.renderer = null
+    // this.scene = null
+    // this.camera = null
+    // this.navRenderer.dispose()
+    // this.navRenderer = null
+    // this.navScene = null
+    // this.navCamera = null
+    // console.log(this.renderer)
+  },
+  unmount() {
+    console.log('UNMOUNT UNMOUNT')
+  },
   methods: {
     animate() {
       requestAnimationFrame(this.animate)
@@ -360,7 +370,6 @@ export default {
       // console.log(this.ring.position)
     },
     resizeScreen(e) {
-      
       this.sizes.width = e.target.innerWidth * 0.71426571
       this.sizes.height = e.target.innerHeight * 0.9
 
@@ -388,6 +397,55 @@ export default {
 
       this.navRenderer.setSize(this.navSize, this.navSize)
       this.navRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    },
+    disposeNode(node) {
+      if (node instanceof THREE.Mesh) {
+        if (node.geometry) {
+          node.geometry.dispose()
+          node.geometry = undefined // fixed problem
+        }
+
+        if (node.material) {
+          if (
+            node.material instanceof THREE.MeshFaceMaterial ||
+            node.material instanceof THREE.MultiMaterial
+          ) {
+            // eslint-disable-next-line no-unused-vars
+            node.material.materials.forEach(function(mtrl, idx) {
+              if (mtrl.map) mtrl.map.dispose()
+              if (mtrl.lightMap) mtrl.lightMap.dispose()
+              if (mtrl.bumpMap) mtrl.bumpMap.dispose()
+              if (mtrl.normalMap) mtrl.normalMap.dispose()
+              if (mtrl.specularMap) mtrl.specularMap.dispose()
+              if (mtrl.envMap) mtrl.envMap.dispose()
+
+              mtrl.dispose()
+              mtrl = undefined // fixed problem
+            })
+          } else {
+            if (node.material.map) node.material.map.dispose()
+            if (node.material.lightMap) node.material.lightMap.dispose()
+            if (node.material.bumpMap) node.material.bumpMap.dispose()
+            if (node.material.normalMap) node.material.normalMap.dispose()
+            if (node.material.specularMap) node.material.specularMap.dispose()
+            if (node.material.envMap) node.material.envMap.dispose()
+
+            node.material.dispose()
+            node.material = undefined // fixed problem
+          }
+        }
+        console.log('node before removal: ', node)
+        this.scene.remove(node)
+        this.renderer.dispose() // ***EDIT*** improved even memory more original scene heap is 12.4 MB; add objects increases to 116 MB or 250 MB (different models), clearing always brings down to 13.3 MB ... there still might be some artifacts.
+        node = undefined // unnecessary
+      }
+    },
+    disposeHierarchy(node, callback) {
+      for (var i = node.children.length - 1; i >= 0; i--) {
+        var child = node.children[i]
+        this.disposeHierarchy(child, callback)
+        callback(child)
+      }
     }
   },
   beforeRouteUpdate() {},
@@ -495,7 +553,6 @@ circle {
 }
 
 .corner-circles-base {
- 
 }
 
 #lower-left {

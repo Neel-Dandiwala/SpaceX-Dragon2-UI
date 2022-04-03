@@ -3,37 +3,104 @@
     <div id="flashMessage" v-if="GStore.flashMessage">
       {{ GStore.flashMessage }}
     </div>
+    <div ref="marker" id="marker" class="marker" />
     <router-view />
     <nav>
-      <router-link :to="{ name: 'EventList' }" @click="indicator"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-record-circle" viewBox="0 0 16 16">
+      <router-link :to="{ name: 'EventList' }" @click="indicator(0)"><button id="panelButton" ref="firstPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <path d="M 8 15 A 7 7 0 1 1 8 1 a 7 7 0 0 1 0 14 z m 0 1 A 8 8 0 1 0 8 0 a 8 8 0 0 0 0 16 z M 13 8.1 a 3 3 0 1 1 -10 -0.1 a 3 3 0 0 1 10 0.1 z M 1.5 1.5 A 1 1 0 0 0 3.4 3.5 A 1 1 0 0 0 1.5 1.5 M 11.5 12.5 A 1 1 0 0 0 13.4 15.5 A 1 1 0 0 0 11.5 12.5"/>
-</svg></router-link> |
-      <router-link :to="{ name: 'About' }" @click="indicator"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+</svg></button></router-link> 
+      <router-link :to="{ name: 'About' }" @click="indicator(1)"><button id="panelButton" ref="secondPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M 8 4 a 0.5 0.5 0 0 1 0.5 0.5 v 3 h 3 a 0.5 0.5 0 0 1 0 1 h -3 v 3 a 0.5 0.5 0 0 1 -1 0 v -3 h -3 a 0.5 0.5 0 0 1 0 -1 h 3 v -3 A 0.5 0.5 0 0 1 8 4 z M 7.5 7.5 A 1 1 0 0 0 7.5 8.5 A 1 1 0 0 0 8.5 8.5 A 1 1 0 0 0 8.5 7.5 A 1 1 0 0 0 7.5 7.5 M 8 7.6 C 7.5 7.7 7.5 8.3 8 8.4 C 8.5 8.3 8.5 7.7 8 7.6"/>
-</svg></router-link> |
-      <router-link :to="{ name: 'EventRegister' }" @click="indicator">About</router-link> |
-      <router-link :to="{ name: 'NetworkError' }" @click="indicator"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-fill" viewBox="0 0 16 16">
+</svg></button></router-link> 
+      <router-link :to="{ name: 'Third' }" @click="indicator(2)"><button id="panelButton" ref="thirdPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <path d="M 14 15 q -6 3 -12 0 C 0.5 7.5 6.5 0 8 0 s 7.5 7.5 6 15 z M 8 1.5 C 5 4.5 3.5 7.5 3.5 10.5 Q 6.5 12 6.5 15 L 9.5 15 Q 9.5 12 12.5 10.5 C 12.5 7.5 11 4.5 8 1.5 M 6.5 6 Q 5.75 7.5 6.5 9 Q 8 9.75 9.5 9 Q 10.25 7.5 9.5 6 Q 8 5.1 6.5 6 Z"/>
+</svg></button></router-link> 
+      <router-link :to="{ name: 'NetworkError' }" @click="indicator(3)"><button id="panelButton" ref="fourthPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16">
   <path d="M 9.828 3 h 3.982 a 2 2 0 0 1 1.19 2 l 0 7 A 2 2 0 0 1 13.174 14 H 2.825 a 2 2 0 0 1 -1.825 -2 l 0 -7 l 0 -1 L 1 3 l 0 -2 h 7 L 9.828 3 z z M 8 5 A 1 1 0 0 0 8 12 A 1 1 0 0 0 8 5 M 8 12 L 5 7 L 11 7 Z"/>
-</svg></router-link> |
-      <router-link :to="{ name: 'Fifth' }" @click="indicator"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-wide" viewBox="0 0 16 16">
+</svg></button></router-link> 
+      <router-link :to="{ name: 'Fifth' }" @click="indicator(4)"><button id="panelButton" ref="fifthPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <path d="M 8.932 0.727 c -0.243 -0.97 -1.62 -0.97 -1.864 0 l -0.071 0.286 a 0.96 0.96 0 0 1 -1.622 0.434 l -0.205 -0.211 c -0.695 -0.719 -1.888 -0.03 -1.613 0.931 l 0.08 0.284 a 0.96 0.96 0 0 1 -1.186 1.187 l -0.284 -0.081 c -0.96 -0.275 -1.65 0.918 -0.931 1.613 l 0.211 0.205 a 0.96 0.96 0 0 1 -0.434 1.622 l -0.286 0.071 c -0.97 0.243 -0.97 1.62 0 1.864 l 0.286 0.071 a 0.96 0.96 0 0 1 0.434 1.622 l -0.211 0.205 c -0.719 0.695 -0.03 1.888 0.931 1.613 l 0.284 -0.08 a 0.96 0.96 0 0 1 1.187 1.187 l -0.081 0.283 c -0.275 0.96 0.918 1.65 1.613 0.931 l 0.205 -0.211 a 0.96 0.96 0 0 1 1.622 0.434 l 0.071 0.286 c 0.243 0.97 1.62 0.97 1.864 0 l 0.071 -0.286 a 0.96 0.96 0 0 1 1.622 -0.434 l 0.205 0.211 c 0.695 0.719 1.888 0.03 1.613 -0.931 l -0.08 -0.284 a 0.96 0.96 0 0 1 1.187 -1.187 l 0.283 0.081 c 0.96 0.275 1.65 -0.918 0.931 -1.613 l -0.211 -0.205 a 0.96 0.96 0 0 1 0.434 -1.622 l 0.286 -0.071 c 0.97 -0.243 0.97 -1.62 0 -1.864 l -0.286 -0.071 a 0.96 0.96 0 0 1 -0.434 -1.622 l 0.211 -0.205 c 0.719 -0.695 0.03 -1.888 -0.931 -1.613 l -0.284 0.08 a 0.96 0.96 0 0 1 -1.187 -1.186 l 0.081 -0.284 c 0.275 -0.96 -0.918 -1.65 -1.613 -0.931 l -0.205 0.211 a 0.96 0.96 0 0 1 -1.622 -0.434 L 8.932 0.727 z M 8 12.997 a 4.998 4.998 0 1 1 0 -9.995 a 4.998 4.998 0 0 1 0 9.996 z M 8 4 L 5 10 L 11 10 Z"/>
-</svg></router-link> |
-      <div class="marker" ref="marker" />
+</svg></button></router-link> 
     </nav>
   </div>
 </template>
 <script>
 // import { isObjectMember } from '@babel/types'
+// import { useRouter } from 'vue-router';
 
 export default {
   inject: ['GStore'],
+  data(){
+    return {
+      activePanel: [false, false, false, false, false]
+    }
+  },
+  mounted() {
+    // console.log(this.$refs.secondPanel.offsetLeft)
+
+    // this.$refs.marker.style.left = this.$refs.firstPanel.offsetLeft - 2 + 'px'
+  },
   methods: {
-    indicator(e){
+    updateActivePanel(number){
+      for (var i = 0; i < this.activePanel.length; i++) {
+        this.activePanel[i] = false
+      }
+      this.activePanel[number] = true
+    },
+    indicator(number){
       // let marker = this.$el.querySelector('.marker')
-      this.$refs.marker.style.left = e.target.offsetLeft + 'px'
+      // this.$refs.marker.style.left = e.target.offsetLeft + 'px'
+      // for(var i = 0; i < this.activePanel.length; i++){
+      //   this.activePanel[i] = false
+      // }
+      // this.activePanel[number] = true
+      // const name = this.checkRoute()
+      switch (number) {
+  case 0:
+    this.$refs.marker.style.left = this.$refs.firstPanel.offsetLeft - 2 + 'px'
+    this.updateActivePanel(number)
+    break;
+  case 1:
+    this.$refs.marker.style.left = this.$refs.secondPanel.offsetLeft  - 2 + 'px'
+    this.updateActivePanel(number)
+    console.log('DONEENE')
+    break;
+  case 2:
+     this.$refs.marker.style.left = this.$refs.thirdPanel.offsetLeft  - 2 + 'px'
+     this.updateActivePanel(number)
+    break;
+  case 3:
+    this.$refs.marker.style.left = this.$refs.fourthPanel.offsetLeft  - 2 + 'px'
+    this.updateActivePanel(number)
+    break;
+  case 4:
+   this.$refs.marker.style.left = this.$refs.fifthPanel.offsetLeft  - 2 + 'px'
+   this.updateActivePanel(number)
+    break;
+}
+    },
+    checkPanelReload(routerPath){
+       switch (routerPath) {
+  case 'EventList':
+    this.$refs.marker.style.left = this.$refs.firstPanel.offsetLeft - 2 + 'px'
+    break;
+  case 'About':
+    this.$refs.marker.style.left = this.$refs.secondPanel.offsetLeft  - 2 + 'px'
+    console.log('DONEENE')
+    break;
+  case 'Third':
+     this.$refs.marker.style.left = this.$refs.thirdPanel.offsetLeft  - 2 + 'px'
+    break;
+  case 'NetworkError':
+    this.$refs.marker.style.left = this.$refs.fourthPanel.offsetLeft  - 2 + 'px'
+    break;
+  case 'Fifth':
+   this.$refs.marker.style.left = this.$refs.fifthPanel.offsetLeft  - 2 + 'px'
+    break;
     }
   }
+}
 }
 </script>
 
@@ -47,23 +114,92 @@ export default {
   margin: 0;
 }
 
+router-link * {
+  /* text-align: center; */
+  /* position: absolute; */
+  height: 100%;
+  width: 100%; 
+  /* top: 0%;
+  left: 100%;  */
+  /* padding-left: 5%;
+  margin-right: 50%; */
+}
+
+.main-views-svg{
+  fill: white;
+  height: max(1.5vw, 3.5vh);
+  width: max(1.5vw, 3.5vh);
+  /* top: 20%; */
+  /* transform: translate(15%, 0); */
+  /* position: absolute;
+  height: 90%;
+  width: 90%; */
+  /* text-align: center; */
+}
+
+#svg-marker {
+  position: absolute;
+  height: 100%;
+  width: 2.5%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 0, 0, 0),
+    rgba(255, 255, 255, 1)
+  );
+  bottom: 0;
+  /* animation: fadeIn 0.5s linear; */
+  transition: all 0.7s ease-in;
+  opacity: 1;
+}
+
 body {
   margin: 0;
   background-color: #111b52;
 }
 
 nav {
-  padding: 0.5%;
+  padding-bottom: 0.125%;
+  padding-left: 1.5%;
+  left: 0;
   position: absolute;
   display: block;
   bottom: 0;
+  width: 90%;
+  overflow: hidden;
+  /* height: 100%; */
 }
 
-nav a {
+@media screen and (max-width: 350px)
+{
+  #marker {
+    width: 20px;
+  }
+}
+
+@media screen and (max-width: 650px)
+{
+  #marker {
+    width: 40px;
+  }
+  nav * {
+    margin-right: 1px;
+    margin-left: 1px;
+  }
+  .main-views-svg{
+    height: 2.5vw;
+    width: 2.5vw;
+  }
+}
+
+nav * {
   font-weight: bold;
   color: grey;
+  /* padding-left: 0%; */
+  margin-right: 4.65px;
+  margin-left: 4.65px;
+  text-align: center;
 }
-nav a.router-link-exact-active {
+nav *.router-link-exact-active {
   color: white;
 }
 
@@ -76,29 +212,45 @@ nav a.router-link-exact-active {
 .marker {
   position: absolute;
   /* padding-left: 7%; */
-  height: 20px;
-  width: 40px;
+  height: 5%;
+  width: 50px;
   background-image: linear-gradient(
     to bottom,
     rgba(255, 0, 0, 0),
     rgba(255, 255, 255, 1)
   );
   bottom: 0;
-  transition: 0.7s;
-  opacity: 1;
+  /* animation: fadeIn 0.5s linear; */
+  transition: all 0.7s ease-in;
+
+  /* left: 37px; */
+  /* left: 41.75%; */
   /* z-index: -3; */
+  /*
+  25
+  69
+  112
+  155
+  199
+  */
+}
+
+#panelButton {
+  /* width: 4.35%; */
+  border: none;
+  background: transparent;
 }
 
 h4 {
   font-size: 20px;
 }
 
-@keyframes yellowfade {
+@keyframes fadeIn {
   from {
-    background: yellow;
+    height: 0%;
   }
   to {
-    background: transparent;
+    height: 5%;
   }
 }
 
