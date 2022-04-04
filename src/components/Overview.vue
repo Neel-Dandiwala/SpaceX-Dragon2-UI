@@ -1,12 +1,454 @@
 <template>
   <div id="inner-screen">
     <p id="title">CABIN SETTINGS</p>
+    <div id="shadow" />
+    
+    <div class="connections-panel">
+
+    </div>
+
+    <div id="dragon-crew">
+      <img src="dragon_crew.png" />
+    </div>
+
     <div class="circular-progess-menu">
-      <div class="circle-wrap">
-        <div class="circle">
-        </div>
+      <div id="sub-slot" style="left: 8.75%;">
+        <p id="first-heading">PPO2</p>
+        <p id="number-heading">2.69</p>
+        <p id="unit-heading">psia</p>
+        <svg
+          class="circle-big-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[0] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #d7b733;"
+            v-bind:style="{ animationDuration: durationCircular[0] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
+      </div>
+      <div id="sub-slot" style="left: 36.25%;">
+        <p id="first-heading">CABIN TEMP</p>
+        <p id="number-heading">2.41</p>
+        <p id="unit-heading"> °C</p>
+        <svg
+          class="circle-big-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[1] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #d12c30;"
+            v-bind:style="{ animationDuration: durationCircular[1] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
+      </div>
+       <div id="sub-slot" style="left: 63.75%;">
+        <p id="first-heading">CABIN PRESSURE</p>
+        <p id="number-heading">14.00</p>
+        <p id="unit-heading">psia</p>
+        <svg
+          class="circle-big-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[2] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #fcd533;"
+            v-bind:style="{ animationDuration: durationCircular[2] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
+      </div>
+       <div id="sub-slot" style="left: 91.25%;">
+        <p id="first-heading">CO2</p>
+        <p id="number-heading">0.07</p>
+        <p id="unit-heading">mmHg</p>
+        <svg
+          class="circle-big-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[3] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #2983ed;"
+            v-bind:style="{ animationDuration: durationCircular[3] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
+      </div>
+
+      <div id="sub-sub-slot" style="left: 0%;">
+        <p id="first-sub-heading">LOOP A</p>
+        <p id="number-sub-heading">26.53</p>
+        <p id="unit-sub-heading">°C</p>
+        <svg
+          class="circle-small-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[4] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #2886f6;"
+            v-bind:style="{ animationDuration: durationCircular[4] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
+      </div>
+      <div id="sub-sub-slot" style="left: 20%;">
+        <p id="first-sub-heading">LOOP A</p>
+        <p id="number-sub-heading">20.00</p>
+        <p id="unit-sub-heading">°C</p>
+        <svg
+          class="circle-small-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[5] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #2886f6;"
+            v-bind:style="{ animationDuration: durationCircular[5] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
+      </div>
+       <div id="sub-sub-slot" style="left: 80%;">
+        <p id="first-sub-heading">NET PWR 1</p>
+        <p id="number-sub-heading">0.00</p>
+        <p id="unit-sub-heading">W</p>
+        <svg
+          class="circle-small-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[6] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #2886f6;"
+            v-bind:style="{ animationDuration: durationCircular[6] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
+      </div>
+       <div id="sub-sub-slot" style="left: 100%;">
+        <p id="first-sub-heading">NET PWR 2</p>
+        <p id="number-sub-heading">0.00</p>
+        <p id="unit-sub-heading">W</p>
+        <svg
+          class="circle-small-svg"
+          id="meter-svg"
+          viewBox="0 0 150 150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <clipPath id="cut-off-bottom">
+              <circle cx="0" cy="150" r="162.5" fill="transparent" />
+            </clipPath>
+          </defs>
+          <circle
+            r="70"
+            cx="75"
+            cy="75"
+            stroke=#777777
+            stroke-width="1.5"
+            stroke-dasharray="0 4"
+            stroke-linecap="round"
+            fill="transparent"
+            clip-path="url(#cut-off-bottom)"
+          />
+          <circle
+            class="animation-circle"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            v-bind:style="{ animationDuration: durationCircular[7] + 's' }"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+          <circle
+            class="animation-circle"
+            id="meter-bar"
+            style="stroke: #2886f6;"
+            v-bind:style="{ animationDuration: durationCircular[7] + 's' }"
+            r="70"
+            cx="75"
+            cy="75"
+            fill="transparent"
+            stroke-dasharray="500"
+            stroke-dashoffset="0"
+          ></circle>
+        </svg>
       </div>
     </div>
+
+    <div class="right-menu">
+      <div class="right-slot" style="top: 10%;">
+        <p id="right-main-heading">Inertial Velocity</p>
+        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[0] + 's' }"></span></div>
+        <p id="right-unit-heading">7.68 km/s</p>
+      </div>
+      <div class="right-slot" style="top: 20%;">
+        <p id="right-main-heading">Altitude</p>
+        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[1] + 's' }"></span></div>
+        <p id="right-unit-heading">390.0 km</p>
+      </div>
+      <div class="right-slot" style="top: 30%;">
+        <p id="right-main-heading">Apogle</p>
+        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[2] + 's' }"></span></div>
+        <p id="right-unit-heading">404.4 km</p>
+      </div>
+      <div class="right-slot" style="top: 40%;">
+        <p id="right-main-heading">Perigee</p>
+        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[3] + 's' }"></span></div>
+        <p id="right-unit-heading">389.4 km</p>
+      </div>
+      <div class="right-slot" style="top: 60%;">
+        <p id="right-main-heading">Inclination</p>
+        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[4] + 's' }"></span></div>
+        <p id="right-unit-heading">51.67°</p>
+      </div>
+      <div class="right-slot" style="top: 70%;">
+        <p id="right-main-heading">Range to ISS</p>
+        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[5] + 's' }"></span></div>
+        <p id="right-unit-heading">0.02 km</p>
+      </div>
+      
+    </div>
+
     <div class="left-menu">
       <p id="left-heading" style="top:4%;">
         <svg
@@ -72,14 +514,16 @@ export default {
   props: [],
   data() {
     return {
-      activeButton: true
+      activeButton: true,
+      durationHorizontal: [10, 2, 9, 5, 7, 3],
+      durationCircular: [9, 7, 10, 2, 15, 3, 12, 5]
     }
   },
   mounted() {
-      // this.selectedGround = this.ground[2]
-      // this.selectedAux = this.aux[2]
-      // this.selectedIntercom = this.intercom[2]
-      // this.selectedAlerts = this.alerts[2]
+    // this.selectedGround = this.ground[2]
+    // this.selectedAux = this.aux[2]
+    // this.selectedIntercom = this.intercom[2]
+    // this.selectedAlerts = this.alerts[2]
   },
   methods: {
     indicator(e) {
@@ -101,7 +545,7 @@ export default {
   overflow: hidden;
   position: absolute;
   background: linear-gradient(to bottom, #020738, rgba(2, 7, 56, 0)),
-    radial-gradient(40% 25% at 50% 75%, rgba(167, 185, 235, 0.75),#020738);
+    radial-gradient(40% 25% at 50% 75%, rgba(167, 185, 235, 0.75), #020738);
   height: 91.5vh;
   width: 98.125vw;
   /* bottom: 30px; */
@@ -183,6 +627,27 @@ export default {
   );
 }
 
+#dragon-crew {
+  position: absolute;
+  height: 50%;
+  width: 15%;
+  top: 57.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#shadow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(
+    7.5% 5% at 50% 86%,
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+
 .circular-progess-menu {
   position: absolute;
   width: 50%;
@@ -194,17 +659,202 @@ export default {
   transform: translate(-50%, -50%);
 }
 
-.circle-wrap {
+.circle-big-svg {
   position: absolute;
-  top: 20%;
-  left: 8.5%;
+  width: max(11vw, 23.5vh);
+  height: max(11vw, 23.5vh);
+  /* border: 0.25px solid green; */
+  top: 12.5%;
   transform: translate(-50%, -50%);
-  width: 7.5vw;
-  height: 7.5vw;
-  background: blue;
-  border-radius: 50%;
-  border: 1px solid red;
+  text-align: center;
+  left: 12.5%;
 }
+
+.circle-small-svg {
+  position: absolute;
+  width: 7vw;
+  height: 7vw;
+  border: 0.25px solid green;
+  top: 13.5%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  left: 13.5%;
+}
+
+#meter-svg {
+  transform: rotate(135deg);
+}
+
+.animation-circle {
+  stroke-dashoffset: 170;
+  animation-name: progressingCircular; 
+  animation-iteration-count: infinite;
+  stroke: #666;
+  stroke-width: 0.35em;
+}
+
+@keyframes progressingCircular {
+  0% {
+    stroke-dashoffset: 170;
+  }
+  50% {
+    stroke-dashoffset: 500;
+  }
+  100% {
+    stroke-dashoffset: 170;
+  }
+}
+
+
+#sub-slot {
+  position: absolute;
+  width: 30%;
+  padding-bottom: 30%;
+  /* height: 53%; */
+  top: 27.5%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  border: 1px solid pink;
+}
+
+#sub-sub-slot {
+  position: absolute;
+  width: 20%;
+  padding-bottom: 20%;
+  /* height: 53%; */
+  top: 77.5%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  border: 1px solid pink;
+}
+
+#first-heading {
+  font-size: 0.65em;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  opacity: 0.5;
+  transform: translate(-50%, -50%);
+}
+
+#number-heading {
+  font-size: 2em;
+  position: absolute;
+  top: 33.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#unit-heading {
+  font-size: 1em;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  opacity: 0.75;
+  transform: translate(-50%, -50%);
+}
+
+#first-sub-heading {
+  font-size: 0.55em;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  opacity: 0.5;
+  transform: translate(-50%, -50%);
+}
+
+#number-sub-heading {
+  font-size: 1.5em;
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#unit-sub-heading {
+  font-size: 0.75em;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  opacity: 0.75;
+  transform: translate(-50%, -50%);
+}
+
+.right-menu {
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  border: 0.25px solid orange;
+  /* background: #020738; */
+  top: 50%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+}
+
+#horizontal-bar {
+  position: absolute;
+  width: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  height: 5%;
+  top: 60%;
+  left: 30%;
+  border-radius: 50px;
+  transform: translate(-50%, -50%); 
+  text-align: center;
+}
+
+#progress-horizontal-bar {
+  position: absolute;
+  width: 10%;
+  background: #35a9eb;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  border-radius: 50px;
+  /* transform: translate(-50%, -50%);  */
+  /* border: 1px solid red; */
+  animation-name: progressingHorizontal;
+  animation-iteration-count: infinite;
+  /* animation-duration: v-bind(duration + 's'); */
+}
+
+@keyframes progressingHorizontal {
+  0% {width: 10%;}
+  50% {width: 90%;}
+  100% {width: 10%;}
+}
+
+.right-slot {
+  border: 1px solid green;
+  position: absolute;
+  width: 90%;
+  height: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#right-main-heading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 55%;
+  font-size: 0.75em;
+  opacity: 0.9;
+  transform: translate(-50%, -50%);
+}
+
+#right-unit-heading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 70%;
+  left: 110%;
+  font-size: 1em;
+  opacity: 0.9;
+  transform: translate(-50%, -50%);
+}
+
 .left-menu {
   position: absolute;
   width: 20%;
@@ -277,106 +927,17 @@ button {
   /* border: .5px solid red; */
 }
 
-#S1 {
-  left: 10%;
-}
-
-#S2 {
-  left: 30%;
-}
-
-#S3 {
-  left: 50%;
-}
-
-#S4 {
-  left: 70%;
-}
-
-#S5 {
-  left: 90%;
-}
 
 img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  height: 60%;
-  width: 60%;
-}
-
-#mask_picture {
-  opacity: 0.45;
-}
-
-#shadow {
-  position: absolute;
   height: 100%;
   width: 100%;
-  background: radial-gradient(
-    35% 5% at 50% 92.5%,
-    rgba(0, 0, 0, 0.45),
-    rgba(0, 0, 0, 0)
-  );
 }
 
-.selected {
-  left: 50%;
-  overflow: hidden;
-  position: absolute;
-  width: 16.4%;
-  height: 52%;
-  top: 33%;
-  transform: translate(-50%, -50%);
-  transition: all 0.7s ease-in-out;
-  /* -webkit-transform: translate3d(1,0,0); */
-}
 
-#white-ring {
-  position: absolute;
-  top: 85%;
-  height: 15%;
-  width: 100%;
-  border-radius: 100%;
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.25),
-    rgba(255, 255, 255, 0.25),
-    white,
-    white
-  );
-  mask: radial-gradient(transparent 59%, #000 60%);
-}
-
-#curtain {
-  height: 100%;
-  width: 100%;
-  border-radius: 5%;
-  background: linear-gradient(
-    rgba(255, 255, 255, 0.25),
-    rgba(255, 255, 255, 0.125),
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0)
-  );
-}
-
-#selection_option {
-  overflow: hidden;
-  position: absolute;
-  width: 16.4%;
-  height: 53%;
-  top: 33.5%;
-  transform: translate(-50%, -50%);
-  /* border: 1px solid rgba(255, 255, 255, 1); */
-}
-
-.cabin-speaker {
-  overflow: hidden;
-  position: absolute;
-  width: max(3.5vw, 7vh);
-  height: max(3.5vw, 7vh);
-  transform: translate(-50%, -50%);
-}
 
 #heading {
   position: absolute;
@@ -410,47 +971,6 @@ img {
   transform: translate(-50%, -50%);
 }
 
-.inner-slot {
-  position: absolute;
-  height: 100%;
-  width: 20%;
-  border-width: 1px;
-  border-style: solid;
-  border-image: 
-    linear-gradient(
-      to bottom, 
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0),
-      white,
-      rgba(0, 0, 0, 0), 
-      rgba(0, 0, 0, 0)
-    ) 1 100%; 
-  border-right: 1px solid white;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-#IS1 {
-  left: 10%;
-}
-
-#IS2 {
-  left: 30%;
-}
-
-#IS3 {
-  left: 50.25%;
-}
-
-#IS4 {
-  left: 70.25%;
-}
-
-#IS5 {
-  left: 90.30%;
-}
-
 
 svg {
   /* border: 1px solid tomato; */
@@ -460,42 +980,6 @@ svg {
   position: absolute;
   padding-bottom: 0;
 }
-.arrows,
-.zooms {
-  fill: none;
-  stroke: white;
-  stroke-width: 1;
-}
-.white-svg {
-  fill: white;
-  stroke: white;
-}
 
-#box-title {
-  position: absolute;
-  color: white;
-  font-size: 0.9em;
-  font-weight: 750;
-  top: 0%;
-  left: 50%;
-  /* bottom: 7em; */
-  transform: translate(-50%, -50%);
-}
 
-#inner-slot-heading {
-  position: relative;
-  color: white;
-  font-size: 0.7em;
-  top: 10%;
-}
-
-#sound {
-  position: relative;
-  color: white;
-  font-size: 5.25vw;
-  /* font-weight: 700; */
-  top: -7.5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 </style>
