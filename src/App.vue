@@ -16,7 +16,7 @@
       <router-link :to="{ name: 'Third' }" @click="indicator(2)"><button id="panelButton" ref="thirdPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <path d="M 14 15 q -6 3 -12 0 C 0.5 7.5 6.5 0 8 0 s 7.5 7.5 6 15 z M 8 1.5 C 5 4.5 3.5 7.5 3.5 10.5 Q 6.5 12 6.5 15 L 9.5 15 Q 9.5 12 12.5 10.5 C 12.5 7.5 11 4.5 8 1.5 M 6.5 6 Q 5.75 7.5 6.5 9 Q 8 9.75 9.5 9 Q 10.25 7.5 9.5 6 Q 8 5.1 6.5 6 Z"/>
 </svg></button></router-link> 
-      <router-link :to="{ name: 'NetworkError' }" @click="indicator(3)"><button id="panelButton" ref="fourthPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16">
+      <router-link :to="{ name: 'Fourth' }" @click="indicator(3)"><button id="panelButton" ref="fourthPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 16 16">
   <path d="M 9.828 3 h 3.982 a 2 2 0 0 1 1.19 2 l 0 7 A 2 2 0 0 1 13.174 14 H 2.825 a 2 2 0 0 1 -1.825 -2 l 0 -7 l 0 -1 L 1 3 l 0 -2 h 7 L 9.828 3 z z M 8 5 A 1 1 0 0 0 8 12 A 1 1 0 0 0 8 5 M 8 12 L 5 7 L 11 7 Z"/>
 </svg></button></router-link> 
       <router-link :to="{ name: 'Fifth' }" @click="indicator(4)"><button id="panelButton" ref="fifthPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">

@@ -1,7 +1,7 @@
 <template>
- <div ref="indicatorFifth" style="transition: all 0.5s ease-in-out;" id="indicatorFifth">
-      <div style="position: absolute; height: 0.75%; width: 2.5%; top: 94.5vh; left: 45%; z-index: 9; background: white; border-radius: 10%; transition: all 0.5s ease-in-out;"></div>
-      <div style="position: absolute; height: 4%; width: 2.5%; top: 90.5vh; left: 45%; z-index: 9; background: linear-gradient(to top, rgba(255,255,255, 0.25), transparent); transition: all 0.5s ease-in-out;"></div>
+ <div ref="indicatorThird" style="transition: all 0.5s ease-in-out;" id="indicatorThird">
+      <div style="position: absolute; height: 0.75%; width: 2.5%; top: 94.5vh; left: 47%; z-index: 9; background: white; border-radius: 10%; transition: all 0.5s ease-in-out;"></div>
+      <div style="position: absolute; height: 4%; width: 2.5%; top: 90.5vh; left: 47%; z-index: 9; background: linear-gradient(to top, rgba(255,255,255, 0.25), transparent); transition: all 0.5s ease-in-out;"></div>
     </div>
   <div id="back-box">
     <div id="white-border"></div>
@@ -9,17 +9,12 @@
        <component :is="currentComponent"></component>
       </keep-alive>
     <div id="buttons">
-      <button @click="changeComponent(`audio`)" style="left: 44.5%" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
-  <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
-  <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
-  <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
-</svg><p>Audio</p></button>
-      <button @click="changeComponent(`cabin`)" style="left: 48.25%" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-egg-fill" viewBox="0 0 16 16">
-  <path d="M14 10a6 6 0 0 1-12 0C2 5.686 5 0 8 0s6 5.686 6 10z"/>
-</svg><p>Cabin</p></button>
-      <button @click="changeComponent(`video`)" style="left: 52%" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
-</svg><p>Video</p></button>
+      <button @click="changeComponent(`overview`)" style="left: 46.5%" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up-fill" viewBox="0 0 16 16">
+  <path d="M 14 10 a 6 6 0 0 1 -12 0 C 2 5.686 6 0 8 0 s 6 5.686 6 10 z M 13.6 12 Q 16 13.1 15.5 16 Q 13 14.6 10.5 15.5 M 2.4 12 Q 0 13 0.5 16 Q 3 14.5 5.5 15.5 Q 3.1 14.2 2.4 12 M 8 5 A 1 1 0 0 0 8 10 A 1 1 0 0 0 8 5"/>
+</svg><p>Overview</p></button>
+      <button @click="changeComponent(`mech`)" style="left: 50.25%" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-egg-fill" viewBox="0 0 16 16">
+  <path d="M 8.515 1.019 A 7 7 0 0 0 8 1 V 0 a 8 8 0 0 1 0.589 0.022 l -0.074 0.997 z m 2.004 0.45 a 7.003 7.003 0 0 0 -0.985 -0.299 l 0.219 -0.976 c 0.383 0.086 0.76 0.2 1.126 0.342 l -0.36 0.933 z m 1.37 0.71 a 7.01 7.01 0 0 0 -0.439 -0.27 l 0.493 -0.87 a 8.025 8.025 0 0 1 0.979 0.654 l -0.615 0.789 a 6.996 6.996 0 0 0 -0.418 -0.302 z m 1.834 1.79 a 6.99 6.99 0 0 0 -0.653 -0.796 l 0.724 -0.69 c 0.27 0.285 0.52 0.59 0.747 0.91 l -0.818 0.576 z m 0.744 1.352 a 7.08 7.08 0 0 0 -0.214 -0.468 l 0.893 -0.45 a 7.976 7.976 0 0 1 0.45 1.088 l -0.95 0.313 a 7.023 7.023 0 0 0 -0.179 -0.483 z m 0.53 2.507 a 6.991 6.991 0 0 0 -0.1 -1.025 l 0.985 -0.17 c 0.067 0.386 0.106 0.778 0.116 1.17 l -1 0.025 z m -0.131 1.538 c 0.033 -0.17 0.06 -0.339 0.081 -0.51 l 0.993 0.123 a 7.957 7.957 0 0 1 -0.23 1.155 l -0.964 -0.267 c 0.046 -0.165 0.086 -0.332 0.12 -0.501 z m -0.952 2.379 c 0.184 -0.29 0.346 -0.594 0.486 -0.908 l 0.914 0.405 c -0.16 0.36 -0.345 0.706 -0.555 1.038 l -0.845 -0.535 z m -0.964 1.205 c 0.122 -0.122 0.239 -0.248 0.35 -0.378 l 0.758 0.653 a 8.073 8.073 0 0 1 -0.401 0.432 l -0.707 -0.707 z M 8 1 a 7 7 0 1 0 4.95 11.95 l 0.707 0.707 A 8.001 8.001 0 1 1 8 0 v 1 z M 8 5 A 1 1 0 0 0 8 11 A 1 1 0 0 0 8 5"/>
+</svg><p>Mech</p></button>
     </div>
   </div>
 </template>
@@ -28,8 +23,6 @@
 import Overview from '../components/Overview.vue'
 import Mech from '../components/Mech.vue'
 
-// let View02 = {}
-// let View03 = {}
 export default {
   name: 'Third',
   data() {
@@ -40,18 +33,15 @@ export default {
   methods: {
     changeComponent(name){
       this.currentComponent = name
-      if(name === 'audio') {
-        this.$refs.indicatorFifth.children[0].style.left = 45+`%`
-        this.$refs.indicatorFifth.children[1].style.left = 45+`%`
+      if(name === 'overview') {
+        this.$refs.indicatorThird.children[0].style.left = 47+`%`
+        this.$refs.indicatorThird.children[1].style.left = 47+`%`
       }
-      if(name === 'cabin') {
-        this.$refs.indicatorFifth.children[0].style.left = 48.75+`%`
-        this.$refs.indicatorFifth.children[1].style.left = 48.75+`%`
+      if(name === 'mech') {
+        this.$refs.indicatorThird.children[0].style.left = 50.75+`%`
+        this.$refs.indicatorThird.children[1].style.left = 50.75+`%`
       }
-      if(name === 'video') {
-        this.$refs.indicatorFifth.children[0].style.left = 52.5+`%`
-        this.$refs.indicatorFifth.children[1].style.left = 52.5+`%`
-      }
+
     }
   },
   components: {
@@ -61,7 +51,7 @@ export default {
   },
   mounted() {
     // console.log(View03 + View02)
-    // console.log(this.$refs.indicatorFifth.children[0].style.left)
+    // console.log(this.$refs.indicatorThird.children[0].style.left)
   }
 }
 </script>

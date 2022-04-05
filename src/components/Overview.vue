@@ -2,19 +2,24 @@
   <div id="inner-screen">
     <p id="title">CABIN SETTINGS</p>
     <div id="shadow" />
-    
-    <div class="connections-panel">
 
+    <div class="connections-panel">
+      <p id="connections-heading">CONNECTIONS</p>
+      <p id="connections-sub-heading" style="top: 17.5%;">Manual Rings <span id="connections-sub-sub-heading">Connected</span></p>
+      <p id="connections-sub-heading" style="top: 32.5%;">Changelog<span id="connections-sub-sub-heading">Connected</span></p>
+      <p id="connections-sub-heading" style="top: 47.5%;">Airlock <span id="connections-sub-sub-heading">Connected</span></p>
+      <p id="connections-sub-heading" style="top: 62.5%;">Wing<span id="connections-sub-sub-heading">Connected</span></p>
     </div>
 
     <div id="dragon-crew">
       <img src="dragon_crew.png" />
     </div>
+    <p id="dragon-main-heading">CABIN MICS: <span style="color: #d12c30;">RECORDING</span></p>
 
     <div class="circular-progess-menu">
       <div id="sub-slot" style="left: 8.75%;">
         <p id="first-heading">PPO2</p>
-        <p id="number-heading">2.69</p>
+        <p id="number-heading" class="c1">{{ maximumCircularLimit[0] }}</p>
         <p id="unit-heading">psia</p>
         <svg
           class="circle-big-svg"
@@ -31,7 +36,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -64,8 +69,8 @@
       </div>
       <div id="sub-slot" style="left: 36.25%;">
         <p id="first-heading">CABIN TEMP</p>
-        <p id="number-heading">2.41</p>
-        <p id="unit-heading"> °C</p>
+        <p id="number-heading" class="c2">{{ maximumCircularLimit[1] }}</p>
+        <p id="unit-heading">°C</p>
         <svg
           class="circle-big-svg"
           id="meter-svg"
@@ -81,7 +86,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -112,9 +117,9 @@
           ></circle>
         </svg>
       </div>
-       <div id="sub-slot" style="left: 63.75%;">
+      <div id="sub-slot" style="left: 63.75%;">
         <p id="first-heading">CABIN PRESSURE</p>
-        <p id="number-heading">14.00</p>
+        <p id="number-heading" class="c3">{{ maximumCircularLimit[2] }}</p>
         <p id="unit-heading">psia</p>
         <svg
           class="circle-big-svg"
@@ -131,7 +136,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -162,9 +167,9 @@
           ></circle>
         </svg>
       </div>
-       <div id="sub-slot" style="left: 91.25%;">
+      <div id="sub-slot" style="left: 91.25%;">
         <p id="first-heading">CO2</p>
-        <p id="number-heading">0.07</p>
+        <p id="number-heading" class="c4">{{ maximumCircularLimit[3] }}</p>
         <p id="unit-heading">mmHg</p>
         <svg
           class="circle-big-svg"
@@ -181,7 +186,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -215,7 +220,7 @@
 
       <div id="sub-sub-slot" style="left: 0%;">
         <p id="first-sub-heading">LOOP A</p>
-        <p id="number-sub-heading">26.53</p>
+        <p id="number-sub-heading" class="c5">{{ maximumCircularLimit[4] }}</p>
         <p id="unit-sub-heading">°C</p>
         <svg
           class="circle-small-svg"
@@ -232,7 +237,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -265,7 +270,7 @@
       </div>
       <div id="sub-sub-slot" style="left: 20%;">
         <p id="first-sub-heading">LOOP A</p>
-        <p id="number-sub-heading">20.00</p>
+        <p id="number-sub-heading" class="c6">{{ maximumCircularLimit[5] }}</p>
         <p id="unit-sub-heading">°C</p>
         <svg
           class="circle-small-svg"
@@ -282,7 +287,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -313,9 +318,9 @@
           ></circle>
         </svg>
       </div>
-       <div id="sub-sub-slot" style="left: 80%;">
+      <div id="sub-sub-slot" style="left: 80%;">
         <p id="first-sub-heading">NET PWR 1</p>
-        <p id="number-sub-heading">0.00</p>
+        <p id="number-sub-heading" class="c7">{{ maximumCircularLimit[6] }}</p>
         <p id="unit-sub-heading">W</p>
         <svg
           class="circle-small-svg"
@@ -332,7 +337,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -363,9 +368,9 @@
           ></circle>
         </svg>
       </div>
-       <div id="sub-sub-slot" style="left: 100%;">
+      <div id="sub-sub-slot" style="left: 100%;">
         <p id="first-sub-heading">NET PWR 2</p>
-        <p id="number-sub-heading">0.00</p>
+        <p id="number-sub-heading" class="c8">{{ maximumCircularLimit[7] }}</p>
         <p id="unit-sub-heading">W</p>
         <svg
           class="circle-small-svg"
@@ -382,7 +387,7 @@
             r="70"
             cx="75"
             cy="75"
-            stroke=#777777
+            stroke="#777777"
             stroke-width="1.5"
             stroke-dasharray="0 4"
             stroke-linecap="round"
@@ -418,35 +423,76 @@
     <div class="right-menu">
       <div class="right-slot" style="top: 10%;">
         <p id="right-main-heading">Inertial Velocity</p>
-        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[0] + 's' }"></span></div>
-        <p id="right-unit-heading">7.68 km/s</p>
+        <div id="horizontal-bar">
+          <span
+            id="progress-horizontal-bar"
+            v-bind:style="{ animationDuration: durationHorizontal[0] + 's' }"
+          ></span>
+        </div>
+        <p id="right-unit-heading" class="h1">{{ maximumHorizontalLimit[0] }}</p><p style="left: 125%;" id="right-unit-heading">km/s</p>
       </div>
       <div class="right-slot" style="top: 20%;">
         <p id="right-main-heading">Altitude</p>
-        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[1] + 's' }"></span></div>
-        <p id="right-unit-heading">390.0 km</p>
+        <div id="horizontal-bar">
+          <span
+            id="progress-horizontal-bar"
+            v-bind:style="{ animationDuration: durationHorizontal[1] + 's' }"
+          ></span>
+        </div>
+        <p id="right-unit-heading" class="h2">{{ maximumHorizontalLimit[1] }}</p><p style="left: 125%;" id="right-unit-heading">km</p>
       </div>
       <div class="right-slot" style="top: 30%;">
         <p id="right-main-heading">Apogle</p>
-        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[2] + 's' }"></span></div>
-        <p id="right-unit-heading">404.4 km</p>
+        <div id="horizontal-bar">
+          <span
+            id="progress-horizontal-bar"
+            v-bind:style="{ animationDuration: durationHorizontal[2] + 's' }"
+          ></span>
+        </div>
+        <p id="right-unit-heading" class="h3">{{ maximumHorizontalLimit[2] }}</p><p style="left: 125%;" id="right-unit-heading">km</p>
       </div>
       <div class="right-slot" style="top: 40%;">
         <p id="right-main-heading">Perigee</p>
-        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[3] + 's' }"></span></div>
-        <p id="right-unit-heading">389.4 km</p>
+        <div id="horizontal-bar">
+          <span
+            id="progress-horizontal-bar"
+            v-bind:style="{ animationDuration: durationHorizontal[3] + 's' }"
+          ></span>
+        </div>
+        <p id="right-unit-heading" class="h4">{{ maximumHorizontalLimit[3] }}</p><p style="left: 125%;" id="right-unit-heading">km</p>
       </div>
       <div class="right-slot" style="top: 60%;">
         <p id="right-main-heading">Inclination</p>
-        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[4] + 's' }"></span></div>
-        <p id="right-unit-heading">51.67°</p>
+        <div id="horizontal-bar">
+          <span
+            id="progress-horizontal-bar"
+            v-bind:style="{ animationDuration: durationHorizontal[4] + 's' }"
+          ></span>
+        </div>
+        <p id="right-unit-heading" class="h5">{{ maximumHorizontalLimit[4] }}</p><p style="left: 125%;" id="right-unit-heading">°</p>
       </div>
       <div class="right-slot" style="top: 70%;">
         <p id="right-main-heading">Range to ISS</p>
-        <div id="horizontal-bar"><span id="progress-horizontal-bar" v-bind:style="{ animationDuration: durationHorizontal[5] + 's' }"></span></div>
-        <p id="right-unit-heading">0.02 km</p>
+        <div id="horizontal-bar">
+          <span
+            id="progress-horizontal-bar"
+            v-bind:style="{ animationDuration: durationHorizontal[5] + 's' }"
+          ></span>
+        </div>
+        <p id="right-unit-heading" class="h6">{{ maximumHorizontalLimit[5] }}</p><p style="left: 125%;" id="right-unit-heading">km</p>
       </div>
-      
+      <p id="left-sub-heading" style="top: 86.5%; width: 50%; font-size: 0.75em; left: 0%">Power, Engine, Comms</p>
+      <button
+        v-bind:style="[
+          !moreToggle
+            ? ` background-color: white; color:#020738; border-radius: 10%; z-index:1;`
+            : ` background-color: #020738; transform: scale(90%); color: white; border-radius: 10% 10% 10% 10%; z-index:0;`
+        ]"
+        @click="moreToggle = !moreToggle"
+        style="left: 47%;"
+      >
+        MORE
+      </button>
     </div>
 
     <div class="left-menu">
@@ -456,17 +502,81 @@
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
-          fill="#ea7b15"
+          fill="#818395"
           viewBox="0 0 16 16"
         >
           <path
             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
           /></svg
         >ALL SYSTEMS CHECK<span style="top:100%;" id="left-sub-heading"
-          >Awaiting</span
+          >Normal</span
         >
       </p>
       <p id="left-heading" style="top:15%;">
+        <svg
+          class="left-menu-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#818395"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+          /></svg
+        >RENDEZVOUS BURN SLOW<span style="top:100%;" id="left-sub-heading"
+          >Normal</span
+        >
+      </p>
+       <p id="left-heading" style="top:26%;">
+        <svg
+          class="left-menu-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#818395"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+          /></svg
+        >PREPARE RENDEZVOUS BURN<span style="top:100%;" id="left-sub-heading"
+          >Normal</span
+        >
+      </p>
+       <p id="left-heading" style="top:37%;">
+        <svg
+          class="left-menu-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#40c110"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+          /></svg
+        >THERMAL SHIELD<span style="top:100%; color: white; font-size: 1.1em;" id="left-sub-heading"
+          >Applied</span
+        >
+      </p>
+       <p id="left-heading" style="top:48%;">
+        <svg
+          class="left-menu-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#818395"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+          /></svg
+        >BURN GO/NO-GO<span style="top:100%;" id="left-sub-heading"
+          >Normal</span
+        >
+      </p>
+       <p id="left-heading" style="top:59%;">
         <svg
           class="left-menu-svg"
           xmlns="http://www.w3.org/2000/svg"
@@ -478,10 +588,28 @@
           <path
             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
           /></svg
-        >ALL SYSTEMS CHECK<span style="top:100%;" id="left-sub-heading"
+        >POWER COMPLETION<span style="top:100%; color: white; font-size: 1.1em;" id="left-sub-heading"
           >Awaiting</span
         >
       </p>
+       <p id="left-heading" style="top:70%;">
+        <svg
+          class="left-menu-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#818395"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+          /></svg
+        >STATION DECK CHECK<span style="top:100%;" id="left-sub-heading"
+          >Normal</span
+        >
+      </p>
+
+
       <button
         v-bind:style="[
           activeButton
@@ -500,23 +628,28 @@
             : ` background-color: #020738; transform: scale(90%); color: white; border-radius: 0 10% 10% 0; z-index:0;`
         ]"
         @click="activeButton = !activeButton"
-        style="left: 47%;"
+        style="left: 57%;"
       >
         CABIN
       </button>
+     
     </div>
   </div>
 </template>
 
 <script>
+import gsap from 'gsap'
 export default {
   name: 'Overview',
   props: [],
   data() {
     return {
       activeButton: true,
+      moreToggle: true,
       durationHorizontal: [10, 2, 9, 5, 7, 3],
-      durationCircular: [9, 7, 10, 2, 15, 3, 12, 5]
+      durationCircular: [9, 7, 10, 2, 15, 3, 12, 5],
+      maximumCircularLimit: [2.47, 20.11, 12.0, 1.00, 24.53, 21.7, 1.0, 2.0],
+      maximumHorizontalLimit: [7.68, 390.0, 404.0, 389.4, 51.67, 0.07]
     }
   },
   mounted() {
@@ -524,8 +657,207 @@ export default {
     // this.selectedAux = this.aux[2]
     // this.selectedIntercom = this.intercom[2]
     // this.selectedAlerts = this.alerts[2]
+    this.animateCircularNumbers()
+    this.animateHorizontalNumbers()
+    
   },
   methods: {
+    animateCircularNumbers(){
+      gsap.from('.c1',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 2.69,
+          yoyo: true,
+          duration: this.durationCircular[0] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+    gsap.from('.c2',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 16.41,
+          yoyo: true,
+          duration: this.durationCircular[1] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+      gsap.from('.c3',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 14.00,
+          yoyo: true,
+          duration: this.durationCircular[2] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+        gsap.from('.c4',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 1.05,
+          yoyo: true,
+          duration: this.durationCircular[3] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+
+        gsap.from('.c5',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 26.05,
+          yoyo: true,
+          duration: this.durationCircular[4] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+         gsap.from('.c6',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 21.05,
+          yoyo: true,
+          duration: this.durationCircular[5] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+        gsap.from('.c7',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 0.03,
+          yoyo: true,
+          duration: this.durationCircular[6] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+        gsap.from('.c8',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 3.03,
+          yoyo: true,
+          duration: this.durationCircular[7] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+    },
+
+    animateHorizontalNumbers(){
+      gsap.from('.h1',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 6.68,
+          yoyo: true,
+          duration: this.durationHorizontal[0] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+    gsap.from('.h2',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 380.0,
+          yoyo: true,
+          duration: this.durationHorizontal[1] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundifySingle
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+      gsap.from('.h3',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 377.0,
+          yoyo: true,
+          duration: this.durationHorizontal[2] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundifySingle
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+        gsap.from('.h4',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 365.9,
+          yoyo: true,
+          duration: this.durationHorizontal[3] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundifySingle
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+
+        gsap.from('.h5',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 60.05,
+          yoyo: true,
+          duration: this.durationHorizontal[4] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+         gsap.from('.h6',{
+          repeat: -1,
+          repeatDelay: 0,
+          textContent: 0.01,
+          yoyo: true,
+          duration: this.durationHorizontal[5] / 2,
+          ease: 'power1.in',
+          modifiers: {
+            textContent: this.roundify
+          },
+          stagger: { each: 0 }
+        },0).reverse();
+
+    },
+
+    roundify(num) {
+      return Math.round(num * 100) / 100
+    },
+    roundifySingle(num) {
+      return Math.round(num * 10) / 10
+    },
+
     indicator(e) {
       // let marker = this.$el.querySelector('.marker')
       this.$refs.selected.style.left = e.target.style.leftIndicator
@@ -627,13 +959,66 @@ export default {
   );
 }
 
+.connections-panel {
+  position: absolute;
+  width: 10%;
+  height: 20%;
+  /* border: 0.5px solid yellow; */
+  top: 70%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  /* text-align: center; */
+}
+
+#connections-heading {
+  position: absolute;
+  width: 100%;
+  left: 0%;
+  font-size: 0.75em;
+  top: 0%;
+  padding-bottom: 5%;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.5); 
+  /* transform: translate(-50%, -50%); */
+  /* font-weight: 600; */
+  color: rgba(255, 255, 255, 1);
+  opacity: 0.5;
+}
+
+#connections-sub-heading{
+  position: absolute;
+  width: 100%;
+  padding-top: 0.5em;
+  /* height: 53%; */
+  /* top: 50%; */
+  /* border: 1px solid white; */
+  font-size: 0.65em;
+  color: rgba(255, 255, 255, 0.5);
+   /* opacity: 0.5; */
+}
+
+#connections-sub-sub-heading{
+  position: absolute;
+  color: rgba(255, 255, 255, 1.0);
+  opacity: 1;
+  right: 0px;
+}
+
 #dragon-crew {
   position: absolute;
   height: 50%;
-  width: 15%;
+  width: 13.5%;
   top: 57.5%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#dragon-main-heading {
+  top: 82.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  position: absolute;
+  font-size: 0.65em;
 }
 
 #shadow {
@@ -647,12 +1032,11 @@ export default {
   );
 }
 
-
 .circular-progess-menu {
   position: absolute;
   width: 50%;
   height: 50%;
-  border: 0.25px solid purple;
+  /* border: 0.25px solid purple; */
   /* background: #020738; */
   top: 35%;
   left: 50%;
@@ -674,7 +1058,7 @@ export default {
   position: absolute;
   width: 7vw;
   height: 7vw;
-  border: 0.25px solid green;
+  /* border: 0.25px solid green; */
   top: 13.5%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -687,7 +1071,7 @@ export default {
 
 .animation-circle {
   stroke-dashoffset: 170;
-  animation-name: progressingCircular; 
+  animation-name: progressingCircular;
   animation-iteration-count: infinite;
   stroke: #666;
   stroke-width: 0.35em;
@@ -705,7 +1089,6 @@ export default {
   }
 }
 
-
 #sub-slot {
   position: absolute;
   width: 30%;
@@ -714,7 +1097,7 @@ export default {
   top: 27.5%;
   text-align: center;
   transform: translate(-50%, -50%);
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
 }
 
 #sub-sub-slot {
@@ -725,7 +1108,7 @@ export default {
   top: 77.5%;
   text-align: center;
   transform: translate(-50%, -50%);
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
 }
 
 #first-heading {
@@ -784,7 +1167,7 @@ export default {
   position: absolute;
   width: 20%;
   height: 100%;
-  border: 0.25px solid orange;
+  /* border: 0.25px solid orange; */
   /* background: #020738; */
   top: 50%;
   left: 90%;
@@ -799,7 +1182,7 @@ export default {
   top: 60%;
   left: 30%;
   border-radius: 50px;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -819,13 +1202,19 @@ export default {
 }
 
 @keyframes progressingHorizontal {
-  0% {width: 10%;}
-  50% {width: 90%;}
-  100% {width: 10%;}
+  0% {
+    width: 10%;
+  }
+  50% {
+    width: 90%;
+  }
+  100% {
+    width: 10%;
+  }
 }
 
 .right-slot {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   position: absolute;
   width: 90%;
   height: 10%;
@@ -859,7 +1248,7 @@ export default {
   position: absolute;
   width: 20%;
   height: 100%;
-  border: 0.25px solid orange;
+  /* border: 0.25px solid orange; */
   /* background: #020738; */
   top: 50%;
   left: 10%;
@@ -898,7 +1287,8 @@ export default {
   /* border: 1px solid white; */
   font-size: 1em;
   left: 0%;
-  opacity: 0.5;
+  color: rgba(255, 255, 255, 0.5);
+  /* opacity: 0.5; */
   /* transform: translate(-50%, -50%); */
 }
 
@@ -906,7 +1296,7 @@ button {
   position: absolute;
   border: 1px solid white;
   text-align: center;
-  width: 30%;
+  width: 40%;
   height: 10%;
   bottom: 4%;
   /* top: 80%; */
@@ -927,7 +1317,6 @@ button {
   /* border: .5px solid red; */
 }
 
-
 img {
   top: 50%;
   left: 50%;
@@ -936,8 +1325,6 @@ img {
   height: 100%;
   width: 100%;
 }
-
-
 
 #heading {
   position: absolute;
@@ -971,7 +1358,6 @@ img {
   transform: translate(-50%, -50%);
 }
 
-
 svg {
   /* border: 1px solid tomato; */
   top: 50%;
@@ -980,6 +1366,4 @@ svg {
   position: absolute;
   padding-bottom: 0;
 }
-
-
 </style>

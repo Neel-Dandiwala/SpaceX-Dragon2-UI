@@ -27,7 +27,7 @@
   <path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/>
 </svg><p>Audio</p></button>
       <button @click="changeComponent(`cabin`)" style="left: 48.25%" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-egg-fill" viewBox="0 0 16 16">
-  <path d="M14 10a6 6 0 0 1-12 0C2 5.686 5 0 8 0s6 5.686 6 10z"/>
+  <path d="M 14 15 q -6 3 -12 0 C 0.5 7.5 6.5 0 8 0 s 7.5 7.5 6 15 z M 8 1.5 C 5 4.5 3.5 7.5 3.5 10.5 Q 6.5 12 6.5 15 L 9.5 15 Q 9.5 12 12.5 10.5 C 12.5 7.5 11 4.5 8 1.5 M 6.5 6 Q 5.75 7.5 6.5 9 Q 8 9.75 9.5 9 Q 10.25 7.5 9.5 6 Q 8 5.1 6.5 6 Z"/>
 </svg><p>Cabin</p></button>
       <button @click="changeComponent(`video`)" style="left: 52%" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera-video-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>

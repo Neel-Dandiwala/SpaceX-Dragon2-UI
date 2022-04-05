@@ -7,6 +7,7 @@ import EventLayout from '../views/event/Layout.vue'
 import About from '../views/About.vue'
 import Fifth from '../views/Fifth.vue'
 import Third from '../views/Third.vue'
+import Fourth from '../views/Fourth.vue'
 import NotFound from '../views/NotFound.vue'
 import NetworkError from '../views/NetworkError.vue'
 import NProgress from 'nprogress'
@@ -94,12 +95,16 @@ const routes = [
     path: '/fifth',
     name: 'Fifth',
     component: Fifth
-  }
-  ,
+  },
   {
     path: '/third',
     name: 'Third',
     component: Third
+  },
+  {
+    path: '/fourth',
+    name: 'Fourth',
+    component: Fourth
   }
 ]
 

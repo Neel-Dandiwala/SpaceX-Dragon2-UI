@@ -455,7 +455,7 @@
       </p>
     </div>
     <div class="bottom-panel" style="text-align: center;">
-      <p id="main-heading" style="text-align:center; top: 0;">SEAT</p>
+      <p id="main-heading" style="text-align:center; top: 0;">SEATS</p>
       <div class="inner-slot" id="IS1">
         <svg
           class="column-svg"
@@ -842,9 +842,10 @@ export default {
   /* height: 53%; */
   /* top: 50%; */
   /* border: 1px solid white; */
-  font-size: 1em;
+  font-size: 1.05em;
   left: 0%;
-  opacity: 0.5;
+  color: white;
+  opacity: 1;
   /* transform: translate(-50%, -50%); */
 }
 
