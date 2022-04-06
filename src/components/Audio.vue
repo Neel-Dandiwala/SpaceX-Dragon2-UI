@@ -221,6 +221,7 @@ export default {
       console.log(e.target.style.leftIndicator)
       console.log(e.target.style.index)
       this.indexValue = e.target.style.index
+      this.selectedSlot = e.target.style.name
       console.log(e.target.style.name)
       console.log(e.target)
     }
