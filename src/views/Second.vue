@@ -1,7 +1,7 @@
 <template>
   <div id="back-box">
     <div id="top-menu">
-      <div id="top-left-square">
+      <div style="background: #111b52;" id="top-left-square">
         <svg class="svg" width="25" height="25" viewBox="0 0 10 8">
           <rect rx="1" ry="1" width="10" height="8" class="topLeftSquare" />
         </svg>
@@ -24,8 +24,8 @@
   <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
 </svg>Manual Chute...<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="sideActive[4]" /></button>
     </div>
-    <div id="side-panel">
-      <div id="left-arrow">
+    <div id="center-panel">
+      <div style="background: #111b52;" id="left-arrow">
         <svg class="svg" width="30" height="30">
           <defs>
             <marker
@@ -51,7 +51,7 @@
           ></line>
         </svg>
       </div>
-      <div id="right-arrow">
+      <div style="background: #111b52;" id="right-arrow">
         <svg class="svg" width="30" height="30">
           <defs>
             <marker
@@ -76,6 +76,43 @@
             marker-end="url(#arrow)"
           ></line>
         </svg>
+      </div>
+      <p id="center-main-heading" >Coast to Trunk Jettison</p>
+      <p style="top: 4.5%;"  id="center-main-sub-heading">RUNNING <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          style="left: 120%;"
+          fill="currentColor"
+          class="svg"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+          />
+          <path
+            d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"
+          />
+        </svg></p>
+      <p style="top: 7.5%;" id="center-main-sub-heading">00:22:57</p>
+      <div style="top: 30%;" class="center-main-slot">
+        <p id="center-main-slot-heading">Crew Interrupt Conditions</p>
+        <p>30° sustained altitude error....................FAR FIELD POINTING</p>
+        <p>600° /m altitude rate...........FAR FIELD POINTING</p>
+      </div>
+      <div style="top: 60%;" class="center-main-slot">
+        <p id="center-main-slot-heading">Crew Deorbit Preparation</p>
+        <p>Deorbit burn - -3 hrs..................On SpaceX, On, begin procedure 4.700</p>
+        <p>NLT Deorbit Burn - 1hr.........Deorbit Burn Brief</p>
+        <p>NLT Deorbit Burn - 30 min..............Review Reference Content</p>
+        <p>Deorbit, entry and landing Go/No-Go............Acknowledge</p>
+      </div>
+      <div style="top: 90%;" class="center-main-slot">
+        <p id="center-main-slot-heading">1 Monitor slow to free-flight altitude (Sun+GEO pointing)</p>
+        <p id="center-main-slot-heading">2 After SpaceX GO for deorbit, verify entry is enabled:</p>
+        <p>ENTRY ENABLED True False</p>
+        <p id="center-main-slot-heading">3 After entry is enabled, Dragon transitions to Claw</p>
       </div>
     </div>
     <keep-alive>
@@ -219,7 +256,7 @@ var View01 = {
 // eslint-disable-next-line no-unused-vars
 
 export default {
-  name: 'About',
+  name: 'Second',
   props: [],
   data() {
     return {
@@ -325,12 +362,12 @@ export default {
   /* transform: translate(10%, -50%); */
   height: 90%;
   width: 60%;
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
   /* z-index: -1; */
 }
 
 #scroll-earth:hover {
-  background-color: green;
+  /* background-color: green; */
 }
 
 #swap-view {
@@ -358,7 +395,7 @@ export default {
   color: #020738;
 }
 
-#side-panel {
+#center-panel {
   position: absolute;
   /* flex:1; */
   top: calc(100vh * 0.0952);
@@ -368,6 +405,34 @@ export default {
   left: min(100px, calc(100vw * 0.055));
   border: 1px solid white;
   box-sizing: border-box;
+}
+
+#center-main-heading {
+  position: absolute;
+  font-size: 1.25em;
+  font-weight: 750;
+  top: 3%;
+  left: 30%;
+}
+
+#center-main-sub-heading {
+  position: absolute;
+  font-size: 0.75em;
+  left: 80%;
+  /* border: 1px solid red; */
+}
+
+.center-main-slot {
+  position: absolute;
+  width: 90%;
+  background: #111b52;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#center-main-slot-heading{
+  font-size: 0.75em;
+  font-weight: 750;
 }
 
 #left-arrow {

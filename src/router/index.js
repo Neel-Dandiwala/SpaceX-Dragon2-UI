@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import EventList from '../views/EventList.vue'
+import First from '../views/First.vue'
 import EventDetails from '../views/event/Details.vue'
 import EventRegister from '../views/event/Register.vue'
 import EventEdit from '../views/event/Edit.vue'
 import EventLayout from '../views/event/Layout.vue'
-import About from '../views/About.vue'
+import Second from '../views/Second.vue'
 import Fifth from '../views/Fifth.vue'
 import Third from '../views/Third.vue'
 import Fourth from '../views/Fourth.vue'
@@ -33,8 +33,12 @@ const routes = [
   },
   {
     path: '/',
-    name: 'EventList',
-    component: EventList
+    name: 'First',
+    component: First
+  },
+  {
+    path: '/first',
+    redirect: { name: 'First' }
   },
   {
     path: '/events/:id',
@@ -83,13 +87,9 @@ const routes = [
     }
   },
   {
-    path: '/about-us',
-    name: 'About',
-    component: About
-  },
-  {
-    path: '/about',
-    redirect: { name: 'About' }
+    path: '/second',
+    name: 'Second',
+    component: Second
   },
   {
     path: '/fifth',

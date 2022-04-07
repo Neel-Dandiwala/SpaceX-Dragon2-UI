@@ -6,10 +6,10 @@
     <div ref="marker" id="marker" class="marker" />
     <router-view />
     <nav>
-      <router-link :to="{ name: 'EventList' }" @click="indicator(0)"><button id="panelButton" ref="firstPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+      <router-link :to="{ name: 'First' }" @click="indicator(0)"><button id="panelButton" ref="firstPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
   <path d="M 8 15 A 7 7 0 1 1 8 1 a 7 7 0 0 1 0 14 z m 0 1 A 8 8 0 1 0 8 0 a 8 8 0 0 0 0 16 z M 13 8.1 a 3 3 0 1 1 -10 -0.1 a 3 3 0 0 1 10 0.1 z M 1.5 1.5 A 1 1 0 0 0 3.4 3.5 A 1 1 0 0 0 1.5 1.5 M 11.5 12.5 A 1 1 0 0 0 13.4 15.5 A 1 1 0 0 0 11.5 12.5"/>
 </svg></button></router-link> 
-      <router-link :to="{ name: 'About' }" @click="indicator(1)"><button id="panelButton" ref="secondPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 16 16">
+      <router-link :to="{ name: 'Second' }" @click="indicator(1)"><button id="panelButton" ref="secondPanel" type="submit" ><svg class="main-views-svg" xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 16 16">
   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
   <path d="M 8 4 a 0.5 0.5 0 0 1 0.5 0.5 v 3 h 3 a 0.5 0.5 0 0 1 0 1 h -3 v 3 a 0.5 0.5 0 0 1 -1 0 v -3 h -3 a 0.5 0.5 0 0 1 0 -1 h 3 v -3 A 0.5 0.5 0 0 1 8 4 z M 7.5 7.5 A 1 1 0 0 0 7.5 8.5 A 1 1 0 0 0 8.5 8.5 A 1 1 0 0 0 8.5 7.5 A 1 1 0 0 0 7.5 7.5 M 8 7.6 C 7.5 7.7 7.5 8.3 8 8.4 C 8.5 8.3 8.5 7.7 8 7.6"/>
 </svg></button></router-link> 
@@ -85,7 +85,7 @@ export default {
   case 'EventList':
     this.$refs.marker.style.left = this.$refs.firstPanel.offsetLeft - 2 + 'px'
     break;
-  case 'About':
+  case 'Second':
     this.$refs.marker.style.left = this.$refs.secondPanel.offsetLeft  - 2 + 'px'
     console.log('DONEENE')
     break;

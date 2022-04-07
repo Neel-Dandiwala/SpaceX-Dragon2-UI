@@ -316,7 +316,7 @@ export default {
   /* transform: translate(10%, -50%); */
   height: 90%;
   width: 60%;
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
   /* z-index: -1; */
 }
 
