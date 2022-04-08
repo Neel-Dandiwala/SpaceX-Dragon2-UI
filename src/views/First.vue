@@ -1,138 +1,191 @@
 <template>
-  <body>
-    <img class="hud-darken-ring" src="../assets/hud-darken.png" />
-    <div id="hud-ring">
-      <img id="hud-white-outer" src="../assets/hud-ring.png" />
-      <img id="hud-white-inner" src="../assets/hud-ring-inner.png" />
+  <div id="back-box">
+    <div id="top-menu">
+      <div style="background: #111b52;" id="top-left-square">
+        <svg class="svg" width="25" height="25" viewBox="0 0 10 8">
+          <rect rx="1" ry="1" width="10" height="8" class="topLeftSquare" />
+        </svg>
+      </div>
     </div>
-    <!-- <svg viewBox="0 0 650 650" class="hud-svg">
-      <defs>
-        <clipPath id="clipMask">
+    <div id="side-menu">
+      <button @click="centerMainHeadingSelection = 0" v-bind:style="[centerMainHeadingSelection === 0 ? `border: 1px solid white` : `border: none`]" style="top: 6.5%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"  viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Deport & burn<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="centerMainHeadingSelection === 0 " /></button>
+      <button @click="centerMainHeadingSelection = 1" v-bind:style="[centerMainHeadingSelection === 1 ? `border: 1px solid white` : `border: none`]" style="top: 18%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Coat to Trunk...<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="centerMainHeadingSelection === 1" /></button>
+      <button @click="centerMainHeadingSelection = 2" v-bind:style="[centerMainHeadingSelection === 2 ? `border: 1px solid white` : `border: none`]" style="top: 30%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Claw Separati...<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="centerMainHeadingSelection === 2" /></button>
+      <button @click="centerMainHeadingSelection = 3" v-bind:style="[centerMainHeadingSelection === 3 ? `border: 1px solid white` : `border: none`]" style="top: 42%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Procedure<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="centerMainHeadingSelection === 3" /></button>
+      <button @click="centerMainHeadingSelection = 4" v-bind:style="[centerMainHeadingSelection === 4 ? `border: 1px solid white` : `border: none`]" style="top: 54%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <path class="white-svg" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Manual Chute...<div style="top: 85%; left: 50%; transform: translate(-50%, -50%); position: absolute; height: 7%; width: 85%; background: #20fbfd;" v-if="centerMainHeadingSelection === 4" /></button>
+    </div>
+    <div id="center-panel">
+      <div style="background: #111b52;" @click="centerMainHeadingSelection = (centerMainHeadingSelection - 1) < 0 ? centerMainHeading.length - 1 : (centerMainHeadingSelection - 1) % centerMainHeading.length" id="left-arrow">
+        <svg class="svg" width="30" height="30">
+          <defs>
+            <marker
+              id="arrow"
+              viewBox="0 -5 10 10"
+              refX="5"
+              refY="0"
+              markerWidth="4"
+              markerHeight="4"
+              orient="auto"
+            >
+              <path class="arrows" d="M0,-5L7,0L0,5"></path>
+            </marker>
+          </defs>
+          <line
+            class="arrows"
+            x1="27"
+            y1="15"
+            x2="7"
+            y2="15"
+            stroke-width="4"
+            marker-end="url(#arrow)"
+          ></line>
+        </svg>
+      </div>
+      <div style="background: #111b52;" @click="centerMainHeadingSelection = (centerMainHeadingSelection + 1) % centerMainHeading.length" id="right-arrow">
+        <svg class="svg" width="30" height="30">
+          <defs>
+            <marker
+              id="arrow"
+              viewBox="0 -5 10 10"
+              refX="5"
+              refY="0"
+              markerWidth="4"
+              markerHeight="4"
+              orient="auto"
+            >
+              <path class="arrows" d="M0,-5L7,0L0,5"></path>
+            </marker>
+          </defs>
+          <line
+            class="arrows"
+            x1="3"
+            y1="15"
+            x2="23"
+            y2="15"
+            stroke-width="4"
+            marker-end="url(#arrow)"
+          ></line>
+        </svg>
+      </div>
+      <p id="center-main-heading" >{{ centerMainHeading[centerMainHeadingSelection] }}</p>
+      <p style="top: 4.5%;"  id="center-main-sub-heading">RUNNING <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          style="left: 120%;"
+          fill="currentColor"
+          class="svg"
+          viewBox="0 0 16 16"
+        >
           <path
-            d="M 607 293.5 l 14.7 -9.2 c -18.1 -132.8 -123.2 -237.9 -256 -256 L 356.5 43 h -63 l -9.3 -14.7 c -132.8 18.1 -237.9 123.2 -256 256 l 14.7 9.2 v 63 l -14.7 9.2 c 18.1 132.8 123.2 237.9 256 256 l 9.3 -14.7 h 63 l 9.3 14.7 c 132.8 -18.1 237.9 -123.2 256 -256 l -14.7 -9.2 V 293.5 Z"
+            fill-rule="evenodd"
+            d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
           />
-        </clipPath>
-      </defs>
-      <g clip-path="url(#clipMask)">
-        <circle
-          cx="325"
-          cy="350"
-          r="175"
-          transform="matrix(-1, 0, 0, -1, 650, 650)"
-          style="stroke-dasharray:102.0 1000.0; stroke-dashoffset: -20.0"
-        />
-      </g>
-    </svg> -->
-
-    <div id="space" ref="canvas1"></div>
-    <div id="navball" ref="canvas2"></div>
-    <div class="corner-circles-base">
-      <svg id="lower-left" width="200" height="200" viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="49"
-          stroke="white"
-          stroke-width="0.5"
-          fill="black"
-        />
-      </svg>
-      <svg id="lower-right" width="200" height="200" viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="49"
-          stroke="white"
-          stroke-width="0.5"
-          fill="black"
-        />
-      </svg>
-      <svg id="upper-left" width="200" height="200" viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="49"
-          stroke="white"
-          stroke-width="0.5"
-          fill="black"
-        />
-      </svg>
-      <svg id="upper-right" width="200" height="200" viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="49"
-          stroke="white"
-          stroke-width="0.5"
-          fill="black"
-        />
-      </svg>
+          <path
+            d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"
+          />
+        </svg></p>
+      <p style="top: 7.5%;" id="center-main-sub-heading">00:22:57</p>
+      <div style="top: 27.5%;" class="center-main-slot">
+        <p id="center-main-slot-heading"><svg class="svg" style="left: 0%; top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"  viewBox="0 0 16 16">
+  <path style="fill: #ffb74b;" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Crew Interrupt Conditions</p>
+        <p id="center-main-slot-sub-heading">30° sustained altitude error <span style="position: relative; right: -44%;">FAR FIELD POINTING</span> </p>
+        <p id="center-main-slot-sub-heading">600° /m altitude rate <span style="position: relative; right: -51.5%;">FAR FIELD POINTING</span></p>
+      </div>
+      <div style="top: 52.5%;" class="center-main-slot">
+        <p id="center-main-slot-heading"><svg class="svg" style="left: 0%; top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"  viewBox="0 0 16 16">
+  <path style="fill: #20fbfd;" d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"/>
+</svg>Crew Deorbit Preparation</p>
+        <p id="center-main-slot-sub-heading">Deorbit burn - -3 hrs <span style="position: relative; right: -33%;">On SpaceX, On, begin procedure 4.700</span></p>
+        <p id="center-main-slot-sub-heading">NLT Deorbit Burn - 1hr <span style="position: relative; right: -54%;">Deorbit Burn Brief</span></p>
+        <p id="center-main-slot-sub-heading">NLT Deorbit Burn - 30 min<span style="position: relative; right: -41%;">Review Reference Content</span></p>
+        <p id="center-main-slot-sub-heading">Deorbit, entry and landing Go/No-Go<span style="position: relative; right: -44%;">Acknowledge</span></p>
+      </div>
+      <div style="top: 82.5%;" class="center-main-slot">
+        <p id="center-main-slot-heading" style="border: none;">1 Monitor slow to free-flight altitude (Sun+GEO pointing)</p>
+        <p id="center-main-slot-heading" style="border: none;">2 After SpaceX GO for deorbit, verify entry is enabled:</p>
+        <p style="width: 100%; left: 0%; font-size: 0.65em; padding-top: 1.5%; padding-bottom: 1.5%; color: rgba(255, 255, 255, 0.5); height: 7.5%; border-top: 1px solid rgba(255, 255, 255, 0.75); border-bottom: 1px solid rgba(255, 255, 255, 0.75); position: relative;">ENTRY ENABLED <span style="position: relative; right: -35%;">True</span> <span style="color: white; font-size: 1em; position: relative; right: -70%;">False</span></p>
+        <p id="center-main-slot-heading" style="border: none;">3 After entry is enabled, Dragon transitions to Claw</p>
+      </div>
     </div>
-    <div id="back-box"></div>
-  </body>
+    <keep-alive>
+       <component :is="currentComponent"></component>
+    </keep-alive>
+    <button @click="swapComponent()" type="submit" id="swap-view">
+      <svg id="view-dash" width="15" height="5" viewBox="0 0 10 3">
+        <rect width="10" height="10" class="white-svg" />
+      </svg> 
+      NEXT VIEW
+    </button>
+  </div>
 </template>
 
 <script>
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import atmosphereShader from '../shaders/atmosphereShader'
-import luminanceShader from '../shaders/luminanceShader'
+import NavEarth from '../components/NavEarth.vue'
+import Capsule from '../components/Capsule.vue'
 
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
-import { AdaptiveToneMappingPass } from 'three/examples/jsm/postprocessing/AdaptiveToneMappingPass.js'
-import { BloomPass } from 'three/examples/jsm/postprocessing/BloomPass.js'
-import { GammaCorrectionShader } from 'three/examples/jsm/shaders/GammaCorrectionShader.js'
-
-export default {
-  name: 'EventList',
-  props: [],
-  components: {},
-  data() {
-    return {}
-  },
+var View01 = {
+  template: `<div id="earth" ref="canvas1"></div>`,
   created() {
     const textureLoader = new THREE.TextureLoader()
     // eslint-disable-next-line no-unused-vars
     const gltfLoader = new GLTFLoader()
-
-    this.navSize =
+    this.earthSizes = {
+      small: 300,
+      medium: 400,
+      large: 500
+    }
+    this.size =
       (window.innerWidth <= 1200 && window.innerWidth > 850) ||
       (window.innerHeight <= 650 && window.innerHeight > 450)
-        ? 150
+        ? this.earthSizes.medium
         : window.innerWidth < 850 || window.innerHeight < 450
-        ? 100
-        : 200
-
-    this.sizes = {
-      width: window.innerWidth * 0.71428571,
-      height: window.innerHeight * 0.9
-    }
+        ? Math.min(
+            this.earthSizes.small,
+            Math.min(window.innerWidth, window.innerHeight)
+          )
+        : this.earthSizes.large
     this.camera = new THREE.PerspectiveCamera(
-      75,
-      this.sizes.width / this.sizes.height,
+      65,
+      this.size / this.size,
       0.1,
-      1000
+      200
     )
-    this.camera.position.set(700, 400, 800)
+    this.camera.position.set(70, 40, 80)
     this.scene = new THREE.Scene()
     this.scene.add(this.camera)
-    const ambientLight = new THREE.AmbientLight(0x050505)
+    this.ambientLight = new THREE.AmbientLight(0x050505)
     this.sunLight = new THREE.DirectionalLight(0xffffff, 4.0)
     this.sunLight.position.set(2, 0, 10).normalize()
-    this.scene.add(ambientLight)
+
+    const torus = new THREE.Mesh(new THREE.TorusGeometry(12, 0.1, 6, 90), new THREE.MeshStandardMaterial({ color: 0x020738 }))
+    torus.rotation.set(5, 2.125 ,0 )
+    torus.scale.set(5, 5, 5)
+    this.scene.add(torus)
+
+    this.scene.add(this.ambientLight)
     this.scene.add(this.sunLight)
 
-    const earthAtmosphereMaterial = new THREE.ShaderMaterial(atmosphereShader)
-    console.log(earthAtmosphereMaterial)
     const earthMaterial = new THREE.MeshPhongMaterial({
       color: 0xffffff,
       shininess: 20
     })
     textureLoader.load(
-      require('../assets/earth/earth_atmos_4096.jpg'),
+      require('../assets/earth/earth_atmos_2048.jpg'),
       function(texture) {
         earthMaterial.map = texture
         earthMaterial.map.encoding = THREE.sRGBEncoding
@@ -154,526 +207,338 @@ export default {
         earthMaterial.needsUpdate = true
       }
     )
-    const earthLightsTexture = textureLoader.load(
-      require('../assets/earth/earth_lights_2048.png')
-    )
-    earthLightsTexture.encoding = THREE.sRGBEncoding
 
-    const earthLightsMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffffff,
-      blending: THREE.AdditiveBlending,
-      transparent: true,
-      depthTest: false,
-      map: earthLightsTexture
-    })
-    const cloudsTexture = textureLoader.load(
-      require('../assets/earth/earth_clouds_2048.png')
-    )
-    cloudsTexture.encoding = THREE.sRGBEncoding
+    const earthGeometry = new THREE.SphereBufferGeometry(55, 30, 24)
 
-    const earthCloudsMaterial = new THREE.MeshLambertMaterial({
-      color: 0xffffff,
-      blending: THREE.NormalBlending,
-      transparent: true,
-      depthTest: false,
-      map: cloudsTexture
-    })
-
-    const earthGeometry = new THREE.SphereBufferGeometry(600, 30, 24)
-
+    // eslint-disable-next-line no-unused-vars
     const earth = new THREE.Mesh(earthGeometry, earthMaterial)
     this.scene.add(earth)
-    const sphereLightsMesh = new THREE.Mesh(earthGeometry, earthLightsMaterial)
-    this.scene.add(sphereLightsMesh)
-    const sphereCloudsMesh = new THREE.Mesh(earthGeometry, earthCloudsMaterial)
-    this.scene.add(sphereCloudsMesh)
 
-    const sphereAtmosphereMesh = new THREE.Mesh(
-      earthGeometry,
-      earthAtmosphereMaterial
-    )
-    sphereAtmosphereMesh.scale.set(1.05, 1.05, 1.05)
-    this.scene.add(sphereAtmosphereMesh)
-
-    this.luminanceMaterial = new THREE.ShaderMaterial(luminanceShader)
-    this.currentLuminanceMaterial = new THREE.ShaderMaterial(luminanceShader)
-
-    const environmentMap = new THREE.CubeTextureLoader().load([
-      require('../assets/milkyWay/dark-s_px.jpg'),
-      require('../assets/milkyWay/dark-s_nx.jpg'),
-      require('../assets/milkyWay/dark-s_py.jpg'),
-      require('../assets/milkyWay/dark-s_ny.jpg'),
-      require('../assets/milkyWay/dark-s_pz.jpg'),
-      require('../assets/milkyWay/dark-s_nz.jpg')
-    ])
-    environmentMap.encoding = THREE.sRGBEncoding
-    const sceneMap = new THREE.Scene()
-    sceneMap.background = environmentMap
-    this.scene.background = environmentMap
-
-    // gltfLoader.load(
-    //   './ISS_stationary.glb',
-    //   gltf => {
-    //     const iss = gltf.scene
-    //     iss.scale.set(0.025, 0.025, 0.025)
-    //     this.scene.add(iss)
-    //   },
-    //   progress => {
-    //     console.log('ISS in progress' + progress)
-    //   },
-    //   error => {
-    //     console.log('ISS crashed' + error)
-    //   }
-    // )
-    // gltfLoader.load(
-    //   './Earth.glb',
-    //   gltf => {
-    //     console.log(gltf)
-    //     const earth = gltf.scene
-    //     earth.scale.set(0.0025, 0.0025, 0.0025)
-    //     this.earth = earth
-    //     this.scene.add(earth)
-    //   },
-    //   progress => {
-    //     console.log('Earth in progress' + progress)
-    //   },
-    //   error => {
-    //     console.log('Earth crashed' + error)
-    //   }
-    // )
-
-    this.renderer = new THREE.WebGLRenderer({ antialias: true })
-    this.renderer.setSize(this.sizes.width, this.sizes.height)
-    // this.renderer.setClearColor(0x000000)
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    this.renderer.setSize(this.size, this.size)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     this.renderer.outputEncoding = THREE.sRGBEncoding
     this.renderer.autoClear = false
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableDamping = true
-
-    const renderTarget = new THREE.WebGLRenderTarget(
-      this.sizes.width,
-      this.sizes.height,
-      {
-        minFilter: THREE.LinearFilter,
-        magFilter: THREE.LinearFilter,
-        format: THREE.RGBAFormat
-      }
-    )
-    this.dynamicHDREffectComposer = new EffectComposer(
-      this.renderer,
-      renderTarget
-    )
-    this.dynamicHDREffectComposer.setPixelRatio(
-      Math.min(window.devicePixelRatio, 2)
-    )
-    this.dynamicHDREffectComposer.setSize(this.sizes.width, this.sizes.height)
-    const scenePass = new RenderPass(this.scene, this.camera)
-    const environmentPass = new RenderPass(sceneMap, this.camera)
-    scenePass.clear = false
-
-    this.toneMapping = new AdaptiveToneMappingPass(true, 256)
-    this.toneMapping.needsSwap = true
-    this.bloomPass = new BloomPass()
-    const gammaCorrectionPass = new ShaderPass(GammaCorrectionShader)
-
-    this.dynamicHDREffectComposer.addPass(environmentPass)
-    this.dynamicHDREffectComposer.addPass(scenePass)
-    this.dynamicHDREffectComposer.addPass(this.toneMapping)
-    this.dynamicHDREffectComposer.addPass(this.bloomPass)
-    this.dynamicHDREffectComposer.addPass(gammaCorrectionPass)
-
-    this.navCamera = new THREE.PerspectiveCamera(
-      25,
-      this.navSize / this.navSize,
-      0.1,
-      100
-    )
-    this.navCamera.position.set(0, 0, 5)
-    const navLight = new THREE.DirectionalLight('#ffffff', 0.55)
-    navLight.position.set(0, 1, 4)
-    const navballTexture = textureLoader.load(require('../assets/navball.png'))
-    this.navBall = new THREE.Mesh(
-      new THREE.SphereBufferGeometry(1, 16, 16),
-      new THREE.MeshStandardMaterial({
-        map: navballTexture
-      })
-    )
-    this.navScene = new THREE.Scene()
-    this.navScene.add(this.navCamera)
-    this.navScene.add(navLight)
-    this.navScene.add(this.navBall)
-    this.navRenderer = new THREE.WebGLRenderer({
-      alpha: true,
-      antialias: true
-    })
-    this.navRenderer.setSize(this.navSize, this.navSize)
-    this.navRenderer.setPixelRatio(1)
   },
-
   mounted() {
     console.log(this.scene)
     this.$refs.canvas1.appendChild(this.renderer.domElement)
-    this.$refs.canvas2.appendChild(this.navRenderer.domElement)
     this.animate()
+    console.log(this.$refs.canvas1)
     window.addEventListener('resize', this.resizeScreen)
-  },
-
-  beforeUnmount() {
-    this.disposeHierarchy(this.scene, this.disposeNode)
-    this.navRenderer.dispose()
-    console.log(this.scene)
-    // this.renderer.dispose()
-    // this.renderer = null
-    // this.scene = null
-    // this.camera = null
-    // this.navRenderer.dispose()
-    // this.navRenderer = null
-    // this.navScene = null
-    // this.navCamera = null
-    // console.log(this.renderer)
-  },
-  unmount() {
-    console.log('UNMOUNT UNMOUNT')
   },
   methods: {
     animate() {
       requestAnimationFrame(this.animate)
       this.renderer.render(this.scene, this.camera)
-      this.navRenderer.render(this.navScene, this.navCamera)
-      this.navBall.rotation.x += 0.01
-      this.navBall.rotation.z += 0.01
-      // this.dynamicHDREffectComposer.render(0.017)
-      // this.earth.rotation.y += 0.01
-      // this.cube.rotation.y += 0.1
-      if (this.bloomPass) {
-        this.bloomPass.copyUniforms['opacity'].value = 1.0
-      }
-      if (this.toneMapping) {
-        this.toneMapping.setAdaptionRate(2.0)
-        this.luminanceMaterial.uniforms[
-          'map'
-        ].value = this.toneMapping.luminanceRT
-        this.currentLuminanceMaterial.uniforms[
-          'map'
-        ].value = this.toneMapping.currentLuminanceRT
-
-        this.toneMapping.setMaxLuminance(16)
-        this.toneMapping.setMiddleGrey(0.04)
-      }
-
       this.sunLight.intensity = 4.0
       this.controls.update()
-      // const fixed = new THREE.Vector3(40, 5, 20)
-      // this.ring.position.sub(this.camera.position, fixed)
-      // this.ring.rotation.y += 0.1
-      // console.log(this.ring.position)
     },
     resizeScreen(e) {
-      this.sizes.width = e.target.innerWidth * 0.71426571
-      this.sizes.height = e.target.innerHeight * 0.9
-
-      this.camera.aspect = this.sizes.width / this.sizes.height
-      this.camera.updateProjectionMatrix()
-
-      this.renderer.setSize(this.sizes.width, this.sizes.height)
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-      console.log(this.navSize)
-      this.navSize = 200
-      if (
+      this.size =
         (e.target.innerWidth <= 1200 && e.target.innerWidth > 850) ||
         (e.target.innerHeight <= 650 && e.target.innerHeight > 450)
-      ) {
-        this.navSize = 150
-        console.log(this.navSize + 'FIRST')
-      }
-      if (e.target.innerWidth < 850 || e.target.innerHeight < 450) {
-        this.navSize = 100
-        console.log(this.navSize + 'SECOND')
-      }
-      console.log(this.navSize + 'FINAL')
-      this.navCamera.aspect = this.navSize / this.navSize
-      this.navCamera.updateProjectionMatrix()
+          ? this.earthSizes.medium
+          : e.target.innerWidth < 850 || e.target.innerHeight < 450
+          ? Math.min(
+              this.earthSizes.small,
+              Math.min(e.target.innerWidth, e.target.innerHeight)
+            )
+          : this.earthSizes.large
 
-      this.navRenderer.setSize(this.navSize, this.navSize)
-      this.navRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    },
-    disposeNode(node) {
-      if (node instanceof THREE.Mesh) {
-        if (node.geometry) {
-          node.geometry.dispose()
-          node.geometry = undefined // fixed problem
-        }
+      this.camera.aspect = this.size / this.size
+      this.camera.updateProjectionMatrix()
 
-        if (node.material) {
-          if (
-            node.material instanceof THREE.MeshFaceMaterial ||
-            node.material instanceof THREE.MultiMaterial
-          ) {
-            // eslint-disable-next-line no-unused-vars
-            node.material.materials.forEach(function(mtrl, idx) {
-              if (mtrl.map) mtrl.map.dispose()
-              if (mtrl.lightMap) mtrl.lightMap.dispose()
-              if (mtrl.bumpMap) mtrl.bumpMap.dispose()
-              if (mtrl.normalMap) mtrl.normalMap.dispose()
-              if (mtrl.specularMap) mtrl.specularMap.dispose()
-              if (mtrl.envMap) mtrl.envMap.dispose()
+      this.renderer.setSize(this.size, this.size)
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    }
+  }
+}
 
-              mtrl.dispose()
-              mtrl = undefined // fixed problem
-            })
-          } else {
-            if (node.material.map) node.material.map.dispose()
-            if (node.material.lightMap) node.material.lightMap.dispose()
-            if (node.material.bumpMap) node.material.bumpMap.dispose()
-            if (node.material.normalMap) node.material.normalMap.dispose()
-            if (node.material.specularMap) node.material.specularMap.dispose()
-            if (node.material.envMap) node.material.envMap.dispose()
+// eslint-disable-next-line no-unused-vars
 
-            node.material.dispose()
-            node.material = undefined // fixed problem
-          }
-        }
-        console.log('node before removal: ', node)
-        this.scene.remove(node)
-        this.renderer.dispose() // ***EDIT*** improved even memory more original scene heap is 12.4 MB; add objects increases to 116 MB or 250 MB (different models), clearing always brings down to 13.3 MB ... there still might be some artifacts.
-        node = undefined // unnecessary
-      }
-    },
-    disposeHierarchy(node, callback) {
-      for (var i = node.children.length - 1; i >= 0; i--) {
-        var child = node.children[i]
-        this.disposeHierarchy(child, callback)
-        callback(child)
-      }
+export default {
+  name: 'First',
+  props: [],
+  data() {
+    return {
+      currentComponent: 'view-01',
+      count: 1,
+      centerMainHeading: ['Deport & Burn','Coast to Trunk Jettison','Claw Separation','Procedure','Manual Chute'],
+      centerMainHeadingSelection: 1
     }
   },
+  components: {
+    'view-00': View01,
+    'view-01': NavEarth,
+    'view-02': Capsule
+  },
+  created() {
+  },
+
+  mounted() {
+
+  },
+
+  methods: {
+    swapComponent(){
+      this.count = (this.count + 1) % 3
+      console.log(this.count)
+      this.currentComponent = 'view-0'+(this.count)
+    },
+  },
   beforeRouteUpdate() {},
-  computed: {}
+  computed: {
+  }
 }
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-}
-
-#space {
-  /* height: 100%; */
-  /* width: 100%; */
-  border-radius: 30px;
-  top: 47.5%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
-  z-index: 0;
-  box-sizing: border-box;
-  border: 1px solid white;
-}
-
-#navball {
-  /* height: 200px;
-  width: 200px; */
-  position: absolute;
-  bottom: 8%;
-  left: 14.59%;
-  z-index: 2;
-}
-
-#hud-darken {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 200px;
-  width: 100px;
-}
-
-.hud-darken-ring {
-  height: min(85vh, calc(100vw * 0.714));
-  width: min(85vh, calc(100vw * 0.714));
-  object-fit: cover;
+.svg {
+  /* border: 1px solid tomato; */
   top: 50%;
   left: 50%;
-  position: absolute;
   transform: translate(-50%, -50%);
-  overflow: hidden;
-  /* border: 5px solid red; */
-  z-index: 1;
-}
-
-#hud-ring {
-  /* position: absolute;
-  display: block; */
-  top: 50%;
-  left: 50%;
-  width: calc((min(85vh, calc(100vw * 0.714))) / 2);
-  height: calc((min(85vh, calc(100vw * 0.714))) / 2);
   position: absolute;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
-  /* border: 5px solid blue; */
-  z-index: 1;
+  padding-bottom: 0;
+}
+.arrows, .topLeftSquare, .white-svg {
+  fill: white;
+  stroke: white;
 }
 
-#hud-white-inner,
-#hud-white-outer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
 
-.try {
-  display: -webkit-flex;
-  display: -ms-flex;
-  display: flex;
-  justify-content: center;
-  -ms-align-items: center;
-  align-items: center;
-}
-
-circle {
-  transform-origin: 0 0;
-}
-
-.hud-svg {
-  fill: none;
-  stroke: #7700aa;
-  stroke-width: 10;
-  transition-property: stroke;
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.corner-circles-base {
-}
-
-#lower-left {
-  position: absolute;
-  bottom: 8%;
-  /* left: 15px; */
-  z-index: 1;
-  left: 14.59%;
-}
-
-#lower-right {
-  position: absolute;
-  bottom: 8%;
-  right: 14.59%;
-  z-index: 1;
-}
-
-#upper-left {
-  position: absolute;
-  top: 3%;
-  left: 14.59%;
-  z-index: 1;
-}
-
-#upper-right {
-  position: absolute;
-  top: 3%;
-  /* right: 14.285714%; */
-  right: 14.59%;
-  z-index: 1;
-}
-
-@media screen and (max-width: 1200px), (max-height: 650px) {
-  /* #hud-darken-ring {
-    height: 750px;
-    width: 750px;
-    overflow: hidden;
-  }
-  #hud-ring {
-    width: 375px;
-    height: 375px;
-  } */
-  #lower-left {
-    height: 150px;
-    width: 150px;
-    /* left: 25px; */
-  }
-  #lower-right {
-    height: 150px;
-    width: 150px;
-    /* right: 25px; */
-  }
-  #upper-left {
-    height: 150px;
-    width: 150px;
-    /* left: 25px; */
-  }
-  #upper-right {
-    height: 150px;
-    width: 150px;
-    /* right: 25px; */
-  }
-  #navball {
-    height: 150;
-    width: 150;
-    /* left: 25px; */
-  }
-}
-
-@media screen and (max-width: 850px), (max-height: 450px) {
-  /* #hud-darken-ring {
-    height: 650px;
-    width: 650px;
-    overflow: hidden;
-  }
-  #hud-ring {
-    width: 335px;
-    height: 335px;
-  } */
-  #lower-left {
-    height: 100px;
-    width: 100px;
-    /* left: 20px; */
-  }
-  #lower-right {
-    height: 100px;
-    width: 100px;
-    /* right: 20px; */
-  }
-  #upper-left {
-    height: 100px;
-    width: 100px;
-    /* left: 20px; */
-  }
-  #upper-right {
-    height: 100px;
-    width: 100px;
-    /* right: 20px; */
-  }
-  #navball {
-    /* left: 20px; */
-    height: 100;
-    width: 100;
-  }
+#view-dash{
+  /* border: 1px solid tomato; */
+  position: relative;
+  /* top: 50%; */
+  /* left: 5%; */
+  /* transform: translate(-50%, -50%); */
+  /* position: absolute; */
+  padding-right: 5%;
 }
 
 #back-box {
+  position: absolute;
   background-color: #020738;
   height: 95vh;
   width: 100%;
   bottom: 30px;
+  top: 0;
   border-radius: 0 0 30px 30px;
   box-sizing: border-box;
   border-bottom: 0.5px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
+  z-index: -3;
+  overflow: hidden;
+  /* display: flex; */
 }
 
-body {
-  display: block;
-  margin: 0;
-  background-color: #111b52;
+/* VIEW 1 */
+#earth {
+  top: 51.5%;
+  left: 50%;
+  position: absolute;
+  transform: translate(10%, -50%);
+  overflow: hidden;
 }
+
+/* VIEW 2 */
+#scroll-earth-wrapper {
+  overflow: hidden;
+  top: 10%;
+  left: 40.5%;
+  position: absolute;
+  /* transform: translate(10%, -50%); */
+  height: 90%;
+  width: 60%;
+  /* border: 1px solid tomato; */
+  /* z-index: -1; */
+}
+
+#scroll-earth:hover {
+  /* background-color: green; */
+}
+
+#swap-view {
+  width: 10%;
+  height: auto;
+  top: 90%;
+  right: 5%;
+  position: absolute;
+  background-color: #020738;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+  padding: 1em 1em 1em 1em;
+  border-radius: 100px;
+  /* transform: translate(10%, -50%); */
+  overflow: hidden;
+}
+
+#swap-view:hover {
+  background-color: rgba(255, 255, 255, 0.3) ;
+}
+
+#swap-view:active {
+  background-color: white;
+  color: #020738;
+}
+
+#center-panel {
+  position: absolute;
+  /* flex:1; */
+  top: calc(100vh * 0.0952);
+  height: calc(100% - min(100px, calc(100% * 0.1)));
+  /* border-radius: 0 0 0 30px; */
+  width: 35%;
+  left: min(100px, calc(100vw * 0.055));
+  border: 1px solid white;
+  box-sizing: border-box;
+}
+
+#center-main-heading {
+  position: absolute;
+  font-size: 1.25em;
+  font-weight: 750;
+  top: 3%;
+  left: 30%;
+  /* border: 1px solid red; */
+  transition: color 0.5s ease-out;
+}
+
+#center-main-sub-heading {
+  position: absolute;
+  font-size: 0.75em;
+  left: 80%;
+  /* border: 1px solid red; */
+}
+
+.center-main-slot {
+  padding-left: 2%;
+  padding-right: 2%;
+  /* padding-bottom: 2%; */
+  /* padding-top: -1%; */
+  overflow: hidden;
+  position: absolute;
+  width: 90%;
+  height: auto;
+  background: #111b52;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* border: 1px solid red; */
+}
+
+#center-main-slot-heading{
+  font-size: 0.95em;
+  font-weight: 750;
+  /* position: absolute; */
+  padding-bottom: 5px;
+  border-bottom: 1px solid white;
+}
+
+#center-main-slot-heading p { 
+  left: 10%;
+  /* position: absolute; */
+}
+
+#center-main-slot-heading svg {
+  /* border: 1px solid tomato; */
+  /* top: 70%; */
+  /* left: 10%; */
+  /* transform: translate(-50%, -50%); */
+  transform: scale(1.25);
+  padding: 5px;
+  /* left: 100%; */
+  position: relative;
+  padding-bottom: 0;
+}
+
+#center-main-slot-sub-heading{
+  font-size: 0.75em;
+}
+
+#left-arrow {
+  position: absolute;
+  border: 1px solid white;
+  text-align: center;
+  width: 10%;
+  height: 0;
+  padding-bottom: 10%;
+  top: 1.5em;
+  left: 1.5em;
+  overflow: hidden;
+  border-radius: 10%;
+}
+
+#right-arrow {
+  position: absolute;
+  border: 1px solid white;
+  text-align: center;
+  width: 10%;
+  height: 0;
+  padding-bottom: 10%;
+  top: 1.5em;
+  left: 5.5em;
+  overflow: hidden;
+  border-radius: 10%;
+}
+
+#top-menu {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: min(100px, calc(100% * 0.1));
+  border: 1px solid white;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#top-left-square {
+  position: absolute;
+  border: 1px solid white;
+  text-align: center;
+  /* width: 4%; */
+  /* height: 1; */
+  padding: 1.5%;
+  top: 0.5em;
+  left: 0.5em;
+  bottom: 0.5em;
+  overflow: hidden;
+  border-radius: 10%;
+  /* box-sizing: border-box; */
+}
+
+#side-menu {
+  position: absolute;
+  flex: 1;
+  left: 0;
+  /* top: calc(100vh * 0.1); */
+  height: calc(100% - min(100px, calc(100% * 0.1)));
+  border-radius: 0 0 0 30px;
+  width: min(100px, calc(100vw * 0.055));
+  border: 1px solid white;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#side-button {
+  position: absolute;
+  height: 10%;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 70%;
+  border-radius: 10%;
+  background: transparent;
+  color: white;
+  overflow: hidden;
+  /* transition: all 0.5s ease-in; */
+}
+
+
 </style>
