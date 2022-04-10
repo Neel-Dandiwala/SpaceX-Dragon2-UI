@@ -115,7 +115,7 @@
       <div style="top: 82.5%;" class="center-main-slot">
         <p id="center-main-slot-heading" style="border: none;">1 Monitor slow to free-flight altitude (Sun+GEO pointing)</p>
         <p id="center-main-slot-heading" style="border: none;">2 After SpaceX GO for deorbit, verify entry is enabled:</p>
-        <p style="width: 100%; left: 0%; font-size: 0.65em; padding-top: 1.5%; padding-bottom: 1.5%; color: rgba(255, 255, 255, 0.5); height: 7.5%; border-top: 1px solid rgba(255, 255, 255, 0.75); border-bottom: 1px solid rgba(255, 255, 255, 0.75); position: relative;">ENTRY ENABLED <span style="position: relative; right: -35%;">True</span> <span style="color: white; font-size: 1em; position: relative; right: -70%;">False</span></p>
+        <p style="width: 100%; left: 0%; font-size: 0.65em; padding-top: 1.5%; padding-bottom: 1.5%; color: rgba(255, 255, 255, 0.5); height: 7.5%; border-top: 1px solid rgba(255, 255, 255, 0.75); border-bottom: 1px solid rgba(255, 255, 255, 0.75); position: relative;">ENTRY ENABLED <span style="position: relative; right: -35%;">True</span> <span style="color: white; font-size: 1em; position: relative; right: -67.5%;">False</span></p>
         <p id="center-main-slot-heading" style="border: none;">3 After entry is enabled, Dragon transitions to Claw</p>
       </div>
     </div>
@@ -221,6 +221,9 @@ var View01 = {
     this.renderer.autoClear = false
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableDamping = true
+    this.controls.enableZoom = false
+    this.controls.minZoom = Math.PI
+		this.controls.maxZoom = Math.PI
   },
   mounted() {
     console.log(this.scene)
@@ -234,7 +237,7 @@ var View01 = {
       requestAnimationFrame(this.animate)
       this.renderer.render(this.scene, this.camera)
       this.sunLight.intensity = 4.0
-      this.controls.update()
+      // this.controls.update()
     },
     resizeScreen(e) {
       this.size =
@@ -433,8 +436,8 @@ export default {
 }
 
 #center-main-slot-heading{
-  font-size: 0.95em;
-  font-weight: 750;
+  font-size: 0.85em;
+  font-weight: 650;
   /* position: absolute; */
   padding-bottom: 5px;
   border-bottom: 1px solid white;
@@ -458,7 +461,7 @@ export default {
 }
 
 #center-main-slot-sub-heading{
-  font-size: 0.75em;
+  font-size: 0.65em;
 }
 
 #left-arrow {

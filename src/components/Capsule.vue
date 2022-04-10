@@ -150,6 +150,11 @@ export default {
     // this.capsuleRenderer.autoClear = false
     this.controls = new OrbitControls(this.camera, this.capsuleRenderer.domElement)
     this.controls.enableDamping = true
+    this.controls.enableZoom = false
+    this.controls.enableRotate = false
+    this.controls.enablePan = false
+    this.controls.minZoom = Math.PI
+		this.controls.maxZoom = Math.PI
     this.clock = new THREE.Clock()
   },
   mounted() {

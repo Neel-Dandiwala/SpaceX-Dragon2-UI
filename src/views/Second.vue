@@ -1,34 +1,222 @@
 <template>
   <body>
     <div id="back-box"></div>
-    <img class="hud-darken-ring" src="../assets/hud-darken.png" />
+    <div class="controls-panel">
+      <p style="top: 30%;" class="controls">WASD - Move</p>
+      <p style="top: 40%;" class="controls">R | F - UP | DOWN</p>
+      <p style="top: 50%;" class="controls">Q | E - ROLL</p>
+      <p style="top: 60%;" class="controls">🡡 | 🡣 - PITCH</p>
+      <p style="top: 70%;" class="controls">🡠 | 🡢 - YAW</p>
+    </div>
+    <div id="space" ref="canvas1"></div>
+    <div id="hud-darken">
+      <img class="hud-darken-ring" src="../assets/hud-darken.png" />
+    </div>
     <div id="hud-ring">
       <img id="hud-white-outer" src="../assets/hud-ring.png" />
       <img id="hud-white-inner" src="../assets/hud-ring-inner.png" />
+      <!-- Animation for A, D, R, F -->
+      <div
+        class="arrow"
+        style="top: 55%; left: 48.25%; transform: scale(0.5) rotate(0deg)"
+        v-if="animationTrigger === 70"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 42%; left: 35%; transform: scale(0.5) rotate(90deg)"
+        v-if="animationTrigger === 65"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 27.5%; left: 48.25%; transform: scale(0.5) rotate(180deg)"
+        v-if="animationTrigger === 82"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 42%; left: 62.5%; transform: scale(0.5) rotate(270deg)"
+        v-if="animationTrigger === 68"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <!-- Animation for W -->
+      <div
+        class="arrow"
+        style="top: 35%; left: 33%; transform: scale(0.5) rotate(315deg)"
+        v-if="animationTrigger === 87"
+      >
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 35%; left: 63%; transform: scale(0.5) rotate(45deg)"
+        v-if="animationTrigger === 87"
+      >
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 65%; left: 33%; transform: scale(0.5) rotate(225deg)"
+        v-if="animationTrigger === 87"
+      >
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 65%; left: 63%; transform: scale(0.5) rotate(135deg)"
+        v-if="animationTrigger === 87"
+      >
+        <span></span>
+      </div>
+
+      <!-- Animation for S -->
+      <div
+        class="arrow"
+        style="top: 60%; left: 58%; transform: scale(0.5) rotate(315deg)"
+        v-if="animationTrigger === 83"
+      >
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 60%; left: 38%; transform: scale(0.5) rotate(45deg)"
+        v-if="animationTrigger === 83"
+      >
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 40%; left: 58%; transform: scale(0.5) rotate(225deg)"
+        v-if="animationTrigger === 83"
+      >
+        <span></span>
+      </div>
+      <div
+        class="arrow"
+        style="top: 40%; left: 38%; transform: scale(0.5) rotate(135deg)"
+        v-if="animationTrigger === 83"
+      >
+        <span></span>
+      </div>
+
+      <!-- Rotation Perspective Animation -->
+      <div
+        class="rotateWrapper"
+        style="transform: translate(-50%, -50%) rotate(90deg);"
+      >
+        <div id="rotateAnimObject" v-if="animationTrigger === 39"></div>
+      </div>
+      <div
+        class="rotateWrapper"
+        style="transform: translate(-50%, -50%) rotate(180deg);"
+      >
+        <div id="rotateAnimObject" v-if="animationTrigger === 40"></div>
+      </div>
+      <div
+        class="rotateWrapper"
+        style="transform: translate(-50%, -50%) rotate(270deg);"
+      >
+        <div id="rotateAnimObject" v-if="animationTrigger === 37"></div>
+      </div>
+      <div
+        class="rotateWrapper"
+        style="transform: translate(-50%, -50%) rotate(0deg);"
+      >
+        <div id="rotateAnimObject" v-if="animationTrigger === 38"></div>
+      </div>
+
+      <!-- For E and Q -->
+      <div
+        class="rotateWrapper"
+        style="transform: translate(-50%, -50%) rotate(0deg);"
+      >
+        <div id="rotateQ" v-if="animationTrigger === 81"></div>
+      </div>
+      <div
+        class="rotateWrapper"
+        style="transform: translate(-50%, -50%) rotate(0deg);"
+      >
+        <div id="rotateE" v-if="animationTrigger === 69"></div>
+      </div>
+
       <div class="hud-measures">
         <p class="hud-number" id="yaw-number">{{ yaw }}°</p>
         <p class="hud-number" id="roll-number">{{ roll }}°</p>
         <p class="hud-number" id="pitch-number">{{ pitch }}°</p>
-        <p
-          class="hud-number"
-          style="font-size: min(0.6vw, 1.25vh);  top: 47%;"
-          id="xyz-number"
-        >
+        <p class="hud-minor-number" style="top: 47%;" id="xyz-number">
           {{ x }}m
         </p>
-        <p
-          class="hud-number"
-          style="font-size: min(0.6vw, 1.25vh);  top: 50%;"
-          id="xyz-number"
-        >
+        <p class="hud-minor-number" style="top: 50%;" id="xyz-number">
           {{ y }}m
         </p>
+        <p class="hud-minor-number" style="top: 53%;" id="xyz-number">
+          {{ z }}m
+        </p>
+        <p id="hud-title" style="top: 96%; left: 50%;">YAW</p>
         <p
-          class="hud-number"
-          style="font-size: min(0.6vw, 1.25vh);  top: 53%;"
+          id="hud-title"
+          style="font-size: min(0.3vw, 0.7vh); text-align: center; top: 50%; left: 95.5%;"
+        >
+          P<br />I<br />T<br />C<br />H
+        </p>
+        <p id="hud-title" style="top: 4.5%; left: 50%;">ROLL</p>
+        <p id="hud-title" style="text-align: center; top: 50%; left: 4.5%;">
+          X<br />Y<br />Z
+        </p>
+        <p
+          class="hud-minor-number"
+          style="top: 90%; left: 50%"
+          :style="{ color: yawColor }"
+          id="live-number"
+        >
+          {{ yawLive }}°/s
+        </p>
+        <p
+          class="hud-minor-number"
+          style="top: 55%; left: 86%"
+          :style="{ color: pitchColor }"
+          id="live-number"
+        >
+          {{ pitchLive }}°/s
+        </p>
+        <p
+          class="hud-minor-number"
+          style="top: 17.5%; left: 50%"
+          :style="{ color: rollColor }"
+          id="live-number"
+        >
+          {{ rollLive }}°/s
+        </p>
+
+        <p id="hud-title" style="top: 72%; left: 25%;">RANGE</p>
+        <p
+          class="hud-minor-number"
+          style="top: 77%; left: 25%; "
           id="xyz-number"
         >
-          {{ z }}m
+          {{ rangeDistance }}m
+        </p>
+        <p id="hud-title" style="top: 72%; left: 75%;">RATE</p>
+        <p
+          class="hud-minor-number"
+          style="top: 77%; left: 75%; "
+          id="xyz-number"
+        >
+          {{ rateValue }}m/s
         </p>
         <div class="yaw-measure" style="text-align: center;">
           <svg
@@ -55,7 +243,7 @@
                 />
               </clipPath>
             </defs>
-            
+
             <circle
               class="animation-yaw"
               r="70"
@@ -104,7 +292,7 @@
                 />
               </clipPath>
             </defs>
-            
+
             <circle
               class="animation-pitch"
               r="70"
@@ -138,7 +326,7 @@
             <defs>
               <clipPath id="cut-off-roll-left">
                 <path
-                   d="M75,75 L30,0 64,0 75,22.5 Z"
+                  d="M75,75 L30,0 64,0 75,22.5 Z"
                   fill="transparent"
                   stroke="#ff0000"
                   stroke-width="1.5"
@@ -179,8 +367,6 @@
       </div>
     </div>
 
-
-    <div id="space" ref="canvas1"></div>
     <div id="navball" ref="canvas2"></div>
 
     <div class="corner-circles-base">
@@ -461,12 +647,16 @@ export default {
   components: {},
   data() {
     return {
+      restart: false,
       acceleration: 350,
       accelerationValue: 0.01,
       currentMajorKey: 0,
       currentMinorKey: 0,
       currentArrowKey: 0,
       currentRollKey: 0,
+      rangeDistance: 0,
+      rateValue: 0,
+      animationTrigger: 0,
       yaw: 0.01,
       roll: 0.01,
       pitch: 0.01,
@@ -491,7 +681,16 @@ export default {
       yawGoalValue: 0,
       yawColor: `#24d2fd`,
 
-      pitchAnimUp: [-434, -429.28, -424.57, -419.85, -415.14, -410.42, -405.71, -401],
+      pitchAnimUp: [
+        -434,
+        -429.28,
+        -424.57,
+        -419.85,
+        -415.14,
+        -410.42,
+        -405.71,
+        -401
+      ],
       pitchAnimDown: [495, 490.28, 485.57, 480.85, 476.14, 471.42, 466.71, 462],
       pitchLive: 0.0,
       pitchLR: `url(#cut-off-pitch-up)` + '',
@@ -499,7 +698,16 @@ export default {
       pitchGoalValue: 0,
       pitchColor: `#24d2fd`,
 
-      rollAnimLeft: [-325, -320.28, -315.57, -310.85, -306.14, -301.42, -296.71, -292],
+      rollAnimLeft: [
+        -325,
+        -320.28,
+        -315.57,
+        -310.85,
+        -306.14,
+        -301.42,
+        -296.71,
+        -292
+      ],
       rollAnimRight: [165, 160.28, 155.57, 150.85, 146.14, 141.42, 136.71, 132],
       rollLive: 0.0,
       rollLR: `url(#cut-off-roll-right)` + '',
@@ -536,9 +744,11 @@ export default {
       75,
       this.sizes.width / this.sizes.height,
       0.1,
-      1000
+      5000
     )
     this.camera.position.set(700, 400, 800)
+    this.cameraPosition = this.camera.position.clone()
+
     this.scene = new THREE.Scene()
     this.scene.add(this.camera)
     const ambientLight = new THREE.AmbientLight(0x050505)
@@ -641,20 +851,23 @@ export default {
     sceneMap.background = environmentMap
     this.scene.background = environmentMap
 
-    // gltfLoader.load(
-    //   './ISS_stationary.glb',
-    //   gltf => {
-    //     const iss = gltf.scene
-    //     iss.scale.set(0.025, 0.025, 0.025)
-    //     this.scene.add(iss)
-    //   },
-    //   progress => {
-    //     console.log('ISS in progress' + progress)
-    //   },
-    //   error => {
-    //     console.log('ISS crashed' + error)
-    //   }
-    // )
+    this.issLocation = new THREE.Vector3(675, 420, 700)
+    gltfLoader.load(
+      './ISS_stationary.glb',
+      gltf => {
+        this.iss = gltf.scene
+        this.iss.scale.set(0.25, 0.25, 0.25)
+        this.iss.position.set(675, 420, 700)
+        this.scene.add(this.iss)
+      },
+      progress => {
+        console.log('ISS in progress' + progress)
+      },
+      error => {
+        console.log('ISS crashed' + error)
+      }
+    )
+
     // gltfLoader.load(
     //   './Earth.glb',
     //   gltf => {
@@ -758,37 +971,33 @@ export default {
     this.yawStartValue = this.yawAnimRight[0]
     this.yawGoalValue = this.yawAnimRight[0]
     this.pitchStartValue = this.pitchAnimDown[0]
-    this.pitchGoalValue =  this.pitchAnimDown[0]
+    this.pitchGoalValue = this.pitchAnimDown[0]
     this.rollStartValue = this.rollAnimRight[0]
     this.rollGoalValue = this.rollAnimRight[0]
   },
 
   beforeUnmount() {
-    this.disposeHierarchy(this.scene, this.disposeNode)
+    // this.disposeHierarchy(this.scene, this.disposeNode)
+    this.renderer.dispose()
     this.navRenderer.dispose()
+    // this.dynamicHDREffectComposer.dispose()
     console.log(this.scene)
-    // this.renderer.dispose()
-    // this.renderer = null
-    // this.scene = null
-    // this.camera = null
-    // this.navRenderer.dispose()
-    // this.navRenderer = null
-    // this.navScene = null
-    // this.navCamera = null
-    // console.log(this.renderer)
   },
   unmount() {
     console.log('UNMOUNT UNMOUNT')
   },
   methods: {
     animate() {
+      
       requestAnimationFrame(this.animate)
       const delta = this.clock.getDelta()
+      const elapsedTime = this.clock.getElapsedTime()
+
       // this.renderer.render(this.scene, this.camera)
       this.navRenderer.render(this.navScene, this.navCamera)
       this.navBall.rotation.x = this.camera.rotation.x
       this.navBall.rotation.y = this.camera.rotation.y
-      this.dynamicHDREffectComposer.render(0.017)
+      this.dynamicHDREffectComposer.render()
       // this.earth.rotation.y += 0.01
       // this.cube.rotation.y += 0.1
       if (this.bloomPass) {
@@ -805,6 +1014,25 @@ export default {
 
         this.toneMapping.setMaxLuminance(16)
         this.toneMapping.setMiddleGrey(0.04)
+      }
+
+      this.rangeDistance =
+        Math.round(
+          Math.sqrt(
+            Math.pow(this.camera.position.x - this.issLocation.x, 2) +
+              Math.pow(this.camera.position.y - this.issLocation.y, 2) +
+              Math.pow(this.camera.position.z - this.issLocation.z, 2)
+          ) * 100
+        ) / 100
+      this.rateValue =
+        Math.round((this.rangeDistance / (elapsedTime * 10000)) * 10000) / 10000
+      // console.log(this.rateValue+"DELTA")
+
+      // if (this.rangeDistance > 3500.0) {
+      //   console.log(this.camera.position)
+      // }
+      if(this.rangeDistance > 3500){
+        this.restartScene()
       }
 
       this.earth.rotation.y += this.miscellaneous.rotationSpeed * delta
@@ -870,6 +1098,46 @@ export default {
       this.navRenderer.setSize(this.navSize, this.navSize)
       this.navRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     },
+    restartScene() {
+     
+      this.camera.position.lerp(this.cameraPosition, 1.0)
+      this.acceleration = 350
+      this.accelerationValue = 0.01
+      this.currentMajorKey = 0
+      this.currentMinorKey = 0
+      this.currentArrowKey = 0
+      this.currentRollKey = 0
+      this.rangeDistance = 0
+      this.rateValue = 0
+      this.animationTrigger = 0
+      this.yaw = 0.01
+      this.roll = 0.01
+      this.pitch = 0.01
+      this.x = 0.01
+      this.y = 0.01
+      this.z = 0.01
+
+      this.yawLive = 0.0
+      this.yawLR = `url(#cut-off-yaw-right)` + ''
+      
+      this.yawColor = `#24d2fd`
+      this.pitchLive = 0.0
+      this.pitchLR = `url(#cut-off-pitch-up)` + ''
+      
+      this.pitchColor = `#24d2fd`
+      this.rollLive = 0.0
+      this.rollLR = `url(#cut-off-roll-right)` + ''
+      
+      this.rollColor = `#24d2fd`
+      this.yawStartValue = this.yawAnimRight[0]
+      this.yawGoalValue = this.yawAnimRight[0]
+      this.pitchStartValue = this.pitchAnimDown[0]
+      this.pitchGoalValue = this.pitchAnimDown[0]
+      this.rollStartValue = this.rollAnimRight[0]
+      this.rollGoalValue = this.rollAnimRight[0]
+      this.restart = false
+    },
+
     yawSelection(keyCode) {
       if (keyCode === 39) {
         this.yawLive = Math.round((this.yawLive + 0.1) * 10) / 10
@@ -976,7 +1244,7 @@ export default {
           this.pitchGoalValue = this.pitchAnimDown[2]
           break
         case 0.1:
-          this.pitchGoalValue =  this.pitchAnimDown[1]
+          this.pitchGoalValue = this.pitchAnimDown[1]
           this.pitchStartValue = this.pitchAnimDown[0]
           this.pitchLR = 'url(#cut-off-pitch-down)'
           this.pitchColor = `#24d2fd`
@@ -987,7 +1255,7 @@ export default {
           break
         case -0.1:
           this.pitchStartValue = this.pitchAnimUp[0]
-          this.pitchGoalValue =  this.pitchAnimUp[1]
+          this.pitchGoalValue = this.pitchAnimUp[1]
           this.pitchLR = 'url(#cut-off-pitch-up)'
           this.pitchColor = `#24d2fd`
           break
@@ -1049,7 +1317,7 @@ export default {
           this.rollGoalValue = this.rollAnimRight[2]
           break
         case 0.1:
-          this.rollGoalValue =  this.rollAnimRight[1]
+          this.rollGoalValue = this.rollAnimRight[1]
           this.rollStartValue = this.rollAnimRight[0]
           this.rollLR = 'url(#cut-off-roll-right)'
           this.rollColor = `#24d2fd`
@@ -1060,7 +1328,7 @@ export default {
           break
         case -0.1:
           this.rollStartValue = this.rollAnimLeft[0]
-          this.rollGoalValue =  this.rollAnimLeft[1]
+          this.rollGoalValue = this.rollAnimLeft[1]
           this.rollLR = 'url(#cut-off-roll-left)'
           this.rollColor = `#24d2fd`
           break
@@ -1089,6 +1357,11 @@ export default {
           break
       }
     },
+    // removeAnimTrigger(){
+    //   setTimeout(() => {
+    //     this.animationTrigger = 0
+    //   }, 1500)
+    // },
     keyDown(e) {
       this.acceleration = this.acceleration < 100 ? 100 : this.acceleration - 10
       this.accelerationValue = this.accelerationValue + 10.03
@@ -1097,56 +1370,69 @@ export default {
         case 65:
           console.log('A')
           this.currentMajorKey = 65
+          this.animationTrigger = 65
           break
         case 87:
           console.log('W')
           this.currentMajorKey = 87
+          this.animationTrigger = 87
           break
         case 83:
           console.log('S')
           this.currentMajorKey = 83
+          this.animationTrigger = 83
           break
         case 68:
           console.log('D')
           this.currentMajorKey = 68
+          this.animationTrigger = 68
           break
         case 82:
           console.log('R')
           this.currentMinorKey = 82
+          this.animationTrigger = 82
           break
         case 70:
           console.log('F')
           this.currentMinorKey = 70
+          this.animationTrigger = 70
+          // this.removeAnimTrigger()
           break
         case 81:
           console.log('Q')
           this.currentRollKey = 81
           this.rollSelection(81)
+          this.animationTrigger = 81
           break
         case 69:
           console.log('E')
           this.currentRollKey = 69
           this.rollSelection(69)
+          this.animationTrigger = 69
           break
         case 37:
           console.log('🡠')
           this.currentArrowKey = 37
           this.yawSelection(37)
+          this.animationTrigger = 37
           break
         case 38:
           console.log('🡡')
           this.currentArrowKey = 38
           this.pitchSelection(38)
+          this.animationTrigger = 38
           break
         case 39:
           console.log('🡢')
           this.currentArrowKey = 39
           this.yawSelection(39)
+          this.animationTrigger = 39
           break
         case 40:
           console.log('🡣')
           this.currentArrowKey = 40
           this.pitchSelection(40)
+          this.animationTrigger = 40
           break
       }
     },
@@ -1155,6 +1441,9 @@ export default {
       this.currentArrowKey = 0
       this.currentMinorKey = 0
       this.currentRollKey = 0
+      setTimeout(() => {
+        this.animationTrigger = 0
+      }, 550)
     },
     disposeNode(node) {
       if (node instanceof THREE.Mesh) {
@@ -1242,23 +1531,26 @@ export default {
 
 #hud-darken {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 200px;
-  width: 100px;
+  top: 50%;
+  left: 50%;
+  height: min(85vh, calc(100vw * 0.714));
+  width: min(85vh, calc(100vw * 0.714));
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  /* border: 1px solid pink; */
 }
 
 .hud-darken-ring {
   height: min(85vh, calc(100vw * 0.714));
   width: min(85vh, calc(100vw * 0.714));
-  object-fit: cover;
+  /* object-fit: cover; */
   top: 50%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
-  overflow: hidden;
+
   /* border: 5px solid red; */
-  z-index: 1;
+  z-index: 2;
 }
 
 #hud-ring {
@@ -1513,7 +1805,7 @@ export default {
   left: 14.59%;
   height: 200px;
   width: 200px;
-  border: 0.5px solid tomato;
+  /* border: 0.5px solid tomato; */
 }
 
 #main-circular-heading {
@@ -1541,12 +1833,12 @@ export default {
   position: absolute;
   width: 200px;
   height: 200px;
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
 }
 
 #lower-right-svg {
   bottom: 8%;
-  right: 14.59%;
+  right: 14.75%;
   z-index: 2;
 }
 
@@ -1561,7 +1853,7 @@ export default {
   position: absolute;
   width: 200px;
   height: 200px;
-  border: 1px solid tomato;
+  /* border: 1px solid tomato; */
 }
 
 #upper-right-svg {
@@ -1658,6 +1950,10 @@ export default {
   color: #2aff00;
 }
 
+.hud-minor-number {
+  font-size: min(0.6vw, 1.25vh);
+}
+
 #yaw-number {
   position: absolute;
   top: 85%;
@@ -1667,7 +1963,7 @@ export default {
 
 #roll-number {
   position: absolute;
-  top: 15%;
+  top: 12.5%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -1681,9 +1977,21 @@ export default {
 
 #xyz-number {
   position: absolute;
-
+  color: #2aff00;
   left: 14%;
   transform: translate(-50%, -50%);
+}
+
+#live-number {
+  position: absolute;
+  color: #24d2fd;
+  transform: translate(-50%, -50%);
+}
+
+#hud-title {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: min(0.4vw, 0.9vh);
 }
 
 .hud-circle-svg {
@@ -1750,12 +2058,11 @@ export default {
   z-index: 2;
 }
 
-
 @keyframes myAnim {
   0% {
     stroke-dashoffset: 132;
   }
-   50% {
+  50% {
     stroke-dashoffset: 165;
   }
   100% {
@@ -1767,6 +2074,124 @@ export default {
   /* top: 50%;
   left: 50%; /* */
   transform: translate(12.5%, 12.5%) scale(0.75);
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.arrow span {
+  display: block;
+  width: min(1.75vw, 3.5vh);
+  height: min(1.75vw, 3.5vh);
+  border-bottom: 5px solid #24d2fd;
+  border-right: 5px solid #24d2fd;
+  transform: rotate(45deg);
+  margin: -10px;
+  animation: animate 1s infinite;
+}
+.arrow span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+.arrow span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
+}
+
+.rotateWrapper {
+  /*   display: flex; */
+  /*   justify-content: center; */
+  /*   perspective: 4rem; */
+  position: absolute;
+  height: min(20vh, 10vw);
+  width: min(20vh, 10vw);
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  /* border: 2px solid red; */
+}
+
+#rotateAnimObject {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  /*   background-image: linear-gradient(to top, red, gray); */
+  border-top: 0.75px solid #24d2fd;
+  /*   transform: perspective(300px) rotateY(-45deg); */
+  animation: rotateAnim 1s infinite;
+}
+
+@keyframes rotateAnim {
+  0% {
+    transform: perspective(800px) rotate3d(1, 0, 0, 0deg);
+  }
+  100% {
+    transform: perspective(800px) rotate3d(1, 0, 0, -95deg);
+    opacity: 0;
+  }
+}
+
+#rotateE {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  /*   background-image: linear-gradient(to top, red, gray); */
+  border-top: 0.75px solid #24d2fd;
+  /*   transform: perspective(300px) rotateY(-45deg); */
+  animation: forE 1s infinite;
+}
+
+@keyframes forE {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+    opacity: 0;
+  }
+}
+
+#rotateQ {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  /*   background-image: linear-gradient(to top, red, gray); */
+  border-top: 0.75px solid #24d2fd;
+  /*   transform: perspective(300px) rotateY(-45deg); */
+  animation: forQ 1s infinite;
+}
+
+@keyframes forQ {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+    opacity: 0;
+  }
+}
+
+.controls {
+  position: absolute;
+  left: 2.5%;
+  color: #313d7b;
+  font-size: 1em;
+
+
 }
 
 #back-box {

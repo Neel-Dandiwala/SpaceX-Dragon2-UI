@@ -279,7 +279,7 @@ export default {
   font-size: 1.5em;
   /* margin: 13%; */
   /* bottom: 7em; */
-  font-weight: 900;
+  font-weight: 500;
 }
 
 button {

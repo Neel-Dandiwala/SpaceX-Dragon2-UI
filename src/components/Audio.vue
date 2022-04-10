@@ -100,7 +100,7 @@
   <div id="inner-box">
     <div class="inner-slot" id="IS1">
       <p id="inner-slot-heading">GROUND</p>
-      <p id="sound">{{ground[indexValue]}}<span style="font-size: 4vw;">dB</span></p>
+      <p id="sound">{{ground[indexValue]}}<span style="font-size: 3vw;">dB</span></p>
       <button style="left: 3%;" type="submit" @click="ground[indexValue] = 12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@
     </div>
     <div class="inner-slot" id="IS2">
       <p id="inner-slot-heading">AUX</p>
-      <p id="sound">{{aux[indexValue]}}<span style="font-size: 4vw;">dB</span></p>
+      <p id="sound">{{aux[indexValue]}}<span style="font-size: 3vw;">dB</span></p>
       <button style="left: 3%;" type="submit" @click="aux[indexValue] = 0">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -160,11 +160,11 @@
       <p id="inner-slot-heading">MAIN</p>
       <p id="sound">100</p>
       <p style="position: relative; color: white; font-size: 0.7em; top: -42%;">Vox</p>
-      <p style="position: relative; color: white;font-weight: 750; font-size: 1em; top: -47%;">{{ground[indexValue] + aux[indexValue] + intercom[indexValue] + alerts[indexValue]}}</p>
+      <p style="position: relative; color: white;font-weight: 500; font-size: 1em; top: -47%;">{{ground[indexValue] + aux[indexValue] + intercom[indexValue] + alerts[indexValue]}}</p>
     </div>
     <div class="inner-slot" id="IS4">
       <p id="inner-slot-heading">INTERCOM</p>
-      <p id="sound">{{intercom[indexValue] > 0 ? `+`+intercom[indexValue] : intercom[indexValue]}}<span style="font-size: 4vw;">dB</span></p>
+      <p id="sound">{{intercom[indexValue] > 0 ? `+`+intercom[indexValue] : intercom[indexValue]}}<span style="font-size: 3vw;">dB</span></p>
       <button style="left: 19%;" type="submit" @click="intercom[indexValue]--">
         <svg viewBox="0 0 4 4" width="30" height="15">
           <path class="zooms" d="M0,2 L4,2"></path>
@@ -557,9 +557,9 @@ svg {
 #sound {
   position: relative;
   color: white;
-  font-size: 5.25vw;
+  font-size: 4.25vw;
   /* font-weight: 700; */
-  top: -7.5%;
+  top: -4.5%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
