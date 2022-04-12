@@ -105,7 +105,7 @@ const routes = [
     path: '/fourth',
     name: 'Fourth',
     component: Fourth
-  }
+  },
 ]
 
 const router = createRouter({

@@ -2,11 +2,28 @@
   <body>
     <div id="back-box"></div>
     <div class="controls-panel">
-      <p style="top: 30%;" class="controls">WASD - Move</p>
-      <p style="top: 40%;" class="controls">R | F - UP | DOWN</p>
-      <p style="top: 50%;" class="controls">Q | E - ROLL</p>
-      <p style="top: 60%;" class="controls">🡡 | 🡣 - PITCH</p>
-      <p style="top: 70%;" class="controls">🡠 | 🡢 - YAW</p>
+      <p
+        class="controls"
+        style="right: 0%; color: white; top: 10%; border-bottom: 1px solid rgba(255,255,255,0.5); padding-right: 2.5%;"
+      >
+        FLIGHT COMMANDS
+      </p>
+      <p style="top: 20%;" class="controls">WASD - Move</p>
+      <p style="top: 25%;" class="controls">R | F - UP | DOWN</p>
+      <p style="top: 30%;" class="controls">Q | E - ROLL</p>
+      <p style="top: 35%;" class="controls">🡡 | 🡣 - PITCH</p>
+      <p style="top: 40%;" class="controls">🡠 | 🡢 - YAW</p>
+      <p
+        class="controls"
+        style="right: 0%; color: white; top: 50%; border-bottom: 1px solid rgba(255,255,255,0.5); padding-right: 5%;"
+      >
+        ALERT ACTIVITY
+      </p>
+      <p style="top: 60%;" class="controls">
+        Keep an eye out for <br />
+        the Easter Egg<br />
+        hidden in space!
+      </p>
     </div>
     <div id="space" ref="canvas1"></div>
     <div id="hud-darken">
@@ -633,7 +650,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { FlyControls } from 'three/examples/jsm/controls/FlyControls.js'
 import atmosphereShader from '../shaders/atmosphereShader'
 import luminanceShader from '../shaders/luminanceShader'
-
+import gsap from 'gsap'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
@@ -647,7 +664,6 @@ export default {
   components: {},
   data() {
     return {
-      restart: false,
       acceleration: 350,
       accelerationValue: 0.01,
       currentMajorKey: 0,
@@ -868,22 +884,23 @@ export default {
       }
     )
 
-    // gltfLoader.load(
-    //   './Earth.glb',
-    //   gltf => {
-    //     console.log(gltf)
-    //     const earth = gltf.scene
-    //     earth.scale.set(0.0025, 0.0025, 0.0025)
-    //     this.earth = earth
-    //     this.scene.add(earth)
-    //   },
-    //   progress => {
-    //     console.log('Earth in progress' + progress)
-    //   },
-    //   error => {
-    //     console.log('Earth crashed' + error)
-    //   }
-    // )
+    gltfLoader.load(
+      './first_ball.glb',
+      gltf => {
+        console.log(gltf.scene)
+        const balls = gltf.scene
+        balls.scale.set(0.25, 0.25, 0.25)
+        balls.rotation.x = 0.9
+        balls.position.set(675, 420, 650)
+        this.scene.add(balls)
+      },
+      progress => {
+        console.log('Balls in progress' + progress)
+      },
+      error => {
+        console.log('Balls crashed' + error)
+      }
+    )
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true })
     this.renderer.setSize(this.sizes.width, this.sizes.height)
@@ -978,6 +995,8 @@ export default {
 
   beforeUnmount() {
     // this.disposeHierarchy(this.scene, this.disposeNode)
+    // this.disposeHierarchy(this.renderer, this.disposeNode)
+    this.scene = null
     this.renderer.dispose()
     this.navRenderer.dispose()
     // this.dynamicHDREffectComposer.dispose()
@@ -988,7 +1007,6 @@ export default {
   },
   methods: {
     animate() {
-      
       requestAnimationFrame(this.animate)
       const delta = this.clock.getDelta()
       const elapsedTime = this.clock.getElapsedTime()
@@ -1031,7 +1049,13 @@ export default {
       // if (this.rangeDistance > 3500.0) {
       //   console.log(this.camera.position)
       // }
-      if(this.rangeDistance > 3500){
+      if (this.rangeDistance > 3500) {
+        gsap.to(this.camera.position, {
+          duration: 4,
+          x: this.cameraPosition.x,
+          y: this.cameraPosition.y,
+          z: this.cameraPosition.z
+        })
         this.restartScene()
       }
 
@@ -1099,8 +1123,6 @@ export default {
       this.navRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     },
     restartScene() {
-     
-      this.camera.position.lerp(this.cameraPosition, 1.0)
       this.acceleration = 350
       this.accelerationValue = 0.01
       this.currentMajorKey = 0
@@ -1119,15 +1141,15 @@ export default {
 
       this.yawLive = 0.0
       this.yawLR = `url(#cut-off-yaw-right)` + ''
-      
+
       this.yawColor = `#24d2fd`
       this.pitchLive = 0.0
       this.pitchLR = `url(#cut-off-pitch-up)` + ''
-      
+
       this.pitchColor = `#24d2fd`
       this.rollLive = 0.0
       this.rollLR = `url(#cut-off-roll-right)` + ''
-      
+
       this.rollColor = `#24d2fd`
       this.yawStartValue = this.yawAnimRight[0]
       this.yawGoalValue = this.yawAnimRight[0]
@@ -1135,7 +1157,7 @@ export default {
       this.pitchGoalValue = this.pitchAnimDown[0]
       this.rollStartValue = this.rollAnimRight[0]
       this.rollGoalValue = this.rollAnimRight[0]
-      this.restart = false
+      
     },
 
     yawSelection(keyCode) {
@@ -2187,11 +2209,9 @@ export default {
 
 .controls {
   position: absolute;
-  left: 2.5%;
+  right: 1.5%;
   color: #313d7b;
   font-size: 1em;
-
-
 }
 
 #back-box {

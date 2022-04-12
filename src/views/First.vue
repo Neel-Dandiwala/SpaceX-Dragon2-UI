@@ -6,6 +6,20 @@
           <rect rx="1" ry="1" width="10" height="8" class="topLeftSquare" />
         </svg>
       </div>
+      <p id="top-menu-heading" style="left: 4.15%;">ACTIVE PHASE</p>
+      <p id="top-menu-number" style="font-size: 1em; font-weight: 600; left: 4%;">Deorbit Coast</p>
+      <p id="top-menu-heading" style="left: 20%;">SPLASHDOWN TIME</p>
+      <p id="top-menu-number" style="left: 20%;">T-01:24:{{splashDown}}</p>
+      <p id="top-menu-heading" style="left: 42.5%;">INERTIAL VELOCITY</p>
+      <p id="top-menu-number" style="left: 42.5%;">{{inertial}}km/s</p>
+      <p id="top-menu-heading" style="left: 55%;">ALTITUDE</p>
+      <p id="top-menu-number" style="left: 55%;">{{altitude}}km</p>
+      <p id="top-menu-heading" style="left: 67.5%;">APOGEE</p>
+      <p id="top-menu-number" style="left: 67.5%;">{{apogee}}km</p>
+      <p id="top-menu-heading" style="left: 80%;">PERIGEE</p>
+      <p id="top-menu-number" style="left: 80%;">{{perigee}}km</p>
+      <p id="top-menu-heading" style="left: 92.5%;">INCLINATION</p>
+      <p id="top-menu-number" style="left: 92.5%;">{{inclination}}°</p>
     </div>
     <div id="side-menu">
       <button @click="centerMainHeadingSelection = 0" v-bind:style="[centerMainHeadingSelection === 0 ? `border: 1px solid white` : `border: none`]" style="top: 6.5%;" id="side-button"><svg class="svg" style="top: 15%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"  viewBox="0 0 16 16">
@@ -122,6 +136,20 @@
     <keep-alive>
        <component :is="currentComponent"></component>
     </keep-alive>
+    <p
+          style="position: absolute; color: white; right: 0%;  font-size: 0.5vw; right: 9%; top: 82.5%;"
+        >
+          Camera
+        </p>
+        <p
+          style="position: absolute; color: white; right: 0%; font-size: 0.6vw; transform: translate(-50%, -50%); left: 91.7%; top: 86%;"
+        >
+          {{ viewHeading }}
+        </p>
+      <p v-if=" currentComponent === 'view-00'" id="top-menu-heading" style="left: 60%; top: 87.5%;">TARGET LATITUDE</p>
+      <p v-if=" currentComponent === 'view-00'" id="top-menu-number" style="font-size: 1.25em; font-weight: 500; left: 60%; top: 90%;">26° 15.00° N</p>
+      <p v-if=" currentComponent === 'view-00'" id="top-menu-heading" style="left: 72.5%; top: 87.5%;">TARGET LONGITUDE</p>
+      <p v-if=" currentComponent === 'view-00'" id="top-menu-number" style="font-size: 1.25em; font-weight: 500; left: 72.5%; top: 90%;">26° 15.00° N</p>
     <button @click="swapComponent()" type="submit" id="swap-view">
       <svg id="view-dash" width="15" height="5" viewBox="0 0 10 3">
         <rect width="10" height="10" class="white-svg" />
@@ -270,7 +298,14 @@ export default {
       currentComponent: 'view-01',
       count: 1,
       centerMainHeading: ['Deport & Burn','Coast to Trunk Jettison','Claw Separation','Procedure','Manual Chute'],
-      centerMainHeadingSelection: 1
+      centerMainHeadingSelection: 1,
+      splashDown: 51,
+      inertial: 7.69,
+      altitude: 393.3,
+      apogee: 416.2,
+      perigee: 379.4, 
+      inclination: 51.62,
+      viewHeading: 'Auto - Map IO'
     }
   },
   components: {
@@ -282,7 +317,7 @@ export default {
   },
 
   mounted() {
-
+    this.topNumbers()
   },
 
   methods: {
@@ -290,6 +325,28 @@ export default {
       this.count = (this.count + 1) % 3
       console.log(this.count)
       this.currentComponent = 'view-0'+(this.count)
+      switch (this.currentComponent) {
+        case 'view-00':
+          this.viewHeading = 'Auto - Earth IO'
+          break
+        case 'view-01':
+          this.viewHeading = 'Auto - Map IO'
+          break
+        case 'view-02': 
+          this.viewHeading = 'Auto - Capsule IO'
+          break
+      }
+    },
+    topNumbers(){
+      const randomizer = Math.random()
+      console.log(randomizer)
+      this.splashDown = Math.round(this.splashDown + (randomizer < 0.5 ? -1 : 1))
+      this.inertial = Math.round((this.inertial + (randomizer * 5 - 2)) * 100) / 100
+      this.altitude = Math.round((this.altitude + (randomizer * 10 - 5)) * 10) / 10
+      this.apogee = Math.round((this.apogee + (randomizer * 10 - 5)) * 10) / 10
+      this.perigee = Math.round((this.perigee + (randomizer * 10 - 5)) * 10) / 10
+      this.inclination = Math.round((this.inclination + (randomizer * 5 - 2)) * 100) / 100
+      setTimeout(this.topNumbers, 1000)
     },
   },
   beforeRouteUpdate() {},
@@ -543,5 +600,19 @@ export default {
   /* transition: all 0.5s ease-in; */
 }
 
+#top-menu-heading{
+  position: absolute;
+  color: white;
+  font-size: 0.75em;
+  top: 0%;
+}
+
+#top-menu-number{
+  position: absolute;
+  color: white;
+  font-size: 1.25em;
+  font-weight: 600;
+  top: 15%;
+}
 
 </style>

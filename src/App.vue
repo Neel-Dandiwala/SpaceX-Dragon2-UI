@@ -5,6 +5,8 @@
     </div>
     <div ref="marker" id="marker" class="marker" />
     <router-view />
+    <Start id="divtest" style="border-radius: 0 0 30px 30px;" v-if="loading" />
+    <p v-if="loading" id="divtest2" style="font-size: 2em; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Welcome to the Dragon</p>
     <nav>
       <router-link :to="{ name: 'First' }" @click="indicator(0)"
         ><button id="panelButton" ref="firstPanel" type="submit">
@@ -69,23 +71,236 @@
             />
           </svg></button
       ></router-link>
+      <div
+        style="position: absolute; border-right: 1px solid white; top: 0%; right: 55%; width: 15%; height: 100%;"
+      >
+        <p
+          style="position: absolute; color: white; right: 0%;  font-size: 0.5vw; top: 0%;"
+        >
+          CURRENT STATE
+        </p>
+        <p
+          style="position: absolute; color: white; right: 0%; font-size: 0.6vw; top: 20%;"
+        >
+          Far Field Pointing Deorbit
+        </p>
+      </div>
+      <div
+        style="position: absolute; border-left: 1px solid white; top: 0%; left: 55%; width: 10%; height: 100%;"
+      >
+        <p
+          style="position: absolute; color: white; left: 0%;  font-size: 0.5vw; top: 0%;"
+        >
+          POINTING MODE
+        </p>
+        <p
+          style="position: absolute; color: white; left: 0%; font-size: 0.6vw; top: 20%;"
+        >
+          Sun + GEO
+        </p>
+      </div>
+      <div
+        style="position: absolute; border: 0px solid white; top: 0%; right: 150px; width: 10%; height: 100%;"
+      >
+        <svg
+          style="position: absolute; top: 25%; left: 0%;"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#20fbfd"
+          class="bi bi-disc"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+          />
+          <path
+            d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"
+          />
+        </svg>
+        <p
+          style="position: absolute; color: #20fbfd; left: 17.5%;  font-size: 0.55vw; top: 10%;"
+        >
+          SPX
+        </p>
+        <div
+          style="position: absolute; border: 0px solid white; top: 0%; right: 0%; width: 60%; height: 50%;"
+        >
+          <svg
+            style="position: absolute; top: 25%; left: 0%;"
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            fill="#20fbfd"
+            class="bi bi-camera-video-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"
+            />
+          </svg>
+          <p
+            style="position: absolute; color: #20fbfd; left: 25%;  font-size: 0.55vw; top: -30%; border-bottom: 0.5px solid #20fbfd"
+          >
+            22:33
+          </p>
+          <p
+            style="position: absolute; color: #20fbfd; left: 67.5%;  font-size: 0.55vw; top: -30%; border-bottom: 0.5px solid #20fbfd"
+          >
+            0.00
+          </p>
+        </div>
+        <div
+          style="position: absolute; border: 0px solid white; top: 50%; right: 0%; width: 60%; height: 50%;"
+        >
+          <svg
+            style="position: absolute; top: 25%; left: 0%;"
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            fill="#20fbfd"
+            class="bi bi-camera-video-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M 7.247 13.14 L 2.451 7.658 C 1.885 7.013 2.345 6 3.204 6 h 9.592 a 1 1 0 0 1 0.753 1.659 l -4.796 5.48 a 1 1 0 0 1 -1.506 0 z M 11 6 L 11 3 A 1 1 0 0 0 10 2 L 6 2 A 1 1 0 0 0 5 3 L 5 6 Z"
+            />
+          </svg>
+          <p
+            style="position: absolute; color: #20fbfd; left: 25%;  font-size: 0.55vw; top: -30%;"
+          >
+            GND
+          </p>
+          <p
+            style="position: absolute; color: #20fbfd; left: 65%;  font-size: 0.55vw; top: -30%;"
+          >
+            TDRS
+          </p>
+        </div>
+      </div>
+      <div
+        style="position: absolute; border: 0px solid white; top: 0%; right: 60px; width: 5%; height: 100%;"
+      >
+        <svg
+          style="position: absolute; top: 25%; left: 0%;"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="#20fbfd"
+          class="bi bi-disc"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+          />
+          <path
+            d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 4a4 4 0 0 0-4 4 .5.5 0 0 1-1 0 5 5 0 0 1 5-5 .5.5 0 0 1 0 1zm4.5 3.5a.5.5 0 0 1 .5.5 5 5 0 0 1-5 5 .5.5 0 0 1 0-1 4 4 0 0 0 4-4 .5.5 0 0 1 .5-.5z"
+          />
+        </svg>
+        <p
+          style="position: absolute; color: rgba(255,255,255,0.5); left: 35%;  font-size: 0.55vw; top: 10%;"
+        >
+          ISS
+        </p>
+        <div
+          style="position: absolute; border: 0px solid white; top: 0%; right: 0%; width: 25%; height: 50%;"
+        >
+          <svg
+            style="position: absolute; top: 25%; left: 0%;"
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            fill="#ffffff"
+            class="bi bi-camera-video-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"
+            />
+          </svg>
+        </div>
+        <div
+          style="position: absolute; border: 0px solid white; top: 50%; right: 0%; width: 25%; height: 50%;"
+        >
+          <svg
+            style="position: absolute; top: 25%; left: 0%;"
+            xmlns="http://www.w3.org/2000/svg"
+            width="8"
+            height="8"
+            fill="#ffffff"
+            class="bi bi-camera-video-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M 7.247 13.14 L 2.451 7.658 C 1.885 7.013 2.345 6 3.204 6 h 9.592 a 1 1 0 0 1 0.753 1.659 l -4.796 5.48 a 1 1 0 0 1 -1.506 0 z M 11 6 L 11 3 A 1 1 0 0 0 10 2 L 6 2 A 1 1 0 0 0 5 3 L 5 6 Z"
+            />
+          </svg>
+        </div>
+      </div>
+      <p
+          style="position: absolute; color: white; right: 0px;  font-size: 0.5vw; top: 5%;"
+        >
+          79/1450122
+        </p>
     </nav>
   </div>
 </template>
 <script>
 // import { isObjectMember } from '@babel/types'
 // import { useRouter } from 'vue-router';
+import Start from './views/Start.vue'
+import gsap from 'gsap'
 
 export default {
+
   inject: ['GStore'],
   data() {
     return {
-      activePanel: [false, false, false, false, false]
+      activePanel: [false, false, false, false, false],
+      loading: null
     }
   },
+  components: {
+    Start
+  },
   mounted() {
+    // setTimeout(() => {
+    //             this.loading = false
+    //             const tl = gsap.timeline({  paused: true, defaults: { duration: 3 }})
+    //             tl.to("#divtest", { opacity: 0 })
+    //         }, 7000)
     // console.log(this.$refs.secondPanel.offsetLeft)
+  if(sessionStorage.length === 0){
+    this.loading = true
+      this.startTransition() 
+  }
+       
     let str = sessionStorage.getItem('Visit')
+    if (str === undefined || str === null) {
+
+      const winloc = window.location.pathname
+      switch (winloc) {
+        case '/first':
+          str = '0'
+          break
+        case '/second':
+          str = '1'
+          break
+        case '/third':
+          str = '2'
+          break
+        case '/fourth':
+          str = '3'
+          break
+        case '/fifth':
+          str = '4'
+          break
+      }
+    }
     this.checkPanelReload(str)
     // this.$refs.marker.style.left = this.$refs.firstPanel.offsetLeft - 2 + 'px'
   },
@@ -95,6 +310,18 @@ export default {
         this.activePanel[i] = false
       }
       this.activePanel[number] = true
+    },
+    startTransition(){
+       gsap.to('#divtest', {
+          duration: 20,
+          opacity: 0,
+          onComplete: () => {this.loading = false}
+        })
+      gsap.to('#divtest2', {
+          duration: 5,
+          opacity: 0,
+          onComplete: () => {this.loading = false}
+        })
     },
     indicator(number) {
       switch (number) {
@@ -156,7 +383,8 @@ export default {
             this.$refs.fifthPanel.offsetLeft - 2 + 'px'
           break
       }
-    }
+    }, 
+    
   }
 }
 </script>
@@ -222,7 +450,7 @@ nav {
   position: absolute;
   display: block;
   bottom: 0;
-  width: 90%;
+  width: 97%;
   overflow: hidden;
   /* height: 100%; */
 }
@@ -314,4 +542,7 @@ h4 {
   animation-name: yellowfade;
   animation-duration: 3s;
 }
+
+
+
 </style>
