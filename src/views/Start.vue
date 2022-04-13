@@ -173,15 +173,9 @@ export default {
       gsap.to(this.startCamera.position, {
           duration: 5,
           z: 10,
-          onComplete: this.redirectNow,
         })
     },
-    redirectNow() {
-        this.$router.push('/')
-    },
-    changeFog(){
-        this.startScene.fog = new THREE.FogExp2(0x000000, this.fogValue.value)
-    },
+    
     startNebula() {
            
         this.startParameters.slow =

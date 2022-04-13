@@ -21,7 +21,7 @@
       </p>
       <p style="top: 60%;" class="controls">
         Keep an eye out for <br />
-        the Easter Egg<br />
+        the Easter Eggs<br />
         hidden in space!
       </p>
     </div>
@@ -884,23 +884,121 @@ export default {
       }
     )
 
+    this.ballsGroup = new THREE.Group()
+
     gltfLoader.load(
       './first_ball.glb',
       gltf => {
         console.log(gltf.scene)
         const balls = gltf.scene
-        balls.scale.set(0.25, 0.25, 0.25)
+        balls.scale.set(0.05, 0.05, 0.05)
         balls.rotation.x = 0.9
-        balls.position.set(675, 420, 650)
-        this.scene.add(balls)
+        balls.rotation.z += this.miscellaneous.tilt
+        balls.position.set(675, 420, -2000)
+        this.ballsGroup.add(balls)
       },
       progress => {
-        console.log('Balls in progress' + progress)
+        console.log('First ball in progress' + progress)
       },
       error => {
-        console.log('Balls crashed' + error)
+        console.log('First ball crashed' + error)
       }
     )
+
+    gltfLoader.load(
+      './second_ball.glb',
+      gltf => {
+        console.log(gltf.scene)
+        const balls = gltf.scene
+        balls.scale.set(0.05, 0.05, 0.05)
+        balls.rotation.x = 0.9
+        balls.rotation.z += this.miscellaneous.tilt
+        balls.position.set(675, 2000, 650)
+        this.ballsGroup.add(balls)
+      },
+      progress => {
+        console.log('Second ball in progress' + progress)
+      },
+      error => {
+        console.log('Second ball crashed' + error)
+      }
+    )
+
+    gltfLoader.load(
+      './third_ball.glb',
+      gltf => {
+        console.log(gltf.scene)
+        const balls = gltf.scene
+        balls.scale.set(0.05, 0.05, 0.05)
+        balls.rotation.x = 0.9
+        balls.rotation.z += this.miscellaneous.tilt
+        balls.position.set(2000, -500, 1000)
+        this.ballsGroup.add(balls)
+      },
+      progress => {
+        console.log('Third ball in progress' + progress)
+      },
+      error => {
+        console.log('Third ball crashed' + error)
+      }
+    )
+
+    gltfLoader.load(
+      './fourth_ball.glb',
+      gltf => {
+        console.log(gltf.scene)
+        const balls = gltf.scene
+        balls.scale.set(0.05, 0.05, 0.05)
+        balls.rotation.x = 0.9
+        balls.rotation.z += this.miscellaneous.tilt
+        balls.position.set(-2000, 10, 450)
+        this.ballsGroup.add(balls)
+      },
+      progress => {
+        console.log('Fourth ball in progress' + progress)
+      },
+      error => {
+        console.log('Fourth ball crashed' + error)
+      }
+    )
+    gltfLoader.load(
+      './fifth_ball.glb',
+      gltf => {
+        console.log(gltf.scene)
+        const balls = gltf.scene
+        balls.scale.set(0.05, 0.05, 0.05)
+        balls.rotation.x = 0.9
+        balls.rotation.z += this.miscellaneous.tilt
+        balls.position.set(50, -2000, 150)
+        this.ballsGroup.add(balls)
+      },
+      progress => {
+        console.log('Fifth ball in progress' + progress)
+      },
+      error => {
+        console.log('Fifth ball crashed' + error)
+      }
+    )
+    gltfLoader.load(
+      './sixth_ball.glb',
+      gltf => {
+        console.log(gltf.scene)
+        const balls = gltf.scene
+        balls.scale.set(0.05, 0.05, 0.05)
+        balls.rotation.x = 0.9
+        balls.rotation.z += this.miscellaneous.tilt
+        balls.position.set(-150, -600, 2000)
+        this.ballsGroup.add(balls)
+      },
+      progress => {
+        console.log('Sixth ball in progress' + progress)
+      },
+      error => {
+        console.log('Sixth ball crashed' + error)
+      }
+    )
+
+    this.scene.add(this.ballsGroup)
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true })
     this.renderer.setSize(this.sizes.width, this.sizes.height)
@@ -1058,7 +1156,7 @@ export default {
         })
         this.restartScene()
       }
-
+      this.ballsGroup.rotation.y += this.miscellaneous.rotationSpeed * delta
       this.earth.rotation.y += this.miscellaneous.rotationSpeed * delta
       this.sphereLightsMesh.rotation.y +=
         this.miscellaneous.rotationSpeed * delta

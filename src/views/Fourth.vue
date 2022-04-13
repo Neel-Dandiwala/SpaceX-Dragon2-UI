@@ -328,9 +328,11 @@
         >
       </button>
     </div>
-
-    <SuitLeak v-if="suitLeakCheck" :ToggleSuitLeak="() => ToggleSuitLeak()">
+    <Transition name="fade" mode="out-in">
+      <SuitLeak v-if="suitLeakCheck" :ToggleSuitLeak="() => ToggleSuitLeak()">
     </SuitLeak>
+    </Transition>
+    
   </div>
 </template>
 
@@ -368,6 +370,7 @@ export default {
       console.log('STOPP')
       clearInterval(this.timeInterval)
       alert('Suit Leak Check halted')
+      this.$router.go(0)
       // this.$router.go() 
     },
     ToggleSuitLeak(){
@@ -682,5 +685,15 @@ p {
   border: none;
   /* transform: scale(1.1); */
   color: #020738;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -5,8 +5,8 @@
     </div>
     <div ref="marker" id="marker" class="marker" />
     <router-view />
-    <Start id="divtest" style="border-radius: 0 0 30px 30px;" v-if="loading" />
-    <p v-if="loading" id="divtest2" style="font-size: 2em; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Welcome to the Dragon</p>
+    <Start id="divtest" style="z-index: 5; border-radius: 0 0 30px 30px;" v-if="loading" />
+    <p v-if="loading" id="divtest2" style="z-index: 5; font-size: 2em; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);">Welcome to the Dragon</p>
     <nav>
       <router-link :to="{ name: 'First' }" @click="indicator(0)"
         ><button id="panelButton" ref="firstPanel" type="submit">
@@ -261,7 +261,7 @@ export default {
   data() {
     return {
       activePanel: [false, false, false, false, false],
-      loading: null
+      loading: true
     }
   },
   components: {
@@ -274,10 +274,12 @@ export default {
     //             tl.to("#divtest", { opacity: 0 })
     //         }, 7000)
     // console.log(this.$refs.secondPanel.offsetLeft)
-  if(sessionStorage.length === 0){
-    this.loading = true
-      this.startTransition() 
+    
+    // const zeroSS = sessionStorage.length
+  if(sessionStorage.length !== 0){
+    this.loading = false
   }
+  this.startTransition()
        
     let str = sessionStorage.getItem('Visit')
     if (str === undefined || str === null) {
@@ -299,6 +301,9 @@ export default {
         case '/fifth':
           str = '4'
           break
+        case '/':
+          str = '0'
+          break
       }
     }
     this.checkPanelReload(str)
@@ -313,13 +318,16 @@ export default {
     },
     startTransition(){
        gsap.to('#divtest', {
-          duration: 20,
+          duration: 15,
           opacity: 0,
+          autoAlpha: 0,
           onComplete: () => {this.loading = false}
         })
       gsap.to('#divtest2', {
           duration: 5,
           opacity: 0,
+          autoAlpha: 0,
+          attr: { transform: "scale(0.2, 0.2)" },
           onComplete: () => {this.loading = false}
         })
     },
