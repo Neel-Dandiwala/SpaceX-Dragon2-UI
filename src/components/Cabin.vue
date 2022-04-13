@@ -79,7 +79,7 @@ export default {
 
 #inner-screen {
   position: absolute;
-  background-image:  radial-gradient(50% 90% at 50% 50%, transparent , #020738), url(http://localhost:8080/dragon_seats.jpg);
+  background-image:  radial-gradient(50% 90% at 50% 50%, transparent , #020738), url('/dragon_seats.jpg');
   background-size: cover;
   background-position: center, center;
   height: 91.75vh;

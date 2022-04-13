@@ -46,6 +46,6 @@ The fifth panel consists of three sub-panels:
  - Cabin
  - Video
 
-In the video sub-panel, the 'Front' option in the left panel named 'Camera' will require the user's permission to access the device's camera. This enables the user to view themselves in the SpaceX's modernistic spacesuit.  
+In the 'Video' sub-panel, the 'Front' option in the left menu named 'Camera' will require the user's permission to access the device's camera. This enables the user to view themselves in the SpaceX's modernistic spacesuit.  
 
 See [Configuration Reference](https://cli.vuejs.org/config/).

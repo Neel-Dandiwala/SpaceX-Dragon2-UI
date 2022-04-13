@@ -321,7 +321,7 @@ export default {
 }
 
 #scroll-earth {
-  background-image: url(http://localhost:8080/earth_modified.jpg);
+  background-image: url('/earth_modified_map.jpg');
   position: absolute;
   height: 100%;
   width: 100%;
