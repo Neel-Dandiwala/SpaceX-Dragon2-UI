@@ -1,4 +1,4 @@
-# SpaceX Dragon-Crew User Interface
+# SpaceX Dragon 2 User Interface
 
 ![First Panel](/misc/first_panel.jpg)
 
