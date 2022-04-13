@@ -70,7 +70,7 @@ export default {
 
     this.group = new THREE.Group()
     this.group.position.z = this.startCamera.position.z
-    // this.group.rotation.set(this.startParameters.lookAt[0], this.startParameters.lookAt[1], this.startParameters.lookAt[2])
+
 
     this.nebulaTexture = textureLoader.load(require('../assets/nebula.jpg'))
     this.nebulaTexture.wrapT = THREE.RepeatWrapping
@@ -118,8 +118,7 @@ export default {
     this.startRenderer.setSize(this.startSizes.width, this.startSizes.height)
     this.startRenderer.setClearColor(0x000000)
     this.startRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    // this.startRenderer.outputEncoding = THREE.sRGBEncoding
-    // this.startRenderer.autoClear = false
+
   },
 
   mounted() {
@@ -132,26 +131,19 @@ export default {
   },
 
   beforeUnmount() {
-    // this.disposeHierarchy(this.scene, this.disposeNode)
-    // this.disposeHierarchy(this.renderer, this.disposeNode)
     this.startScene = null
     this.startRenderer.dispose()
   },
   methods: {
     startAnimate() {
-      //   const delta = this.clock.getDelta()
-      //   const elapsedTime = this.clock.getElapsedTime()
+      
 
       this.startRenderer.render(this.startScene, this.startCamera)
-      //    console.log(this.startCamera)
 
       this.staticNebula()
-    // this.cameraWander()
-    //   this.startNebula()
 
       requestAnimationFrame(this.startAnimate)
 
-      //   this.startComposer.render()
     },
     resizeScreen(e) {
       this.startSizes.width = e.target.innerWidth * 0.999
@@ -222,9 +214,7 @@ export default {
 }
 
 #nebula {
-  /* height: 100%; */
-  /* width: 100%; */
-  /* border-radius: 30px; */
+  
   top: 47.5%;
   left: 50%;
   position: absolute;

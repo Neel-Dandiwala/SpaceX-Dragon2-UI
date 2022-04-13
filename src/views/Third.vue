@@ -47,22 +47,19 @@ export default {
   components: {
     'overview': Overview,
     'mech': Mech,
-    // 'video': Video
+   
   },
   mounted() {
-    // console.log(View03 + View02)
-    // console.log(this.$refs.indicatorThird.children[0].style.left)
+ 
   }
 }
 </script>
 
 <style scoped>
 svg {
-  /* border: 1px solid tomato; */
+  
   top: 10%;
   left: 0%;
-  /* bottom: 7em; */
-  /* transform: translate(-50%, -50%); */
   position: relative;
   padding-bottom: 0;
   z-index: 2;

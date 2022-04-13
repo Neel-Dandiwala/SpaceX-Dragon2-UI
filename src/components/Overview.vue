@@ -1,6 +1,6 @@
 <template>
   <div id="inner-screen">
-    <p id="title">CABIN SETTINGS</p>
+    <p id="title">VEHICLE OVERVIEW</p>
     <div id="shadow" />
 
     <div class="connections-panel">

@@ -147,14 +147,6 @@ export default {
 button {
   width: 85%;
   height: 18.125%;
-   /* border-image: 
-    linear-gradient(
-      to left, 
-      rgba(0, 0, 0, 0),
-      white, 
-      rgba(0, 0, 0, 0)
-    ) 1 1 100%;  */
-  /* border-top: 1px dashed green; */
 }
 
 .buttonOff {

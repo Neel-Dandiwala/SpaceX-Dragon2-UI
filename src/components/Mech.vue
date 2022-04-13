@@ -1,6 +1,6 @@
 <template>
   <div id="inner-screen">
-    <p id="title">CABIN SETTINGS</p>
+    <p id="title">MECH PANEL</p>
     <svg
       class="ring-svg"
       xmlns="http://www.w3.org/2000/svg"
@@ -612,10 +612,6 @@ export default {
     }
   },
   mounted() {
-    // this.selectedGround = this.ground[2]
-    // this.selectedAux = this.aux[2]
-    // this.selectedIntercom = this.intercom[2]
-    // this.selectedAlerts = this.alerts[2]
     this.animate()
   },
   methods: {
@@ -799,9 +795,7 @@ export default {
   width: max(1vw, 2.5vh);
   height: max(1vw, 2.5vh);
   top: 25%;
-  /* border: 0.25px solid rgba(255, 255, 255, 1); */
   transform: translate(-50%, -50%);
-  /* background: rgba(167, 185, 235, 0.25); */
 }
 
 .left-menu-svg {
@@ -809,7 +803,6 @@ export default {
   width: max(1vw, 2vh);
   height: max(1vw, 2vh);
   left: -10%;
-  /* border: 0.25px solid rgba(255, 255, 255, 1); */
   transform: translate(-50%, -50%);
 }
 

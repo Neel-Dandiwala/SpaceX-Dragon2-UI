@@ -9,9 +9,6 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-// eslint-disable-next-line no-unused-vars
-
-
 export default {
   name: 'Capsule',
   props: [],
@@ -21,24 +18,7 @@ export default {
   },
   created() {
     const textureLoader = new THREE.TextureLoader()
-    // eslint-disable-next-line no-unused-vars
     const gltfLoader = new GLTFLoader()
-    // this.earthSizes = {
-    //   small: 300,
-    //   medium: 400,
-    //   large: 500
-    // }
-    // this.size =
-    //   (window.innerWidth <= 1200 && window.innerWidth > 850) ||
-    //   (window.innerHeight <= 650 && window.innerHeight > 450)
-    //     ? this.earthSizes.medium
-    //     : window.innerWidth < 850 || window.innerHeight < 450
-    //     ? Math.min(
-    //         this.earthSizes.small,
-    //         Math.min(window.innerWidth, window.innerHeight)
-    //       )
-    //     : this.earthSizes.large
-
 
     this.size = 500
     this.camera = new THREE.PerspectiveCamera(
@@ -60,7 +40,7 @@ export default {
       './spaceDragon.glb',
       gltf => {
         this.dragon = gltf.scene
-        // iss.scale.set(0.025, 0.025, 0.025)
+    
         this.dragon.rotation.set(0, 2, 0)
         this.dragon.position.set(-15.0, 5, 0)
         this.capsuleScene.add(this.dragon)
@@ -92,13 +72,12 @@ export default {
 
     const tempLight = new THREE.DirectionalLight( 0x0000FF, 0.1);
     tempLight.position.set(-10, 5, 0)
-    // tempLight.rotation.set(50, 50, 50)
+    
     tempLight.target.position.set(-15, 5, 0);
     tempLight.shadowCameraNear = 6; 
     tempLight.shadowCameraFar = 13;
      this.capsuleScene.add(tempLight);
-    // const lightGrid = new THREE.DirectionalLightHelper( tempLight, 5 );
-    // this.scene.add(lightGrid);
+   
 
     const frustum = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 100 );
     frustum.position.set(5, 5, -10)
@@ -147,7 +126,7 @@ export default {
     this.capsuleRenderer.setClearColor(0x000000)
     this.capsuleRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     this.capsuleRenderer.outputEncoding = THREE.sRGBEncoding
-    // this.capsuleRenderer.autoClear = false
+   
     this.controls = new OrbitControls(this.camera, this.capsuleRenderer.domElement)
     this.controls.enableDamping = true
     this.controls.enableZoom = false
@@ -166,6 +145,8 @@ export default {
   },
   beforeUnmount() {
    // this.disposeHierarchy(this.dragon, this.disposeNode)
+   this.capsuleScene = null
+   this.capsuleRenderer.dispose()
   },
   methods: {
     animate() {
@@ -221,13 +202,13 @@ export default {
             if (node.material.envMap) node.material.envMap.dispose()
 
             node.material.dispose()
-            node.material = undefined // fixed problem
+            node.material = undefined 
           }
         }
         console.log('node before removal: ', node)
         this.capsuleScene.remove(node)
-        this.capsuleRenderer.dispose() // ***EDIT*** improved even memory more original scene heap is 12.4 MB; add objects increases to 116 MB or 250 MB (different models), clearing always brings down to 13.3 MB ... there still might be some artifacts.
-        node = undefined // unnecessary
+        this.capsuleRenderer.dispose() 
+        node = undefined 
       }
     },
     disposeHierarchy(node, callback) {
@@ -249,29 +230,19 @@ export default {
   top: 10%;
   left: 40.5%;
   position: absolute;
-  /* transform: translate(10%, -50%); */
   height: 90%;
   width: 60%;
   border: 1px solid tomato;
-  /* z-index: -1; */
 }
 
 #capsule {
-  /* background-image: url(http://localhost:8080/earth_modified.jpg); */
   position: absolute;
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
-  /* background-size: cover; */
-  /* background-position: center; */
   top: 0;
   right: 0;
-  /* transition: all 1s; */
-  /* background-repeat: repeat; */
-  /* overflow: hidden; */
 }
-
-
 
 </style>

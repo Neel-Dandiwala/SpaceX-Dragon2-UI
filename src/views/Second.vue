@@ -1054,7 +1054,7 @@ export default {
     this.navCamera.position.set(0, 0, 5)
     const navLight = new THREE.DirectionalLight('#ffffff', 0.55)
     navLight.position.set(0, 1, 4)
-    const navballTexture = textureLoader.load(require('../assets/navball.png'))
+    const navballTexture = textureLoader.load(require('../assets/navball_edited.png'))
     this.navBall = new THREE.Mesh(
       new THREE.SphereBufferGeometry(1, 16, 16),
       new THREE.MeshStandardMaterial({
@@ -1092,8 +1092,7 @@ export default {
   },
 
   beforeUnmount() {
-    // this.disposeHierarchy(this.scene, this.disposeNode)
-    // this.disposeHierarchy(this.renderer, this.disposeNode)
+
     this.scene = null
     this.renderer.dispose()
     this.navRenderer.dispose()
@@ -1114,8 +1113,7 @@ export default {
       this.navBall.rotation.x = this.camera.rotation.x
       this.navBall.rotation.y = this.camera.rotation.y
       this.dynamicHDREffectComposer.render()
-      // this.earth.rotation.y += 0.01
-      // this.cube.rotation.y += 0.1
+    
       if (this.bloomPass) {
         this.bloomPass.copyUniforms['opacity'].value = 1.0
       }
@@ -1142,11 +1140,7 @@ export default {
         ) / 100
       this.rateValue =
         Math.round((this.rangeDistance / (elapsedTime * 10000)) * 10000) / 10000
-      // console.log(this.rateValue+"DELTA")
-
-      // if (this.rangeDistance > 3500.0) {
-      //   console.log(this.camera.position)
-      // }
+      
       if (this.rangeDistance > 3500) {
         gsap.to(this.camera.position, {
           duration: 4,
@@ -1477,11 +1471,7 @@ export default {
           break
       }
     },
-    // removeAnimTrigger(){
-    //   setTimeout(() => {
-    //     this.animationTrigger = 0
-    //   }, 1500)
-    // },
+
     keyDown(e) {
       this.acceleration = this.acceleration < 100 ? 100 : this.acceleration - 10
       this.accelerationValue = this.accelerationValue + 10.03
@@ -1603,8 +1593,8 @@ export default {
         }
         console.log('node before removal: ', node)
         this.scene.remove(node)
-        this.renderer.dispose() // ***EDIT*** improved even memory more original scene heap is 12.4 MB; add objects increases to 116 MB or 250 MB (different models), clearing always brings down to 13.3 MB ... there still might be some artifacts.
-        node = undefined // unnecessary
+        this.renderer.dispose() 
+        node = undefined 
       }
     },
     disposeHierarchy(node, callback) {
@@ -1744,15 +1734,7 @@ export default {
 }
 
 @media screen and (max-width: 1200px), (max-height: 650px) {
-  /* #hud-darken-ring {
-    height: 750px;
-    width: 750px;
-    overflow: hidden;
-  }
-  #hud-ring {
-    width: 375px;
-    height: 375px;
-  } */
+  
   #lower-left {
     height: 150px;
     width: 150px;
@@ -1797,15 +1779,7 @@ export default {
 }
 
 @media screen and (max-width: 850px), (max-height: 450px) {
-  /* #hud-darken-ring {
-    height: 650px;
-    width: 650px;
-    overflow: hidden;
-  }
-  #hud-ring {
-    width: 335px;
-    height: 335px;
-  } */
+  
   #lower-left {
     height: 100px;
     width: 100px;
@@ -1850,29 +1824,12 @@ export default {
 }
 
 .circular-progress {
-  /* position: absolute;
-  width: min(15vw, 32.5vh);
-  height: min(12.5vw, 27vh); */
-  /* width: 200px;
-  height: 200px; */
-  /* top: 3%;
-  text-align: center; */
+
   text-align: center;
-  /* transform: translate(-50%, -50%); */
-  /* border: 1px solid pink;
-  z-index: 2; */
-  /* left: 50%; */
-  /* left: 14.59%; */
 }
 
 .circle-big-svg {
   position: absolute;
-  /* width: max(11vw, 23.5vh);
-  height: max(11vw, 23.5vh); */
-  /* width:  150px;
-  height:  150px; */
-  /* border: 0.25px solid green; */
-  /* transform: translate(-50%, -50%); */
   text-align: center;
   width: 200px;
   height: 200px;
@@ -1933,8 +1890,6 @@ export default {
   position: relative;
   /* width: 10%; */
   top: 32.5%;
-  /* left: 18.5%; */
-  /* border: 5px solid pink; */
   z-index: 2;
   opacity: 0.5;
   /* transform: translate(-50%, -50%); */
@@ -1990,58 +1945,42 @@ export default {
 }
 
 #upper-left-indicator-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+
   transform: translate(45.5%, 26.25%) scale(0.35) rotate(130deg);
 }
 
 #upper-right-indicator-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+
   transform: translate(73%, 50.25%) scale(0.35) rotate(230deg);
 }
 
 #lower-left-indicator-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+
   transform: translate(26%, 47.5%) scale(0.35) rotate(50deg);
 }
 
 #lower-right-indicator-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+ 
   transform: translate(53.75%, 71%) scale(0.35) rotate(310deg);
 }
 
 #lower-right-indicator-inner-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+
   transform: translate(49.5%, 49.5%) scale(0.125);
 }
 
 #lower-left-indicator-inner-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+ 
   transform: translate(38.25%, 49.5%) scale(0.125);
 }
 
 #upper-right-indicator-inner-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+  
   transform: translate(49.5%, 38.25%) scale(0.125);
 }
 
 #upper-left-indicator-inner-svg-path {
-  /* stroke: white; */
-  /* stroke-width: 0.0625; */
-  /* fill: rgba(255, 255, 255, 0.5); */
+  
   transform: translate(38.25%, 38.25%) scale(0.125);
 }
 
@@ -2116,11 +2055,6 @@ export default {
 
 .hud-circle-svg {
   position: absolute;
-  /* width: max(11vw, 23.5vh);
-  height: max(11vw, 23.5vh); */
-  /* width:  150px;
-  height:  150px; */
-  /* border: 0.25px solid green; */
   transform: translate(-50%, -50%);
   text-align: center;
   width: calc((min(81vh, calc(100vw * 0.714))) / 2);
@@ -2129,9 +2063,6 @@ export default {
 
 .animation-yaw {
   stroke-dashoffset: v-bind(yawGoalValue);
-  /* animation-name: yawAnim;
-  animation-duration: 2s;
-  animation-iteration-count: linear; */
   transition: stroke 0.25s linear;
   stroke: v-bind(yawColor);
   stroke-width: 0.25em;
@@ -2146,9 +2077,6 @@ export default {
 
 .animation-pitch {
   stroke-dashoffset: v-bind(pitchGoalValue);
-  /* animation-name: myAnim;
-  animation-duration: 2s;
-  animation-iteration-count: infinite; */
   transition: stroke 0.25s linear;
   stroke: v-bind(pitchColor);
   stroke-width: 0.25em;
@@ -2163,9 +2091,6 @@ export default {
 
 .animation-roll {
   stroke-dashoffset: v-bind(rollGoalValue);
-  /* animation-name: myAnim;
-  animation-duration: 2s;
-  animation-iteration-count: infinite; */
   transition: stroke 0.25s linear;
   stroke: v-bind(rollColor);
   stroke-width: 0.25em;
@@ -2233,16 +2158,11 @@ export default {
 }
 
 .rotateWrapper {
-  /*   display: flex; */
-  /*   justify-content: center; */
-  /*   perspective: 4rem; */
   position: absolute;
   height: min(20vh, 10vw);
   width: min(20vh, 10vw);
   top: 50%;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
-  /* border: 2px solid red; */
 }
 
 #rotateAnimObject {

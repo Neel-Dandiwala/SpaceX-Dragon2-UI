@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <div id="flashMessage" v-if="GStore.flashMessage">
-      {{ GStore.flashMessage }}
-    </div>
     <div ref="marker" id="marker" class="marker" />
     <router-view />
     <Start id="divtest" style="z-index: 5; border-radius: 0 0 30px 30px;" v-if="loading" />
-    <p v-if="loading" id="divtest2" style="z-index: 5; font-size: 2em; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);">Welcome to the Dragon</p>
+    <p
+      v-if="loading"
+      id="divtest2"
+      style="z-index: 5; font-size: 2em; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%);"
+    >
+      Welcome to the Dragon
+    </p>
     <nav>
       <router-link :to="{ name: 'First' }" @click="indicator(0)"
         ><button id="panelButton" ref="firstPanel" type="submit">
@@ -242,22 +245,18 @@
         </div>
       </div>
       <p
-          style="position: absolute; color: white; right: 0px;  font-size: 0.5vw; top: 5%;"
-        >
-          79/1450122
-        </p>
+        style="position: absolute; color: white; right: 0px;  font-size: 0.5vw; top: 5%;"
+      >
+        79/1450122
+      </p>
     </nav>
   </div>
 </template>
 <script>
-// import { isObjectMember } from '@babel/types'
-// import { useRouter } from 'vue-router';
 import Start from './views/Start.vue'
 import gsap from 'gsap'
 
 export default {
-
-  inject: ['GStore'],
   data() {
     return {
       activePanel: [false, false, false, false, false],
@@ -268,22 +267,15 @@ export default {
     Start
   },
   mounted() {
-    // setTimeout(() => {
-    //             this.loading = false
-    //             const tl = gsap.timeline({  paused: true, defaults: { duration: 3 }})
-    //             tl.to("#divtest", { opacity: 0 })
-    //         }, 7000)
-    // console.log(this.$refs.secondPanel.offsetLeft)
-    
-    // const zeroSS = sessionStorage.length
-  if(sessionStorage.length !== 0){
-    this.loading = false
-  }
-  this.startTransition()
-       
+    if (sessionStorage.length !== 0) {
+      this.loading = false
+    } else {
+      this.loading = true
+    }
+    this.startTransition()
+
     let str = sessionStorage.getItem('Visit')
     if (str === undefined || str === null) {
-
       const winloc = window.location.pathname
       switch (winloc) {
         case '/first':
@@ -307,7 +299,7 @@ export default {
       }
     }
     this.checkPanelReload(str)
-    // this.$refs.marker.style.left = this.$refs.firstPanel.offsetLeft - 2 + 'px'
+    
   },
   methods: {
     updateActivePanel(number) {
@@ -316,20 +308,24 @@ export default {
       }
       this.activePanel[number] = true
     },
-    startTransition(){
-       gsap.to('#divtest', {
-          duration: 15,
-          opacity: 0,
-          autoAlpha: 0,
-          onComplete: () => {this.loading = false}
-        })
+    startTransition() {
+      gsap.to('#divtest', {
+        duration: 15,
+        opacity: 0,
+        autoAlpha: 0,
+        onComplete: () => {
+          this.loading = false
+        }
+      })
       gsap.to('#divtest2', {
-          duration: 5,
-          opacity: 0,
-          autoAlpha: 0,
-          attr: { transform: "scale(0.2, 0.2)" },
-          onComplete: () => {this.loading = false}
-        })
+        duration: 5,
+        opacity: 0,
+        autoAlpha: 0,
+        attr: { transform: 'scale(0.2, 0.2)' },
+        onComplete: () => {
+          this.loading = false
+        }
+      })
     },
     indicator(number) {
       switch (number) {
@@ -391,8 +387,7 @@ export default {
             this.$refs.fifthPanel.offsetLeft - 2 + 'px'
           break
       }
-    }, 
-    
+    }
   }
 }
 </script>
@@ -409,26 +404,16 @@ export default {
 }
 
 router-link * {
-  /* text-align: center; */
-  /* position: absolute; */
+  
   height: 100%;
   width: 100%;
-  /* top: 0%;
-  left: 100%;  */
-  /* padding-left: 5%;
-  margin-right: 50%; */
+
 }
 
 .main-views-svg {
   fill: white;
   height: max(1.5vw, 3.5vh);
   width: max(1.5vw, 3.5vh);
-  /* top: 20%; */
-  /* transform: translate(15%, 0); */
-  /* position: absolute;
-  height: 90%;
-  width: 90%; */
-  /* text-align: center; */
 }
 
 #svg-marker {
@@ -441,7 +426,6 @@ router-link * {
     rgba(255, 255, 255, 1)
   );
   bottom: 0;
-  /* animation: fadeIn 0.5s linear; */
   transition: all 0.7s ease-in;
   opacity: 1;
 }
@@ -495,11 +479,6 @@ nav *.router-link-exact-active {
   color: white;
 }
 
-/* #nav a:nth-child(1) ~ #marker{
-  left: 10;
-  opacity: 1;
-  background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(255,255,255,1)); 
-} */
 
 .marker {
   position: absolute;
@@ -512,19 +491,8 @@ nav *.router-link-exact-active {
     rgba(255, 255, 255, 1)
   );
   bottom: 0;
-  /* animation: fadeIn 0.5s linear; */
   transition: all 0.7s ease-in;
 
-  /* left: 37px; */
-  /* left: 41.75%; */
-  /* z-index: -3; */
-  /*
-  25
-  69
-  112
-  155
-  199
-  */
 }
 
 #panelButton {
@@ -550,7 +518,4 @@ h4 {
   animation-name: yellowfade;
   animation-duration: 3s;
 }
-
-
-
 </style>

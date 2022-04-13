@@ -277,8 +277,6 @@ export default {
 .column p {
   /* position: relative; */
   font-size: 1.5em;
-  /* margin: 13%; */
-  /* bottom: 7em; */
   font-weight: 500;
 }
 
@@ -342,13 +340,8 @@ button {
   position: relative;
   /* left: 50%; */
   top: 40.6%;
-  /* bottom: 7em; */
-  /* transform: translate(-50%, -50%); */
   height: 0.125%;
   border: none;
-  /* width: 60%; */
-  /* border-width: 20%; */
-  /* margin-left: 10%; */
   background-color: white;
   color: white;
   padding: 0;

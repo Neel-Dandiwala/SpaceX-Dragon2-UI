@@ -1,6 +1,6 @@
 <template>
   <div id="inner-screen">
-    <p id="title">CABIN SETTINGS</p>
+    <p id="title">AUDIO SETTINGS</p>
     <div class="selected" ref="selected">
       <div id="curtain" />
       <div id="white-ring" />
@@ -208,10 +208,7 @@ export default {
     }
   },
   mounted() {
-      // this.selectedGround = this.ground[2]
-      // this.selectedAux = this.aux[2]
-      // this.selectedIntercom = this.intercom[2]
-      // this.selectedAlerts = this.alerts[2]
+     
   },
   methods: {
     indicator(e) {
