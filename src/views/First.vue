@@ -497,6 +497,8 @@ var View01 = {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableDamping = true
     this.controls.enableZoom = false
+    this.controls.enableRotate = true
+    this.controls.enablePan = false
     this.controls.minZoom = Math.PI
     this.controls.maxZoom = Math.PI
   },
