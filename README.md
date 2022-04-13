@@ -7,6 +7,7 @@ This is an interactive mock-up of the SpaceX Dragon 2 spacecraft's user interfac
 ### First Panel
 
 The main highlights of the first panels are three available views. One can toggle between the views using the `Next View` button.
+
 ![Next View](/misc/next_view.png)
 
 ### Second Panel
