@@ -12,7 +12,8 @@ The main highlights of the first panels are three available views. One can toggl
 
 ### Second Panel
 
-The second panel showcases a modest system of control to manoeuvre the spacecraft in the virtual space. The controls are as follows:  
+The second panel showcases a modest system of control to manoeuvre the spacecraft in the virtual space. The controls are as follows: 
+ - <table><tr><td>W</td><td>A</td><td>S</td><td>D</td></tr></table> - Move
  - WASD - Move
  - R | F - UP | DOWN
  - Q | E - ROLL
