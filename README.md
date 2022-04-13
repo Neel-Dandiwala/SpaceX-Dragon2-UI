@@ -3,6 +3,11 @@
 ![First Panel](/misc/first_panel.jpg)
 
 This is an interactive mock-up of the SpaceX Dragon 2 spacecraft's user interface. This Vue 3 project employs WebGL, THREEJS and Javascript along with HTML & CSS. There are a total of **5** panels. 
+✓ Chrome
+✓ Firefox
+✓ Opera Browser
+✓ Microsoft Edge
+
 
 ### First Panel
 

@@ -232,7 +232,6 @@ export default {
   position: absolute;
   height: 90%;
   width: 60%;
-  border: 1px solid tomato;
 }
 
 #capsule {
