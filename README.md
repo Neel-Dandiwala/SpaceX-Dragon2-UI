@@ -13,7 +13,7 @@ The main highlights of the first panels are three available views. One can toggl
 ### Second Panel
 
 The second panel showcases a modest system of control to manoeuvre the spacecraft in the virtual space. The controls are as follows: 
- - MOVE <table style="color: white; background: #020738;"><tr><td>W</td><td>A</td><td>S</td><td>D</td></tr></table>
+ - MOVE <table><tr style="color: white; background: #020738;"><td>W</td><td>A</td><td>S</td><td>D</td></tr></table>
  - UP | DOWN <table><tr><td>R</td><td>F</td></tr></table> 
  - ROLL<table><tr><td>Q</td><td>E</td></tr></table> 
  - PITCH<table><tr><td>🡡</td><td>🡣</td></tr></table> 
