@@ -13,12 +13,11 @@ The main highlights of the first panels are three available views. One can toggl
 ### Second Panel
 
 The second panel showcases a modest system of control to manoeuvre the spacecraft in the virtual space. The controls are as follows: 
- - <table><tr><td>W</td><td>A</td><td>S</td><td>D</td></tr></table> - Move
- - WASD - Move
- - R | F - UP | DOWN
- - Q | E - ROLL
- - 🡡 | 🡣 - PITCH
- - 🡠 | 🡢 - YAW
+ - <table><tr><td>W</td><td>A</td><td>S</td><td>D</td></tr></table> Move
+ - <table><tr><td>R</td><td>F</td></tr></table> UP | DOWN
+ - <table><tr><td>Q</td><td>E</td></tr></table> ROLL
+ - <table><tr><td>🡡</td><td>🡣</td></tr></table> PITCH
+ - <table><tr><td>🡠</td><td>🡢</td></tr></table> YAW
 > I have hidden a few easter eggs which share some association to the concept. 
 
 ### Third Panel
