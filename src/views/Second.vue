@@ -8,7 +8,7 @@
       >
         FLIGHT COMMANDS
       </p>
-      <p style="top: 20%;" class="controls">WASD - Move</p>
+      <p style="top: 20%;" class="controls">WASD - MOVE</p>
       <p style="top: 25%;" class="controls">R | F - UP | DOWN</p>
       <p style="top: 30%;" class="controls">Q | E - ROLL</p>
       <p style="top: 35%;" class="controls">🡡 | 🡣 - PITCH</p>
