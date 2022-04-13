@@ -13,7 +13,7 @@ The main highlights of the first panels are three available views. One can toggl
 ### Second Panel
 
 The second panel showcases a modest system of control to manoeuvre the spacecraft in the virtual space. The controls are as follows: 
- - MOVE <table><tr style="color: white; background: #020738;"><td>W</td><td>A</td><td>S</td><td>D</td></tr></table>
+ - MOVE <table><tr><td>W</td><td>A</td><td>S</td><td>D</td></tr></table>
  - UP | DOWN <table><tr><td>R</td><td>F</td></tr></table> 
  - ROLL<table><tr><td>Q</td><td>E</td></tr></table> 
  - PITCH<table><tr><td>🡡</td><td>🡣</td></tr></table> 
@@ -40,3 +40,10 @@ The fifth panel consists of three sub-panels:
 In the video sub-panel, the 'Front' option in the left panel named 'Camera' will require the user's permission to access the device's camera. This enables the user to view themselves in the SpaceX's modernistic spacesuit.  
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+<style>
+td {
+    background: #020738;
+    color: white;
+}
+</style>
