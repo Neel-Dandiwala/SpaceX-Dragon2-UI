@@ -1,5 +1,5 @@
 <template>
-    <div class="back-boxClass" id="back-box">
+    <div id="back-box">
         <div style="" id="nebula" ref="startcanvas"></div>
     </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   components: {},
   data() {
     return {
-    
+      active: true
     }
   },
   beforeMount() {
@@ -136,13 +136,11 @@ export default {
   },
   methods: {
     startAnimate() {
-      
-
-      this.startRenderer.render(this.startScene, this.startCamera)
-
+      if(this.active){
+        this.startRenderer.render(this.startScene, this.startCamera)
       this.staticNebula()
-
       requestAnimationFrame(this.startAnimate)
+      }
 
     },
     resizeScreen(e) {
@@ -166,6 +164,8 @@ export default {
           duration: 5,
           z: 10,
         })
+        setTimeout(()=> { this.active = false }, 2000)
+        
     },
     
     startNebula() {
@@ -214,20 +214,19 @@ export default {
 }
 
 #nebula {
-  
+ border-radius: 0 0 30px 30px;
   top: 47.5%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
-  /* overflow: hidden; */
+  overflow: hidden;
   z-index: 0;
   box-sizing: border-box;
-  border-radius: 0 0 30px 30px;
   border: 1px solid white;
 }
 
-
 #back-box {
+  position: relative;
   overflow: hidden;
   background-color: #020738;
   height: 95vh;
@@ -238,10 +237,6 @@ export default {
   border-bottom: 0.5px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
-}
-
-.back-boxClass {
-    overflow: hidden;
 }
 
 body {

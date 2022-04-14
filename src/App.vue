@@ -276,8 +276,12 @@ export default {
 
     let str = sessionStorage.getItem('Visit')
     if (str === undefined || str === null) {
-      const winloc = window.location.pathname
-      switch (winloc) {
+      const winloc = window.location.pathname.toString()
+      console.log(winloc)
+      let result = /\/\w{0,}$/.exec(winloc)
+      console.log(result[0])
+      const actualPath = result[0].toString()
+      switch (actualPath) {
         case '/first':
           str = '0'
           break

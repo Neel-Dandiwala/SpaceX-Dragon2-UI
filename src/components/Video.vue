@@ -238,7 +238,7 @@ export default {
   height: 100%;
   width: 100%;
   background-size: contain;
-  background-image: url(http://localhost:8080/video_bg.png);
+  background-image: url('../assets/video_bg.png');
 }
 
 #rear-cam {
@@ -246,7 +246,7 @@ export default {
   height: 100%;
   width: 100%;
   background-size: cover;
-  background-image: url(http://localhost:8080/rear_camera.jpg);
+  background-image: url('../assets/rear_camera.jpg');
 }
 
 #left-cam {
@@ -254,7 +254,7 @@ export default {
   height: 100%;
   width: 100%;
   background-size: cover;
-  background-image: url(http://localhost:8080/left_camera.jpg);
+  background-image: url('../assets/left_camera.jpg');
 }
 
 #right-cam {
@@ -262,7 +262,7 @@ export default {
   height: 100%;
   width: 100%;
   background-size: cover;
-  background-image: url(http://localhost:8080/right_camera.jpg);
+  background-image: url('../assets/right_camera.jpg');
 }
 
 .column {
