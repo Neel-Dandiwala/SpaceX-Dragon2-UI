@@ -370,7 +370,7 @@ export default {
       console.log('STOPP')
       clearInterval(this.timeInterval)
       alert('Suit Leak Check halted')
-      this.$router.go(0)
+      window.location.reload()
       // this.$router.go() 
     },
     ToggleSuitLeak(){
