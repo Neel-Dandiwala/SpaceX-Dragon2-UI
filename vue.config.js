@@ -1,6 +1,6 @@
 module.exports = {
     publicPath: process.env.NODE_ENV === 'production'
-      ? '/SpaceX-DragonCrew-UI/'
+      ? '/SpaceX-Dragon2-UI/'
       : '/',
     outputDir: "docs",
   }
