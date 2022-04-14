@@ -212,7 +212,6 @@ export default {
   },
   methods: {
     indicator(e) {
-      // let marker = this.$el.querySelector('.marker')
       this.$refs.selected.style.left = e.target.style.leftIndicator
       this.indexValue = e.target.style.index
       this.selectedSlot = e.target.style.name
