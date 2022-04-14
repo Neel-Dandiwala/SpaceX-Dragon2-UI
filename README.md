@@ -37,6 +37,7 @@ The third panel represents a segment of the SpaceX Dragon UI that consists of su
 
 ### Fourth Panel
 The fourth panel will require the user to click on the 'Start Suit Leak Check' button. 
+
 ![Start Suit Leak Check](/misc/suit_leak_check.png)
 >Upon clicking the said button, the timer will start below. If interrupted by clicking on 'Halt Suit Leak Check', the timer will stop. After the completion of the timer's count, user will be redirected to a dialog box. 
 
