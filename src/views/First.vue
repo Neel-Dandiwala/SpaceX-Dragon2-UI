@@ -503,17 +503,16 @@ var View01 = {
     this.controls.maxZoom = Math.PI
   },
   mounted() {
-    console.log(this.scene)
+   
     this.$refs.canvas1.appendChild(this.renderer.domElement)
     this.animate()
-    console.log(this.$refs.canvas1)
     window.addEventListener('resize', this.resizeScreen)
   },
    beforeUnmount() {
 
     this.scene = null
     this.renderer.dispose()
-    console.log(this.scene)
+    
   },
   methods: {
     animate() {
@@ -583,7 +582,7 @@ export default {
   methods: {
     swapComponent() {
       this.count = (this.count + 1) % 3
-      console.log(this.count)
+   
       this.currentComponent = 'view-0' + this.count
       switch (this.currentComponent) {
         case 'view-00':
@@ -599,7 +598,7 @@ export default {
     },
     topNumbers() {
       const randomizer = Math.random()
-      console.log(randomizer)
+    
       this.splashDown = Math.round(
         this.splashDown + (randomizer < 0.5 ? -1 : 1)
       )

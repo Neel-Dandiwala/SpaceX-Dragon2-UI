@@ -68,7 +68,6 @@ export default {
   methods: {
     toggleClick(index){
       this.active[index] = !this.active[index]
-      console.log(this.active[index])
     }
     
   }

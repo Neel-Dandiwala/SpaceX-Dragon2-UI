@@ -365,7 +365,6 @@ export default {
       }, 5000)
     },
     StopAnimation(){
-      console.log('STOPP')
       clearInterval(this.timeInterval)
       alert('Suit Leak Check halted')
       for (var i=0; i<this.timeouts.length; i++) {
@@ -375,7 +374,6 @@ export default {
      
     },
     ToggleSuitLeak(){
-      console.log('Just only yo')
       this.suitLeakCheck = !this.suitLeakCheck
       clearInterval(this.timeInterval)
     },

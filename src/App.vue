@@ -277,9 +277,7 @@ export default {
     let str = sessionStorage.getItem('Visit')
     if (str === undefined || str === null) {
       const winloc = window.location.pathname.toString()
-      console.log(winloc)
       let result = /\/\w{0,}$/.exec(winloc)
-      console.log(result[0])
       const actualPath = result[0].toString()
       switch (actualPath) {
         case '/first':
@@ -343,7 +341,6 @@ export default {
           this.$refs.marker.style.left =
             this.$refs.secondPanel.offsetLeft - 2 + 'px'
           this.updateActivePanel(number)
-          console.log('DONEENE')
           sessionStorage.setItem('Visit', 1)
           break
         case 2:
@@ -367,7 +364,6 @@ export default {
       }
     },
     checkPanelReload(str) {
-      console.log(str)
       switch (str) {
         case '0':
           this.$refs.marker.style.left =
@@ -376,7 +372,6 @@ export default {
         case '1':
           this.$refs.marker.style.left =
             this.$refs.secondPanel.offsetLeft - 2 + 'px'
-          console.log('DONEENE')
           break
         case '2':
           this.$refs.marker.style.left =

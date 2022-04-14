@@ -214,13 +214,8 @@ export default {
     indicator(e) {
       // let marker = this.$el.querySelector('.marker')
       this.$refs.selected.style.left = e.target.style.leftIndicator
-      console.log(this.$refs.selected.style.left)
-      console.log(e.target.style.leftIndicator)
-      console.log(e.target.style.index)
       this.indexValue = e.target.style.index
       this.selectedSlot = e.target.style.name
-      console.log(e.target.style.name)
-      console.log(e.target)
     }
   }
 }

@@ -128,7 +128,7 @@ export default {
       (this.sizerY * 1.75 - this.sizerY * 1.5) / 2 + ((this.sizerY * 2 - this.sizerY * 1.75) / 6) * 2,
       (this.sizerY * 2 - this.sizerY * 1.75) / 2 + ((this.sizerY * 2 - this.sizerY * 1.75) / 6) * 3
     ]
-    // console.log(this.transformer)
+    
   },
   methods: {
     enter(el){
@@ -142,7 +142,7 @@ export default {
         this.selectedZoom + 1,
         this.zoomArray.length - 1
       )
-      console.log(this.selectedZoom)
+     
       this.zoomValue = this.zoomArray[this.selectedZoom]
       this.zoomMinus = this.zoomSub[this.selectedZoom]
       this.transformValue =
@@ -157,21 +157,14 @@ export default {
       this.navRight = this.XGoal[this.selectedZoom] - this.rightSteps * 10
       this.navUp = this.YGoal[this.selectedZoom] - this.upSteps * 10
       this.navDown = this.YGoal[this.selectedZoom] - this.downSteps * 10
-      console.log(this.navLeft+'L')
-      console.log(this.navRight+'R')
-      console.log(this.navUp+'U')
-      console.log(this.navDown+'D')
+      
     },
     zoomOut() {
       this.selectedZoom = Math.max(this.selectedZoom - 1, 0)
-      console.log(this.selectedZoom)
       this.zoomValue = this.zoomArray[this.selectedZoom]
       this.zoomMinus = this.zoomSub[this.selectedZoom]
       // eslint-disable-next-line prettier/prettier
-      if(((this.XGoal[this.selectedZoom] / 2 ) < Math.min(this.navLeft , this.navRight)) && this.XGoal[this.selectedZoom] !== 0){
-          console.log('X Okay for now')
-      } else {
-        //   this.translateXValue = (navIndicator * (10 * (stepsIndicator / 2)))
+      if( !(((this.XGoal[this.selectedZoom] / 2 ) < Math.min(this.navLeft , this.navRight)) && this.XGoal[this.selectedZoom] !== 0) ){
         this.translateXValue = 0
         this.rightSteps = 0
         this.leftSteps = 0
@@ -179,9 +172,7 @@ export default {
         this.navRight = 0
       }
       // eslint-disable-next-line prettier/prettier
-      if(((this.YGoal[this.selectedZoom] / 2 ) < Math.min(this.navUp , this.navDown)) && this.YGoal[this.selectedZoom] !== 0) {
-        console.log('Y Okay for now')
-      } else {
+      if( !(((this.YGoal[this.selectedZoom] / 2 ) < Math.min(this.navUp , this.navDown)) && this.YGoal[this.selectedZoom] !== 0) ){
         this.translateYValue = 0
         this.upSteps = 0
         this.downSteps = 0
@@ -196,13 +187,12 @@ export default {
         `px, ` +
         this.translateYValue +
         `px)`
-      console.log(this.transformValue)
+      
       this.navLeft = this.XGoal[this.selectedZoom] - this.leftSteps * 10
       this.navRight = (this.XGoal[this.selectedZoom]) - this.rightSteps * 10
       this.navUp = (this.YGoal[this.selectedZoom]) - this.upSteps * 10
       this.navDown = (this.YGoal[this.selectedZoom]) - this.downSteps * 10
-      console.log(this.navLeft)
-      console.log(this.navRight)
+      
     },
     goLeft() {
       this.translateXValue = this.translateXValue + 10
@@ -217,8 +207,7 @@ export default {
         this.navRight = this.XGoal[this.selectedZoom] - this.rightSteps * 10
         this.navLeft = this.XGoal[this.selectedZoom] - this.leftSteps * 10
       }
-      console.log(this.navLeft + ' Left')
-      // console.log(this.translateXValue)
+      
       this.transformValue =
         `scale(` +
         this.zoomArray[this.selectedZoom] +
@@ -227,8 +216,7 @@ export default {
         `px, ` +
         this.translateYValue +
         `px)`
-      // console.log(this.transformValue)
-      // console.log(this.transformer)
+      
     },
     goRight() {
       this.translateXValue = this.translateXValue - 10
@@ -243,8 +231,7 @@ export default {
         this.navRight = this.XGoal[this.selectedZoom] - this.rightSteps * 10
         this.navLeft = this.XGoal[this.selectedZoom] - this.leftSteps * 10
       }
-      console.log(this.navRight + ' Right')
-      // console.log(this.translateXValue)
+      
       this.transformValue =
         `scale(` +
         this.zoomArray[this.selectedZoom] +
@@ -253,7 +240,7 @@ export default {
         `px, ` +
         this.translateYValue +
         `px)`
-      // console.log(this.transformValue)
+      
     },
     goUp() {
       this.translateYValue = this.translateYValue + 10
@@ -268,7 +255,7 @@ export default {
         this.navDown = this.YGoal[this.selectedZoom] - this.downSteps * 10
         this.navUp = this.YGoal[this.selectedZoom] - this.upSteps * 10
       }
-      console.log(this.translateYValue)
+      
       this.transformValue =
         `scale(` +
         this.zoomArray[this.selectedZoom] +
@@ -277,7 +264,7 @@ export default {
         `px, ` +
         this.translateYValue +
         `px)`
-      console.log(this.transformValue)
+      
     },
     goDown() {
       this.translateYValue = this.translateYValue - 10
@@ -292,7 +279,7 @@ export default {
         this.navDown = this.YGoal[this.selectedZoom] - this.downSteps * 10
         this.navUp = this.YGoal[this.selectedZoom] - this.upSteps * 10
       }
-      console.log(this.translateYValue)
+      
       this.transformValue =
         `scale(` +
         this.zoomArray[this.selectedZoom] +
@@ -301,7 +288,7 @@ export default {
         `px, ` +
         this.translateYValue +
         `px)`
-      console.log(this.transformValue)
+      
     }
   }
 }

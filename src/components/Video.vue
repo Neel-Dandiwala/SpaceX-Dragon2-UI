@@ -151,7 +151,7 @@ export default {
 
     toggleClick(index) {
       const booleanValue = this.active[index]
-      console.log(booleanValue + 'BB')
+      
       if (!booleanValue) {
         for (var i = 0; i < this.active.length; i++) {
           this.active[i] = false
@@ -161,28 +161,26 @@ export default {
           this.webcamOn = false
           this.destroyWebcam()
         }
-        console.log(this.active)
+       
       } else {
         this.active[index] = false
       }
-      //   this.active[index] = !this.active[index]
-      console.log(this.active[index])
+      
     },
 
     toggleResolution(index) {
       const booleanValue = this.resolution[index]
-      console.log(booleanValue + 'BB')
+      
       if (!booleanValue) {
         for (var i = 0; i < this.resolution.length; i++) {
           this.resolution[i] = false
         }
         this.resolution[index] = true
-        console.log(this.resolution)
+        
       } else {
         this.resolution[index] = false
       }
-      //   this.active[index] = !this.active[index]
-      console.log(this.resolution[index])
+     
     }
   }
 }

@@ -774,7 +774,6 @@ export default {
     this.scene.add(this.sunLight)
 
     const earthAtmosphereMaterial = new THREE.ShaderMaterial(atmosphereShader)
-    console.log(earthAtmosphereMaterial)
     const earthMaterial = new THREE.MeshPhongMaterial({
       color: 0xffffff,
       shininess: 20
@@ -876,12 +875,6 @@ export default {
         this.iss.position.set(675, 420, 700)
         this.scene.add(this.iss)
       },
-      progress => {
-        console.log('ISS in progress' + progress)
-      },
-      error => {
-        console.log('ISS crashed' + error)
-      }
     )
 
     this.ballsGroup = new THREE.Group()
@@ -889,7 +882,6 @@ export default {
     gltfLoader.load(
       './first_ball.glb',
       gltf => {
-        console.log(gltf.scene)
         const balls = gltf.scene
         balls.scale.set(0.05, 0.05, 0.05)
         balls.rotation.x = 0.9
@@ -897,18 +889,11 @@ export default {
         balls.position.set(675, 420, -2000)
         this.ballsGroup.add(balls)
       },
-      progress => {
-        console.log('First ball in progress' + progress)
-      },
-      error => {
-        console.log('First ball crashed' + error)
-      }
     )
 
     gltfLoader.load(
       './second_ball.glb',
       gltf => {
-        console.log(gltf.scene)
         const balls = gltf.scene
         balls.scale.set(0.05, 0.05, 0.05)
         balls.rotation.x = 0.9
@@ -916,18 +901,11 @@ export default {
         balls.position.set(675, 2000, 650)
         this.ballsGroup.add(balls)
       },
-      progress => {
-        console.log('Second ball in progress' + progress)
-      },
-      error => {
-        console.log('Second ball crashed' + error)
-      }
     )
 
     gltfLoader.load(
       './third_ball.glb',
       gltf => {
-        console.log(gltf.scene)
         const balls = gltf.scene
         balls.scale.set(0.05, 0.05, 0.05)
         balls.rotation.x = 0.9
@@ -935,18 +913,11 @@ export default {
         balls.position.set(2000, -500, 1000)
         this.ballsGroup.add(balls)
       },
-      progress => {
-        console.log('Third ball in progress' + progress)
-      },
-      error => {
-        console.log('Third ball crashed' + error)
-      }
     )
 
     gltfLoader.load(
       './fourth_ball.glb',
       gltf => {
-        console.log(gltf.scene)
         const balls = gltf.scene
         balls.scale.set(0.05, 0.05, 0.05)
         balls.rotation.x = 0.9
@@ -954,17 +925,10 @@ export default {
         balls.position.set(-2000, 10, 450)
         this.ballsGroup.add(balls)
       },
-      progress => {
-        console.log('Fourth ball in progress' + progress)
-      },
-      error => {
-        console.log('Fourth ball crashed' + error)
-      }
     )
     gltfLoader.load(
       './fifth_ball.glb',
       gltf => {
-        console.log(gltf.scene)
         const balls = gltf.scene
         balls.scale.set(0.05, 0.05, 0.05)
         balls.rotation.x = 0.9
@@ -972,17 +936,10 @@ export default {
         balls.position.set(50, -2000, 150)
         this.ballsGroup.add(balls)
       },
-      progress => {
-        console.log('Fifth ball in progress' + progress)
-      },
-      error => {
-        console.log('Fifth ball crashed' + error)
-      }
     )
     gltfLoader.load(
       './sixth_ball.glb',
       gltf => {
-        console.log(gltf.scene)
         const balls = gltf.scene
         balls.scale.set(0.05, 0.05, 0.05)
         balls.rotation.x = 0.9
@@ -990,12 +947,6 @@ export default {
         balls.position.set(-150, -600, 2000)
         this.ballsGroup.add(balls)
       },
-      progress => {
-        console.log('Sixth ball in progress' + progress)
-      },
-      error => {
-        console.log('Sixth ball crashed' + error)
-      }
     )
 
     this.scene.add(this.ballsGroup)
@@ -1076,7 +1027,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.scene)
     this.$refs.canvas1.appendChild(this.renderer.domElement)
     this.$refs.canvas2.appendChild(this.navRenderer.domElement)
     this.animate()
@@ -1097,10 +1047,6 @@ export default {
     this.renderer.dispose()
     this.navRenderer.dispose()
     // this.dynamicHDREffectComposer.dispose()
-    console.log(this.scene)
-  },
-  unmount() {
-    console.log('UNMOUNT UNMOUNT')
   },
   methods: {
     animate() {
@@ -1180,10 +1126,7 @@ export default {
             ? this.accelerationValue - 1
             : 0.01) * 100
         ) / 100
-      // const fixed = new THREE.Vector3(40, 5, 20)
-      // this.ring.position.sub(this.camera.position, fixed)
-      // this.ring.rotation.y += 0.1
-      // console.log(this.ring.position)
+    
     },
     resizeScreen(e) {
       this.sizes.width = e.target.innerWidth * 0.71426571
@@ -1194,20 +1137,18 @@ export default {
 
       this.renderer.setSize(this.sizes.width, this.sizes.height)
       this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-      console.log(this.navSize)
+ 
       this.navSize = 200
       if (
         (e.target.innerWidth <= 1200 && e.target.innerWidth > 850) ||
         (e.target.innerHeight <= 650 && e.target.innerHeight > 450)
       ) {
         this.navSize = 150
-        console.log(this.navSize + 'FIRST')
       }
       if (e.target.innerWidth < 850 || e.target.innerHeight < 450) {
         this.navSize = 100
-        console.log(this.navSize + 'SECOND')
       }
-      console.log(this.navSize + 'FINAL')
+     
       this.navCamera.aspect = this.navSize / this.navSize
       this.navCamera.updateProjectionMatrix()
 
@@ -1259,7 +1200,7 @@ export default {
       if (keyCode === 37) {
         this.yawLive = Math.round((this.yawLive - 0.1) * 10) / 10
       }
-      // console.log(this.yawLive + 'LIVEEE')
+      
       switch (this.yawLive) {
         case 0.7:
           this.yawGoalValue = this.yawAnimRight[7]
@@ -1332,7 +1273,7 @@ export default {
       if (keyCode === 38) {
         this.pitchLive = Math.round((this.pitchLive - 0.1) * 10) / 10
       }
-      console.log(this.pitchLive + 'LIVEEE')
+    
       switch (this.pitchLive) {
         case 0.7:
           this.pitchGoalValue = this.pitchAnimDown[7]
@@ -1405,7 +1346,7 @@ export default {
       if (keyCode === 81) {
         this.rollLive = Math.round((this.rollLive - 0.1) * 10) / 10
       }
-      // console.log(this.yawLive + 'LIVEEE')
+    
       switch (this.rollLive) {
         case 0.7:
           this.rollGoalValue = this.rollAnimRight[7]
@@ -1475,71 +1416,59 @@ export default {
     keyDown(e) {
       this.acceleration = this.acceleration < 100 ? 100 : this.acceleration - 10
       this.accelerationValue = this.accelerationValue + 10.03
-      console.log(e.keyCode)
+  
       switch (e.keyCode) {
         case 65:
-          console.log('A')
           this.currentMajorKey = 65
           this.animationTrigger = 65
           break
         case 87:
-          console.log('W')
           this.currentMajorKey = 87
           this.animationTrigger = 87
           break
         case 83:
-          console.log('S')
           this.currentMajorKey = 83
           this.animationTrigger = 83
           break
         case 68:
-          console.log('D')
           this.currentMajorKey = 68
           this.animationTrigger = 68
           break
         case 82:
-          console.log('R')
           this.currentMinorKey = 82
           this.animationTrigger = 82
           break
         case 70:
-          console.log('F')
           this.currentMinorKey = 70
           this.animationTrigger = 70
           // this.removeAnimTrigger()
           break
         case 81:
-          console.log('Q')
           this.currentRollKey = 81
           this.rollSelection(81)
           this.animationTrigger = 81
           break
         case 69:
-          console.log('E')
           this.currentRollKey = 69
           this.rollSelection(69)
           this.animationTrigger = 69
           break
         case 37:
-          console.log('🡠')
           this.currentArrowKey = 37
           this.yawSelection(37)
           this.animationTrigger = 37
           break
         case 38:
-          console.log('🡡')
           this.currentArrowKey = 38
           this.pitchSelection(38)
           this.animationTrigger = 38
           break
         case 39:
-          console.log('🡢')
           this.currentArrowKey = 39
           this.yawSelection(39)
           this.animationTrigger = 39
           break
         case 40:
-          console.log('🡣')
           this.currentArrowKey = 40
           this.pitchSelection(40)
           this.animationTrigger = 40
@@ -1591,7 +1520,6 @@ export default {
             node.material = undefined // fixed problem
           }
         }
-        console.log('node before removal: ', node)
         this.scene.remove(node)
         this.renderer.dispose() 
         node = undefined 

@@ -115,10 +115,7 @@ export default {
     cabin: Cabin,
     video: Video
   },
-  mounted() {
-    // console.log(View03 + View02)
-    console.log(this.$refs.indicatorFifth.children[0].style.left)
-  }
+  mounted() {}
 }
 </script>
 

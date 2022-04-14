@@ -45,12 +45,6 @@ export default {
         this.dragon.position.set(-15.0, 5, 0)
         this.capsuleScene.add(this.dragon)
       },
-      progress => {
-        console.log('Dragon in progress' + progress)
-      },
-      error => {
-        console.log('Dragon crashed' + error)
-      }
     )
 
       gltfLoader.load(
@@ -62,12 +56,7 @@ export default {
         iss.position.set(5, 5, -10)
         this.capsuleScene.add(iss)
       },
-      progress => {
-        console.log('ISS in progress' + progress)
-      },
-      error => {
-        console.log('ISS crashed' + error)
-      }
+      
     )
 
     const tempLight = new THREE.DirectionalLight( 0x0000FF, 0.1);
@@ -137,10 +126,8 @@ export default {
     this.clock = new THREE.Clock()
   },
   mounted() {
-    console.log(this.capsuleScene)
     this.$refs.canvas2.appendChild(this.capsuleRenderer.domElement)
     this.animate()
-    console.log(this.$refs.canvas2)
     window.addEventListener('resize', this.resizeScreen)
   },
   beforeUnmount() {
@@ -205,7 +192,6 @@ export default {
             node.material = undefined 
           }
         }
-        console.log('node before removal: ', node)
         this.capsuleScene.remove(node)
         this.capsuleRenderer.dispose() 
         node = undefined 

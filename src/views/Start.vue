@@ -122,11 +122,8 @@ export default {
   },
 
   mounted() {
-    console.log(this.startScene)
     this.$refs.startcanvas.appendChild(this.startRenderer.domElement)
     this.startAnimate()
-
-    console.log(this.startCamera.position)
     window.addEventListener('resize', this.resizeScreen)
   },
 
@@ -156,7 +153,6 @@ export default {
     changeColor() {
       var color = new THREE.Color()
       color.setHSL(Math.random(), 1, 0.5)
-      console.log(color)
       this.pointLight.color = color
     },
     cameraWander() {

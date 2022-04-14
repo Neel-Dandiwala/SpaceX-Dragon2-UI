@@ -46,9 +46,7 @@ export default {
   },
   methods: {},
   components: {},
-  mounted() {
-    console.log('VISIT')
-  }
+  mounted() {}
 }
 </script>
 
