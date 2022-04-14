@@ -502,21 +502,27 @@ var View01 = {
     this.controls.minZoom = Math.PI
     this.controls.maxZoom = Math.PI
   },
+  data(){
+    return {
+      active: true
+    }
+  },
   mounted() {
    
     this.$refs.canvas1.appendChild(this.renderer.domElement)
     this.animate()
+    this.active = true
     window.addEventListener('resize', this.resizeScreen)
   },
    beforeUnmount() {
-
+     this.active = false
     this.scene = null
     this.renderer.dispose()
     
   },
   methods: {
     animate() {
-      requestAnimationFrame(this.animate)
+      if(this.active){requestAnimationFrame(this.animate)}
       this.renderer.render(this.scene, this.camera)
       this.sunLight.intensity = 4.0
       // this.controls.update()

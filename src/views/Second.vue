@@ -875,6 +875,8 @@ export default {
         this.iss.position.set(675, 420, 700)
         this.scene.add(this.iss)
       },
+      progress => { progress },
+      error => { error }
     )
 
     this.ballsGroup = new THREE.Group()
@@ -1042,7 +1044,7 @@ export default {
   },
 
   beforeUnmount() {
-
+    this.iss = null
     this.scene = null
     this.renderer.dispose()
     this.navRenderer.dispose()

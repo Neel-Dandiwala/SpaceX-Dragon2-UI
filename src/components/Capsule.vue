@@ -14,6 +14,7 @@ export default {
   props: [],
   data() {
     return {
+      active: true
     }
   },
   created() {
@@ -59,16 +60,16 @@ export default {
       
     )
 
-    const tempLight = new THREE.DirectionalLight( 0x0000FF, 0.1);
+    const tempLight = new THREE.DirectionalLight( 0x0000FF, 0.1)
     tempLight.position.set(-10, 5, 0)
     
     tempLight.target.position.set(-15, 5, 0);
-    tempLight.shadowCameraNear = 6; 
-    tempLight.shadowCameraFar = 13;
-     this.capsuleScene.add(tempLight);
+    tempLight.shadow.camera.near = 6 
+    tempLight.shadow.camera.far = 13
+    this.capsuleScene.add(tempLight)
    
 
-    const frustum = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 100 );
+    const frustum = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 0.1, 100 )
     frustum.position.set(5, 5, -10)
     frustum.rotation.set(0,2,0)
     frustum.lookAt(-15, 5, 0)
@@ -128,16 +129,18 @@ export default {
   mounted() {
     this.$refs.canvas2.appendChild(this.capsuleRenderer.domElement)
     this.animate()
+    this.active = true
     window.addEventListener('resize', this.resizeScreen)
   },
   beforeUnmount() {
    // this.disposeHierarchy(this.dragon, this.disposeNode)
+   this.active = false
    this.capsuleScene = null
    this.capsuleRenderer.dispose()
   },
   methods: {
     animate() {
-      requestAnimationFrame(this.animate)
+      if(this.active){ requestAnimationFrame(this.animate)}
       this.earth.rotation.z += 0.0001
       if(this.dragon){
         this.dragon.rotation.z += 0.01
