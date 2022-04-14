@@ -51,4 +51,7 @@ The fifth panel consists of three sub-panels:
 
 In the 'Video' sub-panel, the 'Front' option in the left menu named 'Camera' will require the user's permission to access the device's camera. This enables the user to view themselves in the SpaceX's modernistic spacesuit.  
 
+Author: **Neel Dandiwala**
+>[LinkedIn](https://www.linkedin.com/in/neel-dandiwala-9102921b7?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bbv44W3uuTbOFvrtwkfEslA%3D%3D)
+
 
