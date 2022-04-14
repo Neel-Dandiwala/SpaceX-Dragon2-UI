@@ -4,6 +4,8 @@
 
 This is an interactive mock-up of the SpaceX Dragon 2 spacecraft's user interface. This Vue 3 project employs WebGL, THREEJS and Javascript along with HTML & CSS.
 
+Are you ready to board the Dragon 2 virtual spacecraft? [CHECK THE DEMO HERE](https://neel-dandiwala.github.io/SpaceX-Dragon2-UI/)!
+
 ✓ Chrome<br>
 ✓ Firefox<br>
 ✓ Opera Browser<br>
@@ -49,4 +51,4 @@ The fifth panel consists of three sub-panels:
 
 In the 'Video' sub-panel, the 'Front' option in the left menu named 'Camera' will require the user's permission to access the device's camera. This enables the user to view themselves in the SpaceX's modernistic spacesuit.  
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
