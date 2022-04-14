@@ -337,8 +337,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
-import gsap from 'gsap'
 import SuitLeak from '../components/SuitLeak.vue'
 
 export default {
@@ -348,31 +346,33 @@ export default {
       suitLeakCheck: false,
       countdown: 5,
       haltSignal: false,
-      timeInterval: null
+      timeInterval: null,
+      timeouts: [],
+    
     }
   },
   methods: {
     TimeoutAnimation(){
-      gsap.from('.animate1',{
-          repeatDelay: 0,
-          textContent: 0,
-          duration: 4,
-          ease: 'power1.in',
-          snap: { textContent: 1 },
-          stagger: { each: 0 }
-        },0).reverse()
+
+      this.timeouts.push(setTimeout(() => { this.countdown = 4 }, 900))
+      this.timeouts.push(setTimeout(() => { this.countdown = 3 }, 1800))
+      this.timeouts.push(setTimeout(() => { this.countdown = 2}, 2700))
+      this.timeouts.push(setTimeout(() => { this.countdown = 1 }, 3600))
+      this.timeouts.push(setTimeout(() => { this.countdown = 0 }, 4500))
       this.timeInterval = setInterval(() => {
-        console.log('GOING')
         this.ToggleSuitLeak()
+        this.countdown = 5
       }, 5000)
     },
     StopAnimation(){
       console.log('STOPP')
       clearInterval(this.timeInterval)
       alert('Suit Leak Check halted')
-      // eslint-disable-next-line no-self-assign
-      window.location.href = window.location.href
-      // this.$router.go() 
+      for (var i=0; i<this.timeouts.length; i++) {
+        clearTimeout(this.timeouts[i])
+      }
+      this.countdown = 5
+     
     },
     ToggleSuitLeak(){
       console.log('Just only yo')
