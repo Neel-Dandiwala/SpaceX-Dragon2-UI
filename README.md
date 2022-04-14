@@ -29,6 +29,8 @@ The second panel showcases a modest system of control to manoeuvre the spacecraf
  - ROLL<table><tr><td>Q</td><td>E</td></tr></table> 
  - PITCH<table><tr><td>🡡</td><td>🡣</td></tr></table> 
  - YAW<table><tr><td>🡠</td><td>🡢</td></tr></table> 
+
+ ![Second Panel](/misc/second-panel.jpg)
 > I have hidden a few easter eggs which share some association to the concept. 
 
 ### Third Panel

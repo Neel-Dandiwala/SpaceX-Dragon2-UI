@@ -135,8 +135,8 @@ export default {
     startAnimate() {
       if(this.active){
         this.startRenderer.render(this.startScene, this.startCamera)
-      this.staticNebula()
-      requestAnimationFrame(this.startAnimate)
+        this.staticNebula()
+        requestAnimationFrame(this.startAnimate)
       }
 
     },
